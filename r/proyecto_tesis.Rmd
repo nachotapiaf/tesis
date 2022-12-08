@@ -1,0 +1,201 @@
+---
+title: 'Cultura política y juventudes ciudadanas en Chile durante 2021'
+author: "Ignacio Tapia Fuentes"
+date: '2022-11-09'
+bibliography: ../input/bib/tesis.bib
+link-citations: yes
+csl: ../input/bib/apa.csl
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE,
+	cache = FALSE)
+ 
+Sys.setlocale("LC_ALL","ES_ES.UTF-8")
+options(scipen = 999)
+getwd()
+```
+
+```{=html}
+<style type="text/css">
+
+h1.title {
+  font-size: 38px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  
+  color: Black;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  
+  color: Black;
+  text-align: center;
+}
+</style>
+```
+\newpage
+
+```{=tex}
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Tabla de contenidos}
+\tableofcontents
+```
+\newpage
+
+## 1. Introducción
+
+América Latina ha sido a lo largo de su historia una región que despierta gran interés en la investigación académica respecto a las grandes transformaciones, fenómenos y experiencias por las que han pasado en perspectiva histórica los Estados de esta latitud, teniendo como foco principal los retrocesos, evolución y desarrollo de las democracias latinoamericanas siendo esta, la democracia, uno de los principales objetos de estudio de la ciencia política.
+
+Es así como desde la década de 1990 tras el fin de la Guerra Fría y durante el auge de la Tercera Ola de Democracias (Hungtington, 1991) que experimentaron distintos Estados del mundo occidental, surgió con fuerza una creciente preocupación respecto a los procesos de consolidación de estas nuevas democracias y del devenir histórico que se vislumbraba teniendo en cuenta las complejidades que heredaron desde los regímenes autoritarios. En este sentido, con el comienzo del nuevo siglo estas problemáticas y falencias de las nuevas democracias comenzaron a ser percibidas con mayor intensidad a la luz de nuevas investigaciones académicas llevadas a cabo con la transición política. 
+
+Ejemplos como la corrupción pública, la desafección política, la baja participación electoral y un distanciamiento cada vez más evidente entre la clase política y la ciudadanía son solo algunos de los síntomas que han heredado las sociedades latinoamericanas en el contexto de sus procesos de mejoramiento en la calidad de las democracias. En este sentido, Morlino explica que si ahora el régimen democrático es aceptado y en parte sostenido en más de la mitad del mundo, el problema más serio e importante es qué democracia está efectivamente vigente en ese centenar de países que hoy se proclaman como tales, es decir, qué calidad democrática se ha conseguido en esos países. (Morlino, 2007)
+
+No obstante, en la actualidad la discusión sobre qué es entendido por calidad de la democracia ha sido expandida hacia propuestas que definen de maneras más precisas el entendimiento sobre calidad de la democracia. Estas nuevas definiciones avanzan sobre temáticas que previamente no habían sido investigadas, por ejemplo, respecto a los componentes de involucramiento y participación política efectiva por parte de la ciudadanía. 
+
+Este escenario ha permitido no solo proponer nuevas formas de evaluar la calidad democrática, sino también retomar antiguas teorías en torno a la relación entre Estado y ciudadanía para de esta forma evaluar la calidad de la democracia en torno a las nuevas culturas políticas que se configuran en torno a su relación con el Estado. En ese sentido, factores como la dramática caída en la participación electoral y en la confianza en las instituciones políticas, (citado en Navia, 2004) el declive de la identificación partidaria y la identificación con ideologías políticas (citado en Navia y Osorio, 2015), entre otros componentes, pueden ser explicados en clave de cultura política. (Bargsted y Somma, 2018) 
+
+No obstante, si bien el escenario político que enfrenta la contingencia del sistema chileno está atravesado fuertemente por una crisis de representatividad caracterizada por tener un sistema de partidos altamente estable y comparativamente bajos niveles de identificación ciudadana con los partidos políticos, (Luna, 2016) creemos que ante esta situación las juventudes ciudadanas en Chile ofrecen nuevas posibilidades de cambio en vista a los próximos años pues según la evidencia científica, existe un gran apoyo por parte de las juventudes hacia la democracia como mejor forma de gobierno, una alta tasa de participación electoral así como los mayores porcentajes de interés en la política desde 2012. (Instituto Nacional de la Juventud, 2022) 
+
+Por esta razón, este estudio buscará analizar e interpretar los cambios en las percepciones y opiniones ciudadanas en las juventudes chilenas entre 18 y 30 años residentes en la Región Metropolitana utilizando los datos disponibles del Estudio Longitudinal Social en su ola número 5 2021. De esta forma se busca indagar sobre cómo las distintas percepciones y opiniones hacia los componentes, actores e instituciones del régimen democrático en Chile vinculan su relación con el apoyo a la democracia. Esta relación entre el sistema político, la ciudadanía y la democracia es lo que distintos autores han definido como Cultura Política poniendo énfasis en que su estudio es relevante ya que la cultura política de una sociedad puede convertirse en un factor explicativo potente de la estabilidad y modernización democrática. (Schneider & Avenburg, 2015) 
+
+Estas dimensiones, la cultura política y el apoyo a la democracia serán los objetos de estudio, cuya pregunta de investigación ha sido definida como: ¿De qué forma los indicadores de cultura política impactan en el apoyo a la democracia en las juventudes chilenas durante el año 2021? 
+
+Si bien es esta la pregunta que guía nuestra investigación, también invitamos a cuestionarnos sobre el estado de la cultura política de las juventudes chilenas y hacia dónde se dirigen, dentro de un contexto político donde problemas como la persistente crisis en la representatividad política invitan a los jóvenes a tomar otras iniciativas de acción, involucramiento y participación política ajenos a espacios institucionalizados que otorgan nuevos significados a sus acciones colectivas. (Sola – Morales y Hernández-Santaolalla, 2017) 
+
+Por esta razón, justificamos nuestra propuesta de investigación en torno a la problemática que surge ante una juventud ciudadana que está entre la desafección política y su repolitización ante un contexto socialmente tecnologizado, influido fuertemente por las Tecnologías de la Información y el Conocimiento. En este sentido, querer conocer más sobre cómo es percibida la relación que existe entre las juventudes ciudadanas es una invitación a reflexionar si es que, efectivamente, a la luz de nuestras experiencias de socialización política las juventudes han internalizado más fuertemente aquellos valores democráticos. (Sanhueza et al.2015)
+
+
+# 2. Análisis
+## 2.1 carga de librerías
+
+```{r include=FALSE}
+pacman::p_load(dplyr,
+              tidyverse,
+              magrittr,
+              srvyr,
+              survey,
+              remotes,
+              texreg,
+              sjPlot,
+              corrplot)
+```
+
+## 2.2 carga de datos
+```{r include=FALSE}
+datos_proc <- readRDS("../output/datos/datos_proc.rds")
+datos_proc_continuo <- readRDS("../output/datos/datos_proc_continuo.rds")
+```
+
+## 2.3 creación de objeto encuesta
+```{r, objeto encuesta}
+elsoc_objeto <- datos_proc %>% 
+  as_survey_design(ids = 18,
+                   weights = fact_exp02)
+```
+
+## Matriz de correlación
+```{r, matriz correlacion}
+corrplot(cor(datos_proc_continuo), method = "shade", title = "Matriz de correlaciones",
+         order = 'hclust', tl.col = "grey")
+```
+
+
+## 2.4 creación de modelos de regresión logística binaria
+### a. construcción múltiple de modelos
+
+```{r, modelos logísticos}
+modelo1 <- glm(c25 ~ 1, family = binomial(link = "logit"), data = datos_proc)
+modelo2 <- glm(c25 ~ sexo, family = binomial(link = "logit"), data = datos_proc)
+modelo3 <- glm(c25 ~ satis_dem, family = binomial(link = "logit"), data = datos_proc)
+modelo4 <- glm(c25 ~ confianza_congreso, family = binomial(link = "logit"), data = datos_proc)
+modelo5 <- glm(c25 ~ interes_politica, family = binomial(link = "logit"), data = datos_proc)
+modelo6 <- glm(c25 ~ ident_ideologica, family = binomial(link = "logit"), data = datos_proc)
+modelo7survey <- svyglm(c25 ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
+```
+### b. Representación modelos en una tabla
+
+```{r, presentación de modelos}
+sjPlot::tab_model(list(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6),
+                  string.intercept = "(Intercepto)",
+                  string.pred = "Predictores",
+                  string.est = "Estimación (OR)",
+                  p.style = "stars",
+                  collapse.ci = T,
+                  digits = 3,
+                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4","Modelo 5","Modelo 6"),
+                  transform = "exp",
+                  show.reflvl = TRUE,
+                  encoding = "UTF-8",
+                  lang = "es")
+```
+
+# 3. Interpretación
+
+## 3.1 gráficos de valores predichos según apoyo a la democracia y sexo
+
+```{r, gráfico 1, modelo 2 por sexo}
+plot_model(modelo2, type = c("pred"),
+           terms = c("sexo"), digits = 3,
+           axis.title = c("Sexo","Apoyo a la democracia"),
+           title = "Gráfico 1. Modelo 2 que estima la frecuencia de apoyo a la democracia según sexo")
+```
+
+## 3.2 gráfico de valores predichos según apoyo a la democracia por satisfacción con la democracia
+```{r, gráfico2, modelo 3}
+plot_model(modelo3, type = c("pred"),
+           terms = c("satis_dem"), digits = 3,
+           axis.title = c("Satisfacción con la democracia","Apoyo a la democracia"),
+           title = "Gráfico 2. Modelo 3 que estima la frecuencia de apoyo a la democracia según  la satisfacción con la democracia")
+```
+
+## 3.3 gráfico de valores predichos según apoyo a la democracia por la confianza en el concgreso
+```{r,gráfico3, modelo 4}
+plot_model(modelo4, type = c("pred"),
+           terms = c("confianza_congreso"), digits = 3,
+           axis.title = c("Confianza en el congreso","Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
+```
+
+3.3 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+
+Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
+
+## 3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+```{r include=FALSE}
+plot_model(modelo5, type = c("pred"),
+           terms = c("interes_politica"), digits = 3,
+           axis.title = c("Interés en la política","Apoyo a la democracia"),
+           title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según el interés en la política")
+```
+
+## 3.5 gráfico de valores predichos según apoyo a la democracia por la identificación ideológica
+```{r,gráfico5, modelo 6}
+plot_model(modelo6, type = c("pred"),
+           terms = c("ident_ideologica"), digits = 3,
+           axis.title = c("Identidad ideológica","Apoyo a la democracia"),
+           title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según la identificación ideológica")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
