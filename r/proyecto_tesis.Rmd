@@ -84,7 +84,8 @@ pacman::p_load(dplyr,
               remotes,
               texreg,
               sjPlot,
-              corrplot)
+              corrplot,
+              sjmisc)
 ```
 
 ## 2.2 carga de datos
@@ -163,17 +164,18 @@ plot_model(modelo4, type = c("pred"),
            title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
 ```
 
-3.3 gráfico de valores predichos según apoyo a la democracia por el interés en la política
-
-Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
 
 ## 3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
-```{r include=FALSE}
+```{r, interes politica}
 plot_model(modelo5, type = c("pred"),
            terms = c("interes_politica"), digits = 3,
-           axis.title = c("Interés en la política","Apoyo a la democracia"),
-           title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según el interés en la política")
+           axis.title = c("Interés en política","Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
 ```
+
+3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+
+Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
 
 ## 3.5 gráfico de valores predichos según apoyo a la democracia por la identificación ideológica
 ```{r,gráfico5, modelo 6}
@@ -182,8 +184,54 @@ plot_model(modelo6, type = c("pred"),
            axis.title = c("Identidad ideológica","Apoyo a la democracia"),
            title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según la identificación ideológica")
 ```
+# Descriptivos univariados
+
+```{r, frecuencias_interes_politica}
+frq(datos_proc$interes_politica)
+plot_frq(elsoc_objeto, interes_politica,
+          title = "Gráfico de: Interés en la política",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias apoyo_dem}
+frq(datos_proc$c25)
+plot_frq(elsoc_objeto, c25,
+          title = "Gráfico de: Apoyo a la democracia",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias satis_dem}
+frq(datos_proc$satis_dem)
+plot_frq(elsoc_objeto, satis_dem,
+          title = "Gráfico de: Satisfacción con la democracia",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias confianza_social}
+frq(datos_proc$confianza_gob)
+plot_frq(elsoc_objeto, confianza_gob,
+          title = "Grado de confianza: El gobierno",
+          type = "bar",
+          sort.frq = "desc")
+```
 
 
+# Descriptivos bivariados
+
+```{r, frecuencias por sexo según apoyo a la democracia}
+datos_proc_continuo %>% select("c25","satis_dem", "interes_politica", "confianza_gob", "confianza_congreso") %>% 
+  sjPlot::plot_likert(., title = "Gráfico de escalas Likert")
+```
+
+
+```{r}
+plot_grpfrq(datos_proc$c25, datos_proc$satis_dem,
+            title = "Gráfico de caja",
+            type = "boxplot")
+```
 
 
 
