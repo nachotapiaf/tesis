@@ -7,6 +7,7 @@ link-citations: yes
 csl: ../input/bib/apa.csl
 output: pdf_document
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
 	message = FALSE,
@@ -49,30 +50,44 @@ h4.date { /* Header 4 - and the author and data headers use this too  */
 ```
 \newpage
 
-## 1. Introducción
+# 1. Introducción
 
-América Latina ha sido a lo largo de su historia una región que despierta gran interés en la investigación académica respecto a las grandes transformaciones, fenómenos y experiencias por las que han pasado en perspectiva histórica los Estados de esta latitud, teniendo como foco principal los retrocesos, evolución y desarrollo de las democracias latinoamericanas siendo esta, la democracia, uno de los principales objetos de estudio de la ciencia política.
+La presente investigación de tesis tiene como principal objetivo, a través un análisis estadístico multivariado, evaluar la relación entre los conceptos de cultura política y apoyo a la democracia enfocado en analizar el estado de las percepciones de las juventudes chilenas. Así mismo se busca identificar si puede la cultura política explicar los cambios que puedan darse en el apoyo a la democracia como mejor forma de gobierno.
 
-Es así como desde la década de 1990 tras el fin de la Guerra Fría y durante el auge de la Tercera Ola de Democracias (Hungtington, 1991) que experimentaron distintos Estados del mundo occidental, surgió con fuerza una creciente preocupación respecto a los procesos de consolidación de estas nuevas democracias y del devenir histórico que se vislumbraba teniendo en cuenta las complejidades que heredaron desde los regímenes autoritarios. En este sentido, con el comienzo del nuevo siglo estas problemáticas y falencias de las nuevas democracias comenzaron a ser percibidas con mayor intensidad a la luz de nuevas investigaciones académicas llevadas a cabo con la transición política. 
+El estudio de la cultura política y el apoyo a la democracia proviene de antiguas teorías nacidas en al alero de estudios conductuales en el área de la psicología. Almond y Verba como propondremos, fueron algunos de los autores pioneros en explicar la naturaleza existente entre cómo los ciudadanos y sus opiniones y percepciones podían influir en la estabilidad democrática. Este trabajo muestra que aunque criticados y ampliamente debatidos, los hallazgos y teorías que Almond y Verba propusieron pueden hoy ayudar a explicar no solo el cambio en las formas en que se comparte la política, sino también en cómo esta se ve sumergida en una red cultural mucho más amplia que moldea la vida social y otorga elementos y definiciones comunes entre la ciudadanía.
 
-Ejemplos como la corrupción pública, la desafección política, la baja participación electoral y un distanciamiento cada vez más evidente entre la clase política y la ciudadanía son solo algunos de los síntomas que han heredado las sociedades latinoamericanas en el contexto de sus procesos de mejoramiento en la calidad de las democracias. En este sentido, Morlino explica que si ahora el régimen democrático es aceptado y en parte sostenido en más de la mitad del mundo, el problema más serio e importante es qué democracia está efectivamente vigente en ese centenar de países que hoy se proclaman como tales, es decir, qué calidad democrática se ha conseguido en esos países. (Morlino, 2007)
+De esta forma, a la luz de las propuestas teóricas clásicas también se examinará en aquellas teorías contemporáneas que han redefinido el estudio de la cultura política, expandiendo sus alcances a través de los cambios que generaron hacia el desarrollo de lo que distintos autores han llamado 'ciudadanías críticas' (Norris, 1999) así como también 'demócratas insatisfechos' (Klingeman, 2014; Navia et. al 2021), tipos de ciudadanos que, "si bien consideran que la democracia es la mejor forma de gobierno y rechazan los regímenes autoritarios, identifican varios aspectos negativos en la forma como la democracia funciona en sus países". (Bargsted & Somma, 2018. Pag 195)
 
-No obstante, en la actualidad la discusión sobre qué es entendido por calidad de la democracia ha sido expandida hacia propuestas que definen de maneras más precisas el entendimiento sobre calidad de la democracia. Estas nuevas definiciones avanzan sobre temáticas que previamente no habían sido investigadas, por ejemplo, respecto a los componentes de involucramiento y participación política efectiva por parte de la ciudadanía. 
+Esto ha convergido en lo que algunos autores han denominado el cambio desde una cultura política de 'lealtad' a una de 'asertividad' hacia el régimen democrático, (Dalton y Welzel, 2014) oponiéndose en su lógica de entender la necesidad un alto apego hacia el régimen democrático como forma de mantener la estabilidad democrática, sino explicando que un bajo apego hacia el régimen puede ser en realidad síntoma de una democracia activa. En palabras de Pippa Norris "una larga tradición jeffersoniana dice que no debemos preocuparnos demasiado por el declive en la confianza en el gobierno. Si las encuestas reflejan cautela en vez de cinismo, los resultados podrían ser saludables: ciudadanos críticos son buenos para la democracia". (Norris, 1999)
 
-Este escenario ha permitido no solo proponer nuevas formas de evaluar la calidad democrática, sino también retomar antiguas teorías en torno a la relación entre Estado y ciudadanía para de esta forma evaluar la calidad de la democracia en torno a las nuevas culturas políticas que se configuran en torno a su relación con el Estado. En ese sentido, factores como la dramática caída en la participación electoral y en la confianza en las instituciones políticas, (citado en Navia, 2004) el declive de la identificación partidaria y la identificación con ideologías políticas (citado en Navia y Osorio, 2015), entre otros componentes, pueden ser explicados en clave de cultura política. (Bargsted y Somma, 2018) 
+En este sentido, la importancia de estudiar la relación entre la cultura política y el apoyo a la democracia surge debido a que los procesos políticos de aculturación son más entendibles si los vemos bajo la luz de las resistencias y las tendencias transformadoras e incorporativas del cambio cultural en general. (Almond y Verba, 1963) De esta forma, creemos que las modernizaciones y transformaciones que se gestan en las sociedades del mundo implican cambios culturales que logran ser absorbidos por las personas a través de lo que ha sido descrito como la "modernización social". (Norris, 2004)
 
-No obstante, si bien el escenario político que enfrenta la contingencia del sistema chileno está atravesado fuertemente por una crisis de representatividad caracterizada por tener un sistema de partidos altamente estable y comparativamente bajos niveles de identificación ciudadana con los partidos políticos, (Luna, 2016) creemos que ante esta situación las juventudes ciudadanas en Chile ofrecen nuevas posibilidades de cambio en vista a los próximos años pues según la evidencia científica, existe un gran apoyo por parte de las juventudes hacia la democracia como mejor forma de gobierno, una alta tasa de participación electoral así como los mayores porcentajes de interés en la política desde 2012. (Instituto Nacional de la Juventud, 2022) 
+Teniendo en cuenta las sugerencias de Almond y Verba sobre la importancia del cambio cultural general, para llevar a cabo nuestra investigación nos parece pertinente primero realizar una contextualización que explique el devenir del sistema político en Chile, explicando brevemente las causas de sus problemas en torno a la representatividad política en base a lo que la evidencia científica ha aportado para de esta forma entender bajo qué escenario se desenvuelve hoy en día la incidencia de la juventud chilena.
 
-Por esta razón, este estudio buscará analizar e interpretar los cambios en las percepciones y opiniones ciudadanas en las juventudes chilenas entre 18 y 30 años residentes en la Región Metropolitana utilizando los datos disponibles del Estudio Longitudinal Social en su ola número 5 2021. De esta forma se busca indagar sobre cómo las distintas percepciones y opiniones hacia los componentes, actores e instituciones del régimen democrático en Chile vinculan su relación con el apoyo a la democracia. Esta relación entre el sistema político, la ciudadanía y la democracia es lo que distintos autores han definido como Cultura Política poniendo énfasis en que su estudio es relevante ya que la cultura política de una sociedad puede convertirse en un factor explicativo potente de la estabilidad y modernización democrática. (Schneider & Avenburg, 2015) 
+Posteriormente, en el apartado de marco teórico hemos reunido lo que hemos identificado como la literatura más relevante en torno al estudio de la cultura política y el apoyo a la democracia, ambos como conceptos diferenciados. Por esta razón, proponemos primero explicar la dimensión de cultura política, su discusión teórica entre distintos autores y sus propuestas para medir aquellos componentes actitudinales frente a la estructura política para de esta forma lograr definir con claridad conceptual qué entenderemos por cultura política.
 
-Estas dimensiones, la cultura política y el apoyo a la democracia serán los objetos de estudio, cuya pregunta de investigación ha sido definida como: ¿De qué forma los indicadores de cultura política impactan en el apoyo a la democracia en las juventudes chilenas durante el año 2021? 
+En seguida, propondremos el debate en torno al concepto de apoyo a la democracia, haciendo un repaso por las teorías que explicarían el nacimiento de este así como su uso en distintas encuestas de opinión pública, o también como un medidor asociado a causas históricas como la famosa democracia churchilliana, terminando por último proponiendo cómo será entendido el concepto de apoyo a la democracia para los fines de nuestra investigación.
 
-Si bien es esta la pregunta que guía nuestra investigación, también invitamos a cuestionarnos sobre el estado de la cultura política de las juventudes chilenas y hacia dónde se dirigen, dentro de un contexto político donde problemas como la persistente crisis en la representatividad política invitan a los jóvenes a tomar otras iniciativas de acción, involucramiento y participación política ajenos a espacios institucionalizados que otorgan nuevos significados a sus acciones colectivas. (Sola – Morales y Hernández-Santaolalla, 2017) 
+Avanzado el marco teórico, expondremos la metodología que hemos diseñado para nuestra investigación. Dentro de las limitaciones de nuestra investigación, proponemos realizar un análisis cuantitativo a través de modelos de regresiones lineales y modelos de regresiones logísticas binarias, que otorguen noción sobre cuánto influyen los indicadores de cultura política en una mayor preferencia por la democracia así como qué tan probable es que se apoye la democracia en relación a orientaciones que tiene la ciudadanía chilena sobre ciertos componentes de cultura política. Además de esto, verificamos el estado actual de estos indicadores, ofreciendo una contextualización más robusta en torno a los datos entregados.
 
-Por esta razón, justificamos nuestra propuesta de investigación en torno a la problemática que surge ante una juventud ciudadana que está entre la desafección política y su repolitización ante un contexto socialmente tecnologizado, influido fuertemente por las Tecnologías de la Información y el Conocimiento. En este sentido, querer conocer más sobre cómo es percibida la relación que existe entre las juventudes ciudadanas es una invitación a reflexionar si es que, efectivamente, a la luz de nuestras experiencias de socialización política las juventudes han internalizado más fuertemente aquellos valores democráticos. (Sanhueza et al.2015)
+Entonces, a la luz de nuestros resultados proponemos realizar un análisis e interpretación de estos datos bajo el prisma de lo que la teoría y nuestra propia experiencia nos puede otorgar. De esta forma buscamos lograr entregarle sentido a aquello que proponemos, incluso cuando nuestras hipótesis puedan ser rechazadas y nuestros análisis inertes.
 
+Por último, en las conclusiones debatiremos en torno a los hallazgos encontrados y propondremos nuevas líneas de investigación en torno a aquellos componentes que puedan ser interesantes. Esperamos de esta forma poder entregar un relato coherente desde principio a fin, que a pesar de sus debilidades, pueda exponer aquello que no resulta tan evidente de ver, o más difícil aún, de demostrar.
+
+# Justificación
+
+En el caso chileno, consideramos que estudiar la cultura política de las juventudes es un aporte que va en la dirección correcta. Esto pues los jóvenes no han sido objeto predilecto del estudio de las ciencias sociales y tampoco en la historia (...) no han sido considerados como actores o sujetos sociales, minimizándolos en otras categorías. (Zarzuri, 2016) Esta situación nos invita a reflexionar desde la ciencia política en torno al estudio de las juventudes ciudadanas y sus percepciones hacia la democracia y su valores de cultura política.
+
+Además de esto, estudiar la relación entre política y juventud puede estar alertando al mundo social sobre nuevas formas de entendimiento público, liderados por jóvenes que hoy se identifican como parte de una multitud que ha experimentado un despertar ciudadano, exigiendo mayor participación social. (Rivera et. al, 2020) Ante esto, esperamos nuestra investigación pueda otorgar pequeños aportes en torno a estas investigaciones surgidas previamente y posterior al Estallido Social de 2019 en donde por una parte vemos cómo ya las ciencias sociales advertían hace años problemáticas que necesitaban ser resueltas en pos de una mejor convivencia social, por ejemplo, respecto a la herencia de enclaves autoritarios en Chile que, algunos, han logrado persistir hasta hoy. (Garretón, 2010)
+
+No obstante, consideramos que aunque los jóvenes no hayan sido un importante objeto de estudio por parte de las ciencias sociales, sumado a que parte de la evidencia sobre desafección política explica que la escasa participación de los jóvenes ha llegado a reducir su capacidad para influir en la priorización de sus políticas públicas (Toro, 2007) estas situaciones han ido cambiando con el paso de los años a raíz de las transformaciones y desafíos que el mismo sistema político chileno ha enfrentado, justamente, desde las juventudes.
+
+En este sentido, estudiar qué piensa la juventud puede ser clave pues los jóvenes de este nuevo siglo no solo tienen que enfrentar a las crisis de instituciones clásicas como la educación o la familia, sino también a las transformaciones de las formas de participación clásica en la esfera de lo público, abandonando de cierto modo esos lugares tradicionales para transitar hacia otros ámbitos. (Zarzuri, 2016)
+
+# Contextualización
 
 # 2. Análisis
+
 ## 2.1 carga de librerías
 
 ```{r include=FALSE}
@@ -89,38 +104,198 @@ pacman::p_load(dplyr,
 ```
 
 ## 2.2 carga de datos
+
 ```{r include=FALSE}
 datos_proc <- readRDS("../output/datos/datos_proc.rds")
-datos_proc_continuo <- readRDS("../output/datos/datos_proc_continuo.rds")
 ```
 
-## 2.3 creación de objeto encuesta
+## 2.3 creación de objeto encuesta por estrato y factores de expansión
+
 ```{r, objeto encuesta}
 elsoc_objeto <- datos_proc %>% 
-  as_survey_design(ids = 18,
-                   weights = fact_exp02)
+  as_survey_design(ids = 1, # Aplicamos diseño muestral, ids = 1 
+                   strata = estrato, # los estratos a partir de estrato 
+                   weights = fact_exp02) # se agregan factores de expansión ajustados por población y sexo
+```
+
+## 2.3 creación objeto encuesta según clase 10.2 Andrade
+
+```{r}
+esi_design <- as_survey_design(datos_proc, 
+                               ids = 1, 
+                               weights = fact_exp02)
 ```
 
 ## Matriz de correlación
+
 ```{r, matriz correlacion}
 corrplot(cor(datos_proc_continuo), method = "shade", title = "Matriz de correlaciones",
          order = 'hclust', tl.col = "grey")
 ```
 
-
 ## 2.4 creación de modelos de regresión logística binaria
+
 ### a. construcción múltiple de modelos
 
 ```{r, modelos logísticos}
-modelo1 <- glm(c25 ~ 1, family = binomial(link = "logit"), data = datos_proc)
-modelo2 <- glm(c25 ~ sexo, family = binomial(link = "logit"), data = datos_proc)
-modelo3 <- glm(c25 ~ satis_dem, family = binomial(link = "logit"), data = datos_proc)
-modelo4 <- glm(c25 ~ confianza_congreso, family = binomial(link = "logit"), data = datos_proc)
-modelo5 <- glm(c25 ~ interes_politica, family = binomial(link = "logit"), data = datos_proc)
-modelo6 <- glm(c25 ~ ident_ideologica, family = binomial(link = "logit"), data = datos_proc)
-modelo7survey <- svyglm(c25 ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
+modelo1 <- glm(apoyo_dem ~ 1, family = binomial(link = "logit"), data = datos_proc)
+modelo2 <- glm(apoyo_dem ~ sexo, family = binomial(link = "logit"), data = datos_proc)
+modelo3 <- glm(apoyo_dem ~ satis_dem, family = binomial(link = "logit"), data = datos_proc)
+modelo4 <- glm(apoyo_dem ~ confianza_congreso, family = binomial(link = "logit"), data = datos_proc)
+modelo5 <- glm(apoyo_dem ~ sexo + ident_ideologica, family = binomial(link = "logit"), data = datos_proc)
+modelo6 <- glm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica , family = binomial(link = "logit"), data = datos_proc)
+modelo6survey <- svyglm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
 ```
+
+## construcción modelo nulo
+
+```{r}
+modelo0 <- glm(apoyo_dem ~ 1,
+              data = datos_proc, 
+              weights = fact_exp02,
+              family = binomial(link = "logit"))
+summary(modelo0)
+```
+
+### a.2 construcción de modelos simples
+
+```{r, modelo2 con predictor categórico}
+modelo2 <- glm(apoyo_dem ~ sexo,
+              data = datos_proc, 
+              family = binomial(link = "logit"))
+
+summary(modelo2)
+```
+
+### a.4 modelo completo
+
+```{r, sin pesos muestrales}
+modelo3 <- glm(apoyo_dem ~ edad + sexo + interes_politica + ident_ideologica,
+              data = datos_proc, 
+              family = binomial(link = "logit"))
+
+summary(modelo3)
+```
+
+## incorporación de pesos muestrales
+
+```{r, se agregan ponderadores}
+modelo3_dis <- glm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
+              data = datos_proc, 
+              weights = fact_exp02,
+              family = binomial(link = "logit"))
+
+summary(modelo3_dis)
+```
+
+## creación de objeto encuesta según esi_design
+
+```{r}
+esi_design <- as_survey_design(datos_proc, 
+                               ids = 1, 
+                               weights = fact_exp02)
+```
+
+## creación de modelo3survey
+
+```{r, modelo3survey}
+modelo3_survey <- svyglm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
+                         family = binomial(link = "logit"),
+                         design = esi_design)
+
+summary(modelo3_survey)
+modelo3$coefficients # este si puedo sacarlo
+modelo3$coefficients[6] # cómo puedo interpretar esto?
+modelo3$coefficients[4] # no pude lograr sacar este coeficiente
+```
+
+## Extraer valores predichos
+
+```{r, valores predichos}
+get_model_data(modelo3_survey, 
+               type = "pred") # me quedan dudas con este modelo. Cómo sé quienes prefieren la democracia en vez del autoritarismo?
+# me dan los valores predichos por cada categoría de respuesta, ok, pero cómo sé hacia qué categoría de respuesta sobre democracia o autoritarismo está referida? 
+```
+
+## exponenciación de coeficientes
+
+```{r}
+exp(modelo3_survey$coefficients[7]) # cómo se interpreta esto?
+```
+
+## crear OR en nuestro modelo
+
+```{r}
+modelo3_survey$or <- exp(modelo3_survey$coefficients)
+modelo3_survey$or[8]
+```
+
+## presentacion de modelo creado
+
+# con sjplot
+
+```{r}
+sjPlot::tab_model(modelo0, 
+                  show.ci=FALSE,
+                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  encoding = "UTF-8") 
+```
+
+## incorporación de varios modelos
+
+```{r, modelos}
+sjPlot::tab_model(list(modelo0, modelo2, modelo3), # los modelos estimados
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald',
+                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"), # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF-8")
+```
+
+## otro modelo menos problematico con los OR
+```{r}
+sjPlot::tab_model(modelo3, # modelo con todas las variables
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  transform = 'exp', # exponenciamos los coeficientes
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF/8")
+```
+
+## integrar el diseño muestral
+```{r}
+sjPlot::tab_model(modelo3_survey, # modelo con todas las variables
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  transform = 'exp', # exponenciamos los coeficientes
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald',#Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF-8")
+```
+
+## modelo con htmlreg
+```{r}
+
+```
+
+## graficar modelos
+```{r}
+sjPlot::plot_model(modelo3, 
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = 0.95, 
+                   title = "Estimación de predictores",
+                   vline.color = "green")
+```
+
+
 ### b. Representación modelos en una tabla
+
+# aquí no se incluye el modelo7survey
 
 ```{r, presentación de modelos}
 sjPlot::tab_model(list(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6),
@@ -137,6 +312,24 @@ sjPlot::tab_model(list(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6),
                   lang = "es")
 ```
 
+***Gráfico1 modelo 6 de valores predichos apoyo a la democracia según sexo***
+
+```{r, gráfico_1_modelo_6}
+plot_model(modelo6, type = c("pred"),
+           terms = c("sexo"), digits = 3,
+           axis.title = "Sexo", "Apoyo a la democracia",
+           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según sexo")
+```
+
+***Gráfico2 modelo 6 de valores predichos salud mental según trabajo***
+
+```{r, gráfico2_modelo5 }
+plot_model(modelo6, type = c("pred"),
+           terms = c("satis_dem"), digits = 3,
+           axis.title = "Interés en la política", "Apoyo a la democracia",
+           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según identificación ideológica")
+```
+
 # 3. Interpretación
 
 ## 3.1 gráficos de valores predichos según apoyo a la democracia y sexo
@@ -149,6 +342,7 @@ plot_model(modelo2, type = c("pred"),
 ```
 
 ## 3.2 gráfico de valores predichos según apoyo a la democracia por satisfacción con la democracia
+
 ```{r, gráfico2, modelo 3}
 plot_model(modelo3, type = c("pred"),
            terms = c("satis_dem"), digits = 3,
@@ -157,6 +351,7 @@ plot_model(modelo3, type = c("pred"),
 ```
 
 ## 3.3 gráfico de valores predichos según apoyo a la democracia por la confianza en el concgreso
+
 ```{r,gráfico3, modelo 4}
 plot_model(modelo4, type = c("pred"),
            terms = c("confianza_congreso"), digits = 3,
@@ -164,8 +359,8 @@ plot_model(modelo4, type = c("pred"),
            title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
 ```
 
-
 ## 3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+
 ```{r, interes politica}
 plot_model(modelo5, type = c("pred"),
            terms = c("interes_politica"), digits = 3,
@@ -178,12 +373,14 @@ plot_model(modelo5, type = c("pred"),
 Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
 
 ## 3.5 gráfico de valores predichos según apoyo a la democracia por la identificación ideológica
+
 ```{r,gráfico5, modelo 6}
 plot_model(modelo6, type = c("pred"),
            terms = c("ident_ideologica"), digits = 3,
            axis.title = c("Identidad ideológica","Apoyo a la democracia"),
            title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según la identificación ideológica")
 ```
+
 # Descriptivos univariados
 
 ```{r, frecuencias_interes_politica}
@@ -218,7 +415,6 @@ plot_frq(elsoc_objeto, confianza_gob,
           sort.frq = "desc")
 ```
 
-
 # Descriptivos bivariados
 
 ```{r, frecuencias por sexo según apoyo a la democracia}
@@ -226,24 +422,8 @@ datos_proc_continuo %>% select("c25","satis_dem", "interes_politica", "confianza
   sjPlot::plot_likert(., title = "Gráfico de escalas Likert")
 ```
 
-
 ```{r}
 plot_grpfrq(datos_proc$c25, datos_proc$satis_dem,
             title = "Gráfico de caja",
             type = "boxplot")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

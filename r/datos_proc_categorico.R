@@ -10,9 +10,8 @@ load(url("https://dataverse.harvard.edu/api/access/datafile/6160180")) # cargar 
 # 2. seleccionar variables de interés -------------------------------------
 
 datos_proc <- elsoc_2021 %>% 
-  dplyr::select(satis_dem = c01,
+  dplyr::select(idencuesta,
                 confianza_social = c02,
-                c25,
                 confianza_gob = c05_01,
                 confianza_pp = c05_02,
                 confianza_congreso = c05_07,
@@ -27,21 +26,22 @@ datos_proc <- elsoc_2021 %>%
                 sexo = m0_sexo,
                 nivel_educ = m01,
                 fact_exp02,
-                idencuesta,
-                estrato)
+                satis_dem = c01,
+                estrato,
+                c25)
+view_df(datos_proc)
 
-
-
+# este paso se omite para tomar una 
 # se filtran observaciones por edad <= 35 y se sobreescribe el objeto
 
-datos_proc <- datos_proc %>% dplyr::filter(edad <= 30)
+# datos_proc <- datos_proc %>% dplyr::filter(edad <= 35)
 # el número de observaciones desciende a 364
 
 
 # 3. recodificar variables
 names(datos_proc)
 
-datos_proc_test <- datos_proc %>% 
+datos_proc <- datos_proc %>% 
   mutate_at(vars(sexo, satis_dem, c25, confianza_congreso, confianza_pdte,interes_politica,ident_ideologica), funs(as.numeric(.))) %>% 
   mutate(satis_dem = car::recode(.$satis_dem, recodes = c("c(1,2)='Nada o poco satisfecho'; 3 ='Algo satisfecho'; c(4,5)='Bastante o muy satisfecho'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
                                     levels = c('Nada o poco satisfecho', 'Algo satisfecho', 'Bastante o muy satisfecho')),
@@ -93,26 +93,39 @@ datos_proc_test <- datos_proc %>%
                                                "Estallido social del 18 de Octubre de 2019",
                                                "Otro",
                                                "Ninguno")),
-         edad_tramo = car::recode(.$edad, recodes = c("18:25='Joven';26:35='Adulto joven'; 36:60='Adulto'; 61:hi = 'Adulto mayor'"),
+         edad_tramo = car::recode(.$edad, recodes = c("18:25='Joven';26:35='Adulto joven'; 36:65='Adulto'; 66:hi = 'Adulto mayor'"),
                             as.factor = T, levels = c("Joven", "Adulto joven", "Adulto", "Adulto mayor")),
          nivel_educ = car::recode(.$nivel_educ, recodes = c("c(1,2,3) ='Educación básica'; c(4,5) = 'Educación media'; c(6,7) = 'Educación técnica'; c(8,9) = 'Educación universitaria'; 10 = 'Estudios de posgrado'; c(-999,-888,-777,-666)= NA"), 
                                       levels = c("Educación básica", "Educación media", "Educación ténica", "Educación universitaria", "Estudios de posgrado"))) %>%
   mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp, confianza_social,
                  interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,valor_movsoc,nivel_educ), funs(forcats::as_factor(.)))
 
+class(datos_proc$apoyo_dem)
+view_df(datos_proc)
 names(datos_proc)
+
 # verificamos cambios -----------------------------------------------------
 
-head(datos_proc_test)
+# asignamos etiquetas
 
+view_df(datos_proc_1)
+datos_proc$satis_dem = set_label(datos_proc$satis_dem, "¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?")
+datos_proc$confianza_social = set_label(datos_proc$confianza_social, "Hablando en general, ¿diría usted que se puede confiar en la mayoría de las personas, o que hay que tener cuidado al tratar con ellas?")
+datos_proc$confianza_congreso = set_label(datos_proc$confianza_congreso, "Grado de confianza: El Congreso Nacional")
+datos_proc$confianza_pdte = set_label(datos_proc$confianza_pdte, "Grado de confianza: El Presidente de la República")
+datos_proc$interes_politica = set_label(datos_proc$interes_politica, "¿Qué tan interesado está usted en la política?")
+datos_proc$ident_ideologica = set_label(datos_proc$ident_ideologica, "Usando una escala de 0 a 10, donde 0 es ser de “izquierda”, 5 es ser de “centro” y 10 es ser de “derecha”, ¿Dónde se ubicaría usted en esta escala?.")
+datos_proc$apoyo_dem = set_label(datos_proc$apoyo_dem, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
+datos_proc$c25 = set_label(datos_proc$c25, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
+view_df(datos_proc)
 
 # 7. Guardar y exportar los datos ----------------------------------------
   
-saveRDS(datos_proc_test, file = "output/datos/datos_proc_cat.rds")
+saveRDS(datos_proc, file = "output/datos/datos_proc.rds")
 
 
 
-
+?plot_model
 
 
 
