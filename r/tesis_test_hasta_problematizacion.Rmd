@@ -50,7 +50,7 @@ h4.date { /* Header 4 - and the author and data headers use this too  */
 ```
 \newpage
 
-# 1. Introducción
+## 1. Introducción
 
 La presente investigación de tesis tiene como principal objetivo, a través un análisis estadístico multivariado, evaluar la relación entre los conceptos de cultura política y apoyo a la democracia enfocado en analizar el estado de las percepciones de las juventudes chilenas durante el año 2021. Así mismo se busca identificar en qué medida puede la cultura política explicar la variabilidad que pueda darse en el apoyo a la democracia como mejor forma de gobierno.
 
@@ -74,17 +74,22 @@ Entonces, a la luz de nuestros resultados proponemos realizar un análisis e int
 
 Por último, en las conclusiones debatiremos en torno a los hallazgos encontrados y propondremos nuevas líneas de investigación en torno a aquellos componentes que puedan ser interesantes. Esperamos de esta forma poder entregar un relato coherente desde principio a fin, que a pesar de sus debilidades, pueda exponer aquello que no resulta tan evidente de ver, o más difícil aún, de demostrar.
 
-## Justificación
+## 2. Justificación
 
-En el caso chileno, consideramos que estudiar la cultura política de las juventudes es un aporte que va en la dirección correcta. Esto pues los jóvenes no han sido objeto predilecto del estudio de las ciencias sociales y tampoco en la historia (...) no han sido considerados como actores o sujetos sociales, minimizándolos en otras categorías. (Zarzuri, 2016) Esta situación nos invita a reflexionar desde la ciencia política en torno al estudio de las juventudes ciudadanas y sus percepciones hacia la democracia y su valores de cultura política.
+En el caso chileno, consideramos que estudiar la cultura política de las juventudes es un aporte que va en la dirección correcta. Esto pues los jóvenes no han sido objeto predilecto del estudio de las ciencias sociales y tampoco en la historia (...) no han sido considerados como actores o sujetos sociales, minimizándolos en otras categorías. (Zarzuri, 2016) Esta situación nos invita a reflexionar desde la ciencia política en torno al estudio de las juventudes ciudadanas y sus percepciones hacia la democracia y sus valores de cultura política.
 
 Además de esto, estudiar la relación entre política y juventud puede estar alertando al mundo social sobre nuevas formas de entendimiento público, liderados por jóvenes que hoy se identifican como parte de una multitud que ha experimentado un despertar ciudadano, exigiendo mayor participación social. (Rivera et. al, 2020) Ante esto, esperamos nuestra investigación pueda otorgar pequeños aportes en torno a estas investigaciones surgidas previamente y posterior al Estallido Social de 2019 en donde por una parte vemos cómo ya las ciencias sociales advertían hace años problemáticas que necesitaban ser resueltas en pos de una mejor convivencia social, por ejemplo, respecto a la herencia de enclaves autoritarios en Chile que, algunos, han logrado persistir hasta hoy. (Garretón, 2010; Siavelis, 2009)
 
-No obstante, consideramos que aunque los jóvenes no hayan sido un importante objeto de estudio por parte de las ciencias sociales, sumado a que parte de la evidencia sobre desafección política explica que la escasa participación de los jóvenes ha llegado a reducir su capacidad para influir en la priorización de sus políticas públicas, (Toro, 2007) consideramos que estas situaciones no solo han ido cambiando con el paso de los años a raíz de las transformaciones y desafíos que el mismo sistema político chileno ha enfrentado, justamente, desde las juventudes, sino que también a su vez proponen formas distintas de resignificar el concepto de la política, en oposición a lo que los jóvenes identifican con la 'vieja política'. (Zarzuri, 2020)
+Tenemos en cuenta también que la desafección política y la baja abstención electoral es uno de los grandes desafíos que enfrentan las juventudes en términos de participación política. Autores como Parker definen la abstención electoral como el “desinterés creciente por la política, utilizando como indicador la escasa inscripción de los jóvenes en los registros electorales y en la escasa voluntad de participación activa en política”. (Parker, 2003) Sin embargo, hay quienes contrargumentan esta situación explicando que la actitud desafecta sería coherente con un escenario político en el cual estén vigentes los denominados poderes fácticos, los cuales distorsionan el sistema político, es decir, el fenómeno de la desafección se correlacionaría positivamente con la existencia de un sistema político alterado. (Mardones, 2014) Esta desafección, sin embargo, según la evidencia científica sitúa sus causas en el rechazo hacia el sistema electoral y los políticos, y no por ‘apatía’ o ’desinterés’ hacia la política. (Sola Morales, 2015)
+
+Con mayor importancia aún, es preciso cuestionar y hallar las motivaciones sociopolíticas y culturales de este supuesto desinterés generalizado. La cada vez más elevada indiferencia o  rechazo  de  los  jóvenes  hacia  el  sistema  político  pone  de  manifiesto  la necesidad de reflexionar y profundizar en las posibles causas de este fenómeno. (Sola-Morales y Hernández-Santaolalla, 2017)
+
+Ante esto, consideramos que aunque los jóvenes no hayan sido un importante objeto de estudio por parte de las ciencias sociales, sumado a que parte de la evidencia sobre desafección política explica que la escasa participación de los jóvenes ha llegado a reducir su capacidad para influir en la priorización de sus políticas públicas, (Toro, 2007) proponemos que estas situaciones no solo han ido cambiando con el paso de los años a raíz de las transformaciones y desafíos que el mismo sistema político chileno ha enfrentado, justamente, desde las juventudes, sino que también a su vez proponen formas distintas de resignificar el concepto de la política, en oposición a lo que los jóvenes identifican con la 'vieja política'. (Zarzuri, 2020)
 
 En este sentido, estudiar qué piensa la juventud puede ser clave pues los jóvenes de este nuevo siglo no solo tienen que enfrentar a las crisis de instituciones clásicas como la educación o la familia, sino también a las transformaciones de las formas de participación clásica en la esfera de lo público, abandonando de cierto modo esos lugares tradicionales para transitar hacia otros ámbitos. (Zarzuri, 2016)
 
-# Contextualización
+
+## 3. Contextualización
 
 Si bien el contexto en el que ubicamos nuestra investigación corresponde al año 2021, el telón de fondo a través del cual se han desarrollado aquellas problemáticas asociadas al funcionamiento del sistema político chileno en términos de representatividad política están arraigados en lo que la literatura académica ha identificado desde los primeros estudios relacionados a la cultura política de la época de transición, la cual en el caso chileno se caracterizó según Huneeus por la división originada por el régimen militar que creó una democracia semisoberana, caracterizada por la distinta evaluación que hacen de su desempeño los partidarios y detractores de la dictadura, por la baja confianza interpersonal en las instituciones y en las elites políticas, junto a una evaluación crítica del desempeño de los políticos, además de un bajo apoyo a la democracia. (Huneeus,2014)
 
@@ -102,7 +107,7 @@ Sumado a esto, distintos autores explican que varios fenómenos que ocupan a los
 
 Teniendo estos antecedentes en cuenta, el periodo en el que se enmarca esta investigación es durante el año 2021 y se ha escogido en consideración de lo que la evidencia académica ha identificado desde 2006 como el inicio de un nuevo ciclo de protesta que es intensificado desde 2011 “cuyas principales expresiones son el movimiento de los ‘pingüinos’ y luego el estudiantil. (...) Este ciclo se abrió en 2006 pero sigue generando a la fecha expresiones y demandas variadas, que se mantienen o reactivan cada cierto tiempo, con fórmulas diversas y cambiantes de relaciones con los partidos políticos”. (Barozet, 2021) Se propone que este nuevo ciclo de protestas puede ser interpretado como un cambio en la cultura política de las juventudes ciudadanas chilenas apoyado desde las nuevas teorías que explican la variación en el concepto desde sus orígenes propuestos por autores como Almond y Verba. 
 
-## Problematización
+## 4. Problematización
 
 En términos de representatividad política, el estilo tecnocrático de la política chilena llevada adelante desde la transición a la democracia ha tenido importantes efectos en la relación tanto entre partidos políticos y gobierno, y partidos políticos y movimientos sociales, lo que pone al centro del análisis la capacidad de la estructura intermedia del sistema para absorber y procesar las demandas ciudadanas. 
 
@@ -123,338 +128,3 @@ En este contexto nos parece relevante entonces preguntarnos ¿De qué forma los 
 Si bien es esta la pregunta que guía nuestra investigación, también invitamos a cuestionarnos sobre el estado de las culturas políticas de las juventudes chilenas y hacia dónde se dirigen, dentro de un contexto político donde problemas como la persistente crisis en la representatividad política invitan a los jóvenes a tomar otras iniciativas de acción, involucramiento y participación política ajenos a espacios institucionalizados que otorgan nuevos significados a sus acciones colectivas. (Sola – Morales y Hernández-Santaolalla, 2017) 
 
 Por esta razón, justificamos nuestra propuesta de investigación en torno a la problemática que surge ante una juventud ciudadana que está entre la desafección política y su repolitización ante un contexto socialmente tecnologizado, influido fuertemente por las Tecnologías de la Información y el Conocimiento. En este sentido, querer conocer más sobre cómo es percibida la relación que existe entre las juventudes ciudadanas es una invitación a reflexionar si es que, efectivamente, a la luz de nuestras experiencias de socialización política las juventudes han internalizado más fuertemente aquellos valores democráticos. (Sanhueza et al., 2015)
-
-
-## Marco teórico
-
-# 2. Análisis
-
-## 2.1 carga de librerías
-
-```{r include=FALSE}
-pacman::p_load(dplyr,
-              tidyverse,
-              magrittr,
-              srvyr,
-              survey,
-              remotes,
-              texreg,
-              sjPlot,
-              corrplot,
-              sjmisc)
-```
-
-## 2.2 carga de datos
-
-```{r include=FALSE}
-datos_proc <- readRDS("../output/datos/datos_proc.rds")
-```
-
-## 2.3 creación de objeto encuesta por estrato y factores de expansión
-
-```{r, objeto encuesta}
-elsoc_objeto <- datos_proc %>% 
-  as_survey_design(ids = 1, # Aplicamos diseño muestral, ids = 1 
-                   strata = estrato, # los estratos a partir de estrato 
-                   weights = fact_exp02) # se agregan factores de expansión ajustados por población y sexo
-```
-
-## 2.3 creación objeto encuesta según clase 10.2 Andrade
-
-```{r}
-esi_design <- as_survey_design(datos_proc, 
-                               ids = 1, 
-                               weights = fact_exp02)
-```
-
-## 2.4 creación de modelos de regresión logística binaria
-
-### a. construcción múltiple de modelos
-
-```{r, modelos logísticos}
-modelo1 <- glm(apoyo_dem ~ 1, family = binomial(link = "logit"), data = datos_proc)
-modelo2 <- glm(apoyo_dem ~ sexo, family = binomial(link = "logit"), data = datos_proc)
-modelo3 <- glm(apoyo_dem ~ satis_dem, family = binomial(link = "logit"), data = datos_proc)
-modelo4 <- glm(apoyo_dem ~ confianza_congreso, family = binomial(link = "logit"), data = datos_proc)
-modelo5 <- glm(apoyo_dem ~ sexo + ident_ideologica, family = binomial(link = "logit"), data = datos_proc)
-modelo6 <- glm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica , family = binomial(link = "logit"), data = datos_proc)
-modelo6survey <- svyglm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
-```
-
-## construcción modelo nulo
-
-```{r}
-modelo0 <- glm(apoyo_dem ~ 1,
-              data = datos_proc, 
-              weights = fact_exp02,
-              family = binomial(link = "logit"))
-summary(modelo0)
-```
-
-### a.2 construcción de modelos simples
-
-```{r, modelo2 con predictor categórico}
-modelo2 <- glm(apoyo_dem ~ sexo,
-              data = datos_proc, 
-              family = binomial(link = "logit"))
-
-summary(modelo2)
-```
-
-### a.4 modelo completo
-
-```{r, sin pesos muestrales}
-modelo3 <- glm(apoyo_dem ~ edad + sexo + interes_politica + ident_ideologica,
-              data = datos_proc, 
-              family = binomial(link = "logit"))
-
-summary(modelo3)
-```
-
-## incorporación de pesos muestrales
-
-```{r, se agregan ponderadores}
-modelo3_dis <- glm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
-              data = datos_proc, 
-              weights = fact_exp02,
-              family = binomial(link = "logit"))
-
-summary(modelo3_dis)
-```
-
-## creación de objeto encuesta según esi_design
-
-```{r}
-esi_design <- as_survey_design(datos_proc, 
-                               ids = 1, 
-                               weights = fact_exp02)
-```
-
-## creación de modelo3survey
-
-```{r, modelo3survey}
-modelo3_survey <- svyglm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
-                         family = binomial(link = "logit"),
-                         design = esi_design)
-
-summary(modelo3_survey)
-modelo3$coefficients # este si puedo sacarlo
-modelo3$coefficients[6] # cómo puedo interpretar esto?
-modelo3$coefficients[4] # no pude lograr sacar este coeficiente
-```
-
-## Extraer valores predichos
-
-```{r, valores predichos}
-get_model_data(modelo3_survey, 
-               type = "pred") # me quedan dudas con este modelo. Cómo sé quienes prefieren la democracia en vez del autoritarismo?
-# me dan los valores predichos por cada categoría de respuesta, ok, pero cómo sé hacia qué categoría de respuesta sobre democracia o autoritarismo está referida? 
-```
-
-## exponenciación de coeficientes
-
-```{r}
-exp(modelo3_survey$coefficients[7]) # cómo se interpreta esto?
-```
-
-## crear OR en nuestro modelo
-
-```{r}
-modelo3_survey$or <- exp(modelo3_survey$coefficients)
-modelo3_survey$or[8]
-```
-
-## presentacion de modelo creado
-
-# con sjplot
-
-```{r}
-sjPlot::tab_model(modelo0, 
-                  show.ci=FALSE,
-                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
-                  encoding = "UTF-8") 
-```
-
-## incorporación de varios modelos
-
-```{r, modelos}
-sjPlot::tab_model(list(modelo0, modelo2, modelo3), # los modelos estimados
-                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-                  p.style = "stars", # asteriscos de significación estadística
-                  df.method = 'wald',
-                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"), # etiquetas de modelos o variables dep.
-                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
-                  encoding =  "UTF-8")
-```
-
-## otro modelo menos problematico con los OR
-
-```{r}
-sjPlot::tab_model(modelo3, # modelo con todas las variables
-                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-                  transform = 'exp', # exponenciamos los coeficientes
-                  p.style = "stars", # asteriscos de significación estadística
-                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
-                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
-                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
-                  encoding =  "UTF/8")
-```
-
-## integrar el diseño muestral
-
-```{r}
-sjPlot::tab_model(modelo3_survey, # modelo con todas las variables
-                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-                  transform = 'exp', # exponenciamos los coeficientes
-                  p.style = "stars", # asteriscos de significación estadística
-                  df.method = 'wald',#Para realizar más rápidamente el cálculo de los intervalos de confianza
-                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
-                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
-                  encoding =  "UTF-8")
-```
-
-## graficar modelos
-
-```{r}
-  sjPlot::plot_model(modelo, 
-                   show.p = T,
-                   show.values =  T,
-                   ci.lvl = 0.95, 
-                   title = "Estimación de predictores",
-                   vline.color = "green")
-```
-
-### b. Representación modelos en una tabla
-
-# aquí no se incluye el modelo7survey
-
-```{r, presentación de modelos}
-sjPlot::tab_model(list(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6),
-                  string.intercept = "(Intercepto)",
-                  string.pred = "Predictores",
-                  string.est = "Estimación (OR)",
-                  p.style = "stars",
-                  collapse.ci = T,
-                  digits = 3,
-                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4","Modelo 5","Modelo 6"),
-                  transform = "exp",
-                  show.reflvl = TRUE,
-                  encoding = "UTF-8",
-                  lang = "es")
-```
-
-***Gráfico1 modelo 6 de valores predichos apoyo a la democracia según sexo***
-
-```{r, gráfico_1_modelo_6}
-plot_model(modelo6, type = c("pred"),
-           terms = c("sexo"), digits = 3,
-           axis.title = "Sexo", "Apoyo a la democracia",
-           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según sexo")
-```
-
-***Gráfico2 modelo 6 de valores predichos salud mental según trabajo***
-
-```{r, gráfico2_modelo5 }
-plot_model(modelo6, type = c("pred"),
-           terms = c("satis_dem"), digits = 3,
-           axis.title = "Interés en la política", "Apoyo a la democracia",
-           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según identificación ideológica")
-```
-
-# 3. Interpretación
-
-## 3.1 gráficos de valores predichos según apoyo a la democracia y sexo
-
-```{r, gráfico 1, modelo 2 por sexo}
-plot_model(modelo2, type = c("pred"),
-           terms = c("sexo"), digits = 3,
-           axis.title = c("Sexo","Apoyo a la democracia"),
-           title = "Gráfico 1. Modelo 2 que estima la frecuencia de apoyo a la democracia según sexo")
-```
-
-## 3.2 gráfico de valores predichos según apoyo a la democracia por satisfacción con la democracia
-
-```{r, gráfico2, modelo 3}
-plot_model(modelo3, type = c("pred"),
-           terms = c("satis_dem"), digits = 3,
-           axis.title = c("Satisfacción con la democracia","Apoyo a la democracia"),
-           title = "Gráfico 2. Modelo 3 que estima la frecuencia de apoyo a la democracia según  la satisfacción con la democracia")
-```
-
-## 3.3 gráfico de valores predichos según apoyo a la democracia por la confianza en el concgreso
-
-```{r,gráfico3, modelo 4}
-plot_model(modelo4, type = c("pred"),
-           terms = c("confianza_congreso"), digits = 3,
-           axis.title = c("Confianza en el congreso","Apoyo a la democracia"),
-           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
-```
-
-## 3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
-
-```{r, interes politica}
-plot_model(modelo5, type = c("pred"),
-           terms = c("interes_politica"), digits = 3,
-           axis.title = c("Interés en política","Apoyo a la democracia"),
-           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
-```
-
-3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
-
-Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
-
-## 3.5 gráfico de valores predichos según apoyo a la democracia por la identificación ideológica
-
-```{r,gráfico5, modelo 6}
-plot_model(modelo6, type = c("pred"),
-           terms = c("ident_ideologica"), digits = 3,
-           axis.title = c("Identidad ideológica","Apoyo a la democracia"),
-           title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según la identificación ideológica")
-```
-
-# Descriptivos univariados
-
-```{r, frecuencias_interes_politica}
-frq(datos_proc$interes_politica)
-plot_frq(elsoc_objeto, interes_politica,
-          title = "Gráfico de: Interés en la política",
-          type = "bar",
-          sort.frq = "desc")
-```
-
-```{r, frecuencias apoyo_dem}
-frq(datos_proc$c25)
-plot_frq(elsoc_objeto, c25,
-          title = "Gráfico de: Apoyo a la democracia",
-          type = "bar",
-          sort.frq = "desc")
-```
-
-```{r, frecuencias satis_dem}
-frq(datos_proc$satis_dem)
-plot_frq(elsoc_objeto, satis_dem,
-          title = "Gráfico de: Satisfacción con la democracia",
-          type = "bar",
-          sort.frq = "desc")
-```
-
-```{r, frecuencias confianza_social}
-frq(datos_proc$confianza_gob)
-plot_frq(elsoc_objeto, confianza_gob,
-          title = "Grado de confianza: El gobierno",
-          type = "bar",
-          sort.frq = "desc")
-```
-
-# Descriptivos bivariados
-
-```{r, frecuencias por sexo según apoyo a la democracia}
-datos_proc_continuo %>% select("c25","satis_dem", "interes_politica", "confianza_gob", "confianza_congreso") %>% 
-  sjPlot::plot_likert(., title = "Gráfico de escalas Likert")
-```
-
-```{r}
-plot_grpfrq(datos_proc$c25, datos_proc$satis_dem,
-            title = "Gráfico de caja",
-            type = "boxplot")
-```

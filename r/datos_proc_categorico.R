@@ -21,6 +21,7 @@ datos_proc <- elsoc_2021 %>%
                 informa_politica = c14_02,
                 habla_politica = c14_01,
                 ident_ideologica = c15,
+                asiste_marcha = c08_02,
                 valor_movsoc = c20,
                 edad = m0_edad,
                 sexo = m0_sexo,
@@ -29,14 +30,14 @@ datos_proc <- elsoc_2021 %>%
                 satis_dem = c01,
                 estrato,
                 c25)
-view_df(datos_proc)
-
-# este paso se omite para tomar una 
+frq(datos_proc$asiste_marcha)
 # se filtran observaciones por edad <= 35 y se sobreescribe el objeto
 
-# datos_proc <- datos_proc %>% dplyr::filter(edad <= 35)
-# el número de observaciones desciende a 364
+datos_proc <- datos_proc %>% dplyr::filter(edad <= 40)
+# el número de observaciones desciende a 882
 
+sum(is.na(datos_proc)) # hay 394 NA
+# debería sacar los NA antes de hacer modelos?
 
 # 3. recodificar variables
 names(datos_proc)
@@ -68,6 +69,8 @@ datos_proc <- datos_proc %>%
                                         levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
          habla_politica = car::recode(.$informa_politica, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), 
                                       levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
+         asiste_marcha = car::recode(.$asiste_marcha, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), 
+                                     levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
          valor_movsoc = car::recode(.$valor_movsoc, recodes = c("1= 'Movimiento social de apoyo a la causa estudiantil';
                                                                 2 = 'Movimiento social de apoyo a demandas laborales';
                                                                 3 = 'Movimiento social de grupos ambientalistas';
@@ -117,6 +120,8 @@ datos_proc$interes_politica = set_label(datos_proc$interes_politica, "¿Qué tan
 datos_proc$ident_ideologica = set_label(datos_proc$ident_ideologica, "Usando una escala de 0 a 10, donde 0 es ser de “izquierda”, 5 es ser de “centro” y 10 es ser de “derecha”, ¿Dónde se ubicaría usted en esta escala?.")
 datos_proc$apoyo_dem = set_label(datos_proc$apoyo_dem, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
 datos_proc$c25 = set_label(datos_proc$c25, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
+datos_proc$asiste_marcha = set_label(datos_proc$asiste_marcha, "Durante los últimos 12 meses, con cuánta frecuencia usted ha : Asistido a una marcha o manifestación política")
+
 view_df(datos_proc)
 
 # 7. Guardar y exportar los datos ----------------------------------------
