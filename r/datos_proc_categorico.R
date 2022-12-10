@@ -49,7 +49,7 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
          sexo = car::recode(.$sexo, recodes = c("1 = 'Hombre'; 2 = 'Mujer'"), as.factor = T,  levels = c('Hombre', 'Mujer')),
          apoyo_dem = car::recode(.$c25, recodes = c("1 = 'La democracia es preferible a cualquier otra forma de gobierno'; 2 = 'En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico'; 3 = 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario'; c(-999,-888,-777,-666,4)= NA"), as.factor = T,
                            levels = c('La democracia es preferible a cualquier otra forma de gobierno', 'En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico', 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario')),
-         confianza_congreso = car::recode(.$confianza_congreso, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), 
+         confianza_congreso = car::recode(.$confianza_congreso, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                         levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_pdte = car::recode(.$confianza_pdte, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
                                       levels = c("Nada o poca", "Algo", "Bastante o mucha")),
@@ -59,7 +59,7 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                                      levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_social = car::recode(.$confianza_social, recodes = c("1 = 'Casi siempre se puede confiar en las personas'; 2 = 'Casi siempre hay que tener cuidado al tratar con las personas'; c(-999,-888,-777,-666,3)= NA"),
                                         as.factor = T,  levels = c('Casi siempre se puede confiar en las personas', 'Casi siempre hay que tener cuidado al tratar con las personas')),
-         interes_politica = car::recode(.$interes_politica, recodes = c("c(1,2)='Nada o poco interesado'; 3='Algo interesado'; c(4,5)='Bastante o muy interesado'; c(-999,-888,-777,-666)= NA"), 
+         interes_politica = car::recode(.$interes_politica, recodes = c("c(1,2)='Nada o poco interesado'; 3='Algo interesado'; c(4,5)='Bastante o muy interesado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                         levels = c("Nada o poco interesado", "Algo interesado", "Bastante o muy interesado")),
          ident_ideologica = car::recode(.$ident_ideologica, recodes = c("c(0,1,2,3,4)='Izquierda'; 5='Centro'; c(6,7,8,9,10)='Derecha'; 11 = 'Independiente'; 12 = 'Ninguno'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Izquierda", "Centro", "Derecha", "Independiente", "Ninguno")),
@@ -106,7 +106,7 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
 class(datos_proc$apoyo_dem)
 view_df(datos_proc)
 frq(datos_proc$edad_tramo)
-
+sum(is.na(datos_proc))
 # verificamos cambios -----------------------------------------------------
 
 # asignamos etiquetas
@@ -126,6 +126,11 @@ datos_proc$valor_movsoc = set_label(datos_proc$valor_movsoc, "Pensando en la lis
 datos_proc$sexo = set_label(datos_proc$sexo, "Sexo del entrevistada/o")
 datos_proc$edad_tramo = set_label(datos_proc$sexo, "Edad por tramo")
 datos_proc$nivel_educ = set_label(datos_proc$nivel_educ, "Nivel educacional")
+datos_proc$habla_politica = set_label(datos_proc$habla_politica, "Frecuencia: Habla de politica con familiares o amigos")
+datos_proc$informa_politica = set_label(datos_proc$informa_politica, "Frecuencia: Se informa sobre politica en medios de comunicacion")
+datos_proc$confianza_gob = set_label(datos_proc$confianza_gob, "Grado de confianza: El Gobierno ")
+datos_proc$confianza_pp = set_label(datos_proc$confianza_pp, "Grado de confianza: Los Partidos Politicos")
+
 
 
 view_df(datos_proc)
@@ -134,18 +139,6 @@ view_df(datos_proc)
   
 saveRDS(datos_proc, file = "output/datos/datos_proc.rds")
 
-
-
-?plot_model
-
-
-
-## descriptivos borrador
-
-# preferencia a la democracia según sexo
-datos_proc %>% 
-  group_by(sexo) %>%
-  frq(c25)
 
 
 
