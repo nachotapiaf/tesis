@@ -214,5 +214,146 @@ pacman::p_load(dplyr,
               texreg,
               sjPlot,
               corrplot,
-              sjmisc)
+              sjmisc,
+              summarytools,
+              ggplot2,
+              ggmosaic,
+              kableExtra,
+              knitr)
 ```
+
+## 2.2 carga de datos y visualización 
+```{r include=FALSE}
+datos_proc <- readRDS("../output/datos/datos_proc.rds")
+```
+
+## 2.3 Presentación de variables 
+```{r echo=FALSE}
+view(dfSummary(datos_proc, headings = FALSE, method = "render")) 
+```
+## 3. Creación de objeto encuesta para trabajar con diseño muestral complejo de la ELSOC
+```{r eval=FALSE, include=FALSE}
+elsoc_objeto <- datos_proc %>% # Creamos un nuevo objeto "elsoc_proc" con los datos de "datos_proc"
+  as_survey_design(ids = 1, # Aplicamos diseño muestral, especificando los ids a partir de 1 (entrevistado seleccionado)
+                   weights = fact_exp02) # aplicamos factor de expansión de corte transversal ajustado por población y sexo. Se añaden pesos muestrales
+
+```
+
+
+## 4. Estadísticos descriptivos
+
+## 4.1 Estadísticos descriptivos para "Confianza institucional"
+```{r}
+plot_stackfrq(datos_proc[,c("confianza_gob","confianza_pp","confianza_congreso", "confianza_pdte")]) + theme(legend.position="bottom")
+```
+
+## 4.2 Estadísticos descriptivos para dimensión cognoscitiva
+```{r}
+plot_stackfrq(datos_proc[c("opina_rrss","informa_politica", "habla_politica")]) + theme(legend.position="bottom")
+```
+
+
+### 4.1 Tablas de continengencia de apoyo a la democracia según tramo edad
+```{r}
+sjt.xtab(datos_proc$apoyo_dem, datos_proc$edad_tramo,
+         show.col.prc=TRUE,
+         show.summary=FALSE, 
+         title = "Apoyo a la democracia según sexo",
+         encoding = "UTF-8")
+```
+
+
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_sexo.PNG")
+```
+
+### 4.2 Tabla de continengencia de apoyo a la democracia según nivel educacional 
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_educ.PNG")
+```
+
+### 4.3 Tabla de continengencia de apoyo a la democracia según tramo de edad 
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_edad_tramo.PNG")
+```
+
+### 4.4 Graficar: Apoyo a la democracia, según sexo 
+```{r echo=FALSE}
+ggplot(datos_proc) + # apoyo a la democracia según sexo
+  geom_mosaic(aes(x=product(apoyo_dem, sexo), fill=sexo)) +
+  geom_label(data = layer_data(last_plot(), 1),
+             aes(x = (xmin + xmax)/ 2,
+                 y = (ymin + ymax)/ 2,
+                 label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
+  labs(y = "Apoya la democracia",
+       x = "Sexo") +
+  scale_fill_discrete(name = "",
+                      labels = c("Hombre","Mujer"))+
+  scale_y_continuous(breaks = c(0,1),
+                     labels = c("Apoya la democracia","Apoya el autoritarismo")) +
+  theme(legend.position="bottom")
+```
+
+### 4.5 Graficar: Apoyo a la democracia según nivel educacional 
+```{r echo=FALSE}
+ggplot(datos_proc) +
+  geom_mosaic(aes(x=product(apoyo_dem, nivel_educ), fill=nivel_educ)) +
+  geom_label(data = layer_data(last_plot(), 1),
+             aes(x = (xmin + xmax)/2,
+                 y = (ymin + ymax)/2,
+                 label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
+  labs(y = "Apoya la democracia",
+       x = "Nivel Educacional") +
+  scale_fill_discrete(name = "",
+                      labels = c("Primaria incompleta o menos",
+                                 "Primaria",
+                                 "Secundaria", "Técnica o Superior",
+                                 "Universitaria", "Postgrado"))+
+  scale_y_continuous(breaks = c(0,1),labels = c("Apoya la democracia","Apoya el autoritarismo")) +
+  theme(legend.position="bottom")
+```
+
+## 5. Modelos de regresión logística para indicadores sobre el apoyo a la democracia según indicadores de dimensión "cognoscitiva" e indicadores de "interés en política", "opina_rrss", "informa_politica", "habla política"
+
+```{r}
+modelo0 <- glm(apoyo_dem ~ 1, family = binomial(link = "logit"), data = datos_proc)
+modelo1 <- glm(apoyo_dem ~ sexo, family = binomial(link = "logit"), data = datos_proc) # modelo binario
+modelo2 <- glm(apoyo_dem ~ edad, family = binomial(link = "logit"), data = datos_proc) # modelo continuo
+modelo3 <- glm(apoyo_dem ~ edad + sexo + nivel_educ, family = binomial(link = "logit"), data = datos_proc) # modelo multivariado
+modelo4 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica, family = binomial(link = "logit"), data = datos_proc) # modelo multivar
+modelo5 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss, family = binomial(link = "logit"), data = datos_proc)
+modelo6 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica, family = binomial(link = "logit"), data = datos_proc)
+modelo7 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica + habla_politica, family = binomial(link = "logit"), data = datos_proc)
+```
+
+```{r}
+screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5,modelo6,modelo7), doctype = FALSE,
+          custom.coef.names=c("Intercepto","Sexo","Edad","Secundaria","Técnica","Superior","Algo interesado","Bastante o muy interesado","Algo","Bastante o mucha", "A veces", "Frecuente o muy frecuentemente"),
+          custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6","Modelo 7"))
+```
+
+```{r, gráfico de los modelos}
+
+```
+
+
+### 6. Representación de modelos en una tabla
+
+Luego, se visualizan los todos los modelos (excepto modelo5survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
+
+```{r, representación de modelos}
+sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,modelo7),
+  string.intercept = "(Intercepto)",
+  string.pred = "Predictores",
+  string.est = "Estimación (OR)",
+  p.style = "stars",
+  collapse.ci = T,
+  digits = 3,
+  dv.labels = c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6","Modelo 7"),
+  transform = "exp",
+  show.reflvl = TRUE,
+  encoding = "UTF-8",
+  lang = "es")
+```
+
+

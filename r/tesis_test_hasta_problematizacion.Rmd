@@ -139,3 +139,357 @@ Aunque criticado y cuestionado, creemos que el modelo para estudiar la cultura p
 
 Más específicamente, en la definición clásica propuesta por los autores, la cultura política se refiere a aquellas “orientaciones y actitudes específicamente políticas hacia el sistema político y sus variadas partes y actitudes hacia el rol de uno mismo en dicho sistema. Hablamos de una cultura política tanto como hablamos de una cultura económica o una cultura religiosa. Es un conjunto de orientaciones hacia un conjunto especial de procesos y objetos sociales.” (Almond & Verba, 1963) 
 
+
+
+
+****************************
+
+
+## 2.2 carga de datos
+
+```{r include=FALSE}
+datos_proc <- readRDS("../output/datos/datos_proc.rds")
+```
+
+## 2.3 creación de objeto encuesta por estrato y factores de expansión
+
+```{r}
+view_df(datos_proc)
+```
+
+```{r eval=FALSE, include=FALSE}
+elsoc_objeto <- datos_proc %>% 
+  as_survey_design(ids = 1, # Aplicamos diseño muestral, ids = 1 
+                   strata = estrato, # los estratos a partir de estrato 
+                   weights = fact_exp02) # se agregan factores de expansión ajustados por población y sexo
+```
+
+## 2.3 creación objeto encuesta según clase 10.2 Andrade
+
+```{r eval=FALSE, include=FALSE}
+esi_design <- as_survey_design(datos_proc, 
+                               ids = 1, 
+                               weights = fact_exp02)
+```
+
+## 2.4 creación de modelos de regresión logística binaria
+
+### a. construcción múltiple de modelos
+
+```{r, modelos logísticos}
+modelo1 <- glm(apoyo_dem ~ 1, family = binomial(link = "logit"), data = datos_proc)
+modelo2 <- glm(apoyo_dem ~ sexo, family = binomial(link = "logit"), data = datos_proc)
+#modelo3 <- glm(apoyo_dem ~ satis_dem, family = binomial(link = "logit"), data = datos_proc)
+modelo4 <- glm(apoyo_dem ~ confianza_congreso, family = binomial(link = "logit"), data = datos_proc)
+modelo5 <- glm(apoyo_dem ~ sexo + ident_ideologica, family = binomial(link = "logit"), data = datos_proc)
+modelo6 <- glm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica , family = binomial(link = "logit"), data = datos_proc)
+modelo6survey <- svyglm(apoyo_dem ~ sexo + satis_dem + confianza_congreso + interes_politica + ident_ideologica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
+```
+
+```{r}
+modelo8 <- lm(apoyo_dem ~ edad,data = datos_proc)
+sjPlot::tab_model(list(modelo8), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,dv.labels = c("Modelo 8"))
+```
+
+```{r}
+modelo8_categorico <- lm(apoyo_dem ~ edad_tramo,data = datos_proc)
+sjPlot::tab_model(list(modelo8_categorico), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,dv.labels = c("Modelo 8 edad_tramo"))
+frq(datos_proc$edad_tramo)
+```
+
+Este cálculo me interesó. Según la interpretación que podría darle, aquellas personas con estudios de posgrado tienen -1.093 de apoyar la democracia, que aquellos con educación media que tienen igual es negativa, pero menos. En este sentido, a menor educación existe un menor "desapoyo" a la democracia 
+Navia?? 
+
+comparar los modelos. El modelo4 quisiera saber si está bien porque lo hice con la dependiente como continua
+el modelo3 lo hice con la dependiente categórica
+el modelo 2 no recuerdo
+también mirar el modelo 6
+
+## construcción modelo nulo
+
+```{r}
+modelo0 <- glm(apoyo_dem ~ 1,
+              data = datos_proc, 
+              weights = fact_exp02,
+              family = binomial(link = "logit"))
+summary(modelo0)
+```
+
+### a.2 construcción de modelos simples
+
+```{r, modelo2 con predictor categórico}
+modelo2 <- glm(apoyo_dem ~ sexo,
+              data = datos_proc, 
+              family = binomial(link = "logit"))
+
+summary(modelo2)
+```
+
+### a.4 modelo completo
+
+```{r, sin pesos muestrales}
+modelo3 <- glm(apoyo_dem ~ edad + sexo + interes_politica + ident_ideologica,
+              data = datos_proc, 
+              family = binomial(link = "logit"))
+
+summary(modelo3)
+```
+
+## incorporación de pesos muestrales
+
+```{r, se agregan ponderadores}
+modelo3_dis <- glm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
+              data = datos_proc, 
+              weights = fact_exp02,
+              family = binomial(link = "logit"))
+
+summary(modelo3_dis)
+```
+
+## creación de objeto encuesta según esi_design
+
+```{r}
+esi_design <- as_survey_design(datos_proc, 
+                               ids = 1, 
+                               weights = fact_exp02)
+```
+
+## creación de modelo3survey
+
+```{r, modelo3survey}
+modelo3_survey <- svyglm(apoyo_dem ~ edad_tramo + sexo + interes_politica + ident_ideologica,
+                         family = binomial(link = "logit"),
+                         design = esi_design)
+
+summary(modelo3_survey)
+modelo3$coefficients # este si puedo sacarlo
+modelo3$coefficients[6] # cómo puedo interpretar esto?
+modelo3$coefficients[4] # no pude lograr sacar este coeficiente
+```
+
+## Extraer valores predichos
+
+```{r, valores predichos}
+get_model_data(modelo3_survey, 
+               type = "pred") # me quedan dudas con este modelo. Cómo sé quienes prefieren la democracia en vez del autoritarismo?
+# me dan los valores predichos por cada categoría de respuesta, ok, pero cómo sé hacia qué categoría de respuesta sobre democracia o autoritarismo está referida? 
+```
+
+## exponenciación de coeficientes
+
+```{r}
+exp(modelo3_survey$coefficients[7]) # cómo se interpreta esto?
+```
+
+## crear OR en nuestro modelo
+
+```{r}
+modelo3_survey$or <- exp(modelo3_survey$coefficients)
+modelo3_survey$or[8]
+```
+
+## presentacion de modelo creado
+
+# con sjplot
+
+```{r}
+sjPlot::tab_model(modelo0, 
+                  show.ci=FALSE,
+                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  encoding = "UTF-8") 
+```
+
+## incorporación de varios modelos
+
+```{r, modelos}
+sjPlot::tab_model(list(modelo0, modelo2, modelo3), # los modelos estimados
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald',
+                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"), # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF-8")
+```
+
+## otro modelo menos problematico con los OR
+
+```{r}
+sjPlot::tab_model(modelo3, # modelo con todas las variables
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  transform = 'exp', # exponenciamos los coeficientes
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald', #Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF/8")
+```
+
+## integrar el diseño muestral
+
+```{r}
+sjPlot::tab_model(modelo3_survey, # modelo con todas las variables
+                  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+                  transform = 'exp', # exponenciamos los coeficientes
+                  p.style = "stars", # asteriscos de significación estadística
+                  df.method = 'wald',#Para realizar más rápidamente el cálculo de los intervalos de confianza
+                  dv.labels = "Modelo con todas las variables", # etiquetas de modelos o variables dep.
+                  string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
+                  encoding =  "UTF-8")
+```
+
+## graficar modelos
+
+```{r}
+  sjPlot::plot_model(modelo, 
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = 0.95, 
+                   title = "Estimación de predictores",
+                   vline.color = "green")
+```
+
+### b. Representación modelos en una tabla
+
+# aquí no se incluye el modelo7survey
+
+```{r, presentación de modelos}
+sjPlot::tab_model(list(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6),
+                  string.intercept = "(Intercepto)",
+                  string.pred = "Predictores",
+                  string.est = "Estimación (OR)",
+                  p.style = "stars",
+                  collapse.ci = T,
+                  digits = 3,
+                  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4","Modelo 5","Modelo 6"),
+                  transform = "exp",
+                  show.reflvl = TRUE,
+                  encoding = "UTF-8",
+                  lang = "es")
+```
+
+***Gráfico1 modelo 6 de valores predichos apoyo a la democracia según sexo***
+
+```{r, gráfico_1_modelo_6}
+plot_model(modelo6, type = c("pred"),
+           terms = c("sexo"), digits = 3,
+           axis.title = "Sexo", "Apoyo a la democracia",
+           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según sexo")
+```
+
+***Gráfico2 modelo 6 de valores predichos salud mental según trabajo***
+
+```{r, gráfico2_modelo5 }
+plot_model(modelo6, type = c("pred"),
+           terms = c("satis_dem"), digits = 3,
+           axis.title = "Interés en la política", "Apoyo a la democracia",
+           title = "Gráfico 1: Modelo 6 que estima la frecuencia de apoyo a la democracia según identificación ideológica")
+```
+
+# 3. Interpretación
+
+## 3.1 gráficos de valores predichos según apoyo a la democracia y sexo
+
+```{r, gráfico 1, modelo 2 por sexo}
+plot_model(modelo2, type = c("pred"),
+           terms = c("sexo"), digits = 3,
+           axis.title = c("Sexo","Apoyo a la democracia"),
+           title = "Gráfico 1. Modelo 2 que estima la frecuencia de apoyo a la democracia según sexo")
+```
+
+## 3.2 gráfico de valores predichos según apoyo a la democracia por satisfacción con la democracia
+
+```{r, gráfico2, modelo 3}
+plot_model(modelo3, type = c("pred"),
+           terms = c("satis_dem"), digits = 3,
+           axis.title = c("Satisfacción con la democracia","Apoyo a la democracia"),
+           title = "Gráfico 2. Modelo 3 que estima la frecuencia de apoyo a la democracia según  la satisfacción con la democracia")
+```
+
+## 3.3 gráfico de valores predichos según apoyo a la democracia por la confianza en el concgreso
+
+```{r,gráfico3, modelo 4}
+plot_model(modelo4, type = c("pred"),
+           terms = c("confianza_congreso"), digits = 3,
+           axis.title = c("Confianza en el congreso","Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
+```
+
+## 3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+
+```{r, interes politica}
+plot_model(modelo5, type = c("pred"),
+           terms = c("interes_politica"), digits = 3,
+           axis.title = c("Interés en política","Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 4 que estima la frecuencia de apoyo a la democracia según la confianza en el congreso")
+```
+
+3.4 gráfico de valores predichos según apoyo a la democracia por el interés en la política
+
+Este gráfico puede ser interesante. Según los datos las personas que menos interesadas están en la política, son las que más apoyan la democracia al contrario de quienes más interesados están en la política que tienen menores probabiliades de apoyar la democracia. Esto puede ser explicado por Navia, 2021 quien habla sobre quienes esperan menos de la democracia, tienden a apoyarla más en vez de aquellos que mientras más expectativas tienen de la democracia, menos apoyo sienten por la misma.
+
+## 3.5 gráfico de valores predichos según apoyo a la democracia por la identificación ideológica
+
+```{r,gráfico5, modelo 6}
+plot_model(modelo6, type = c("pred"),
+           terms = c("ident_ideologica"), digits = 3,
+           axis.title = c("Identidad ideológica","Apoyo a la democracia"),
+           title = "Gráfico 4. Modelo 5 que estima la frecuencia de apoyo a la democracia según la identificación ideológica")
+```
+
+# Descriptivos univariados
+# para categ.(y)/categ.(x) los descriptivos para cada variable son
+Tabla = tabla de contingencia
+gráfico = gráfico de barras condicionado (por ej si es x sexo, entrega un gráfico para mujer y otro para hombre)
+
+```{r, frecuencias_interes_politica}
+frq(datos_proc$interes_politica)
+plot_frq(elsoc_objeto, interes_politica,
+          title = "Gráfico de: Interés en la política",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias apoyo_dem}
+frq(datos_proc$c25)
+plot_frq(elsoc_objeto, c25,
+          title = "Gráfico de: Apoyo a la democracia",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias satis_dem}
+frq(datos_proc$satis_dem)
+plot_frq(elsoc_objeto, satis_dem,
+          title = "Gráfico de: Satisfacción con la democracia",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+```{r, frecuencias confianza_social}
+frq(datos_proc$confianza_gob)
+plot_frq(elsoc_objeto, confianza_gob,
+          title = "Grado de confianza: El gobierno",
+          type = "bar",
+          sort.frq = "desc")
+```
+
+# Descriptivos bivariados
+
+```{r, frecuencias por sexo según apoyo a la democracia}
+datos_proc_continuo %>% select("c25","satis_dem", "interes_politica", "confianza_gob", "confianza_congreso") %>% 
+  sjPlot::plot_likert(., title = "Gráfico de escalas Likert")
+```
+
+```{r}
+plot_grpfrq(datos_proc$c25, datos_proc$satis_dem,
+            title = "Gráfico de caja",
+            type = "boxplot")
+```
+
+
+
+
+
+
+
+

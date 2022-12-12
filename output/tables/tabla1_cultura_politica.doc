@@ -1,0 +1,50 @@
+<table style="border-collapse:collapse; border:none; border-bottom:double black;">
+<tr>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">&nbsp;</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Nunca o poco<br>interesado</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Algo interesado</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Bastante o muy<br>interesado</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;  ">N</th>
+</tr>
+<tr>
+<td style="font-style:italic;">¿Qué tan interesado<br>está usted en la<br>política?</td>
+<td style="padding:0.2cm; text-align:center;">614<br>(57.92&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">239<br>(22.55&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">207<br>(19.53&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;  ">1060</td>
+</tr>
+<tr>
+<td style="font-style:italic;">Frecuencia: Usa<br>redes sociales para<br>opinar en temas<br>publicos</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">705<br>(66.51&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">174<br>(16.42&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">181<br>(17.08&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;  ">1060</td>
+</tr>
+<tr>
+<td style="font-style:italic;">Frecuencia: Se<br>informa sobre<br>politica en medios<br>de comunicacion</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">182<br>(17.17&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">306<br>(28.87&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">572<br>(53.96&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;  ">1060</td>
+</tr>
+<tr>
+<td style="font-style:italic;">Frecuencia: Habla de<br>politica con<br>familiares o amigos</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">0<br>(0.00&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">182<br>(17.17&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">306<br>(28.87&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;">572<br>(53.96&nbsp;%)</td>
+<td style="padding:0.2cm; text-align:center;  ">1060</td>
+</tr>
+ 
+</table>

@@ -1,5 +1,4 @@
-
-pacman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey, corrplot, ggcorrplot)
+acman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey, corrplot, ggcorrplot)
 
 options(scipen=999) # evita notación científica
 
@@ -44,28 +43,32 @@ sum(is.na(datos_proc_sin_na_dem))
 # 3. recodificar variables
 names(datos_proc)
 
+datos_test <- datos_proc %>% 
+  mutate(satis_dem = car::recode(.$satis_dem, recodes = c("c(-999,-888,-777,-666)=NA")))
+
+frq(datos_test$satis_dem)
 
 datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en conservar el lugar de cada categoría de respuesta
   mutate_at(vars(sexo, satis_dem, c25, confianza_congreso, confianza_pdte,interes_politica,ident_ideologica), ~(as.numeric(.))) %>% 
   mutate(satis_dem = car::recode(.$satis_dem, recodes = c("c(1,2)='Nada o poco satisfecho'; 3 ='Algo satisfecho'; c(4,5)='Bastante o muy satisfecho'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
-                                    levels = c('Nada o poco satisfecho', 'Algo satisfecho', 'Bastante o muy satisfecho')),
+                                 levels = c('Nada o poco satisfecho', 'Algo satisfecho', 'Bastante o muy satisfecho')),
          sexo = car::recode(.$sexo, recodes = c("1 = 'Hombre'; 2 = 'Mujer'"), as.factor = T,  levels = c('Hombre', 'Mujer')),
          apoyo_dem = car::recode(.$c25, recodes = c("1 = 'Apoya la democracia'; 2 = 'Apoya el autoritarismo'; c(-999,-888,-777,-666,3,4)= NA"), as.factor = T,
-                           levels = c('Apoya la democracia', 'Apoya el autoritarismo')),
+                                 levels = c('Apoya la democracia', 'Apoya el autoritarismo')),
          confianza_congreso = car::recode(.$confianza_congreso, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
-                                        levels = c("Nada o poca", "Algo", "Bastante o mucha")),
+                                          levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_pdte = car::recode(.$confianza_pdte, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
                                       levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_gob = car::recode(.$confianza_gob, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
-                                      levels = c("Nada o poca", "Algo", "Bastante o mucha")),
-         confianza_pp = car::recode(.$confianza_pp, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                      levels = c("Nada o poca", "Algo", "Bastante o mucha")),
+         confianza_pp = car::recode(.$confianza_pp, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
+                                    levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_social = car::recode(.$confianza_social, recodes = c("1 = 'Casi siempre se puede confiar en las personas'; 2 = 'Casi siempre hay que tener cuidado al tratar con las personas'; c(-999,-888,-777,-666,3)= NA"),
                                         as.factor = T,  levels = c('Casi siempre se puede confiar en las personas', 'Casi siempre hay que tener cuidado al tratar con las personas')),
          interes_politica = car::recode(.$interes_politica, recodes = c("c(1,2)='Nada o poco interesado'; 3='Algo interesado'; c(4,5)='Bastante o muy interesado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                         levels = c("Nada o poco interesado", "Algo interesado", "Bastante o muy interesado")),
          ident_ideologica = car::recode(.$ident_ideologica, recodes = c("c(0,1,2,3,4)='Izquierda'; 5='Centro'; c(6,7,8,9,10)='Derecha'; 11 = 'Independiente'; 12 = 'Ninguno'; c(-999,-888,-777,-666)= NA"), as.factor = T,
-                                      levels = c("Izquierda", "Centro", "Derecha", "Independiente", "Ninguno")),
+                                        levels = c("Izquierda", "Centro", "Derecha", "Independiente", "Ninguno")),
          opina_rrss = car::recode(.$opina_rrss, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                   levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
          informa_politica = car::recode(.$informa_politica, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), as.factor = T,
@@ -100,9 +103,9 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                                                "Otro",
                                                "Ninguno")),
          edad_tramo = car::recode(.$edad, recodes = c("18:30='Joven';30:60='Adulto'; 61:hi='Adulto mayor'"),
-                            as.factor = T, levels = c("Joven", "Adulto", "Adulto mayor")),
+                                  as.factor = T, levels = c("Joven", "Adulto", "Adulto mayor")),
          nivel_educ = car::recode(.$nivel_educ, recodes = c("c(1,2,3) = 'Primaria'; c(4,5) = 'Secundaria'; c(6,7) = 'Educación técnica'; c(8,9,10) = 'Universitaria o posgrado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
-                                      levels = c("Primaria", "Secundaria", "Educación técnica", "Universitaria o posgrado"))) %>%
+                                  levels = c("Primaria", "Secundaria", "Educación técnica", "Universitaria o posgrado"))) %>%
   mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp, confianza_social,
                  interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,valor_movsoc,nivel_educ,asiste_marcha), ~(forcats::as_factor(.)))
 
@@ -141,24 +144,7 @@ frq(datos_proc$c25)
 
 
 # 7. Guardar y exportar los datos ----------------------------------------
-  
+
 saveRDS(datos_proc, file = "output/datos/datos_proc.rds")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
