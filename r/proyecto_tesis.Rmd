@@ -393,13 +393,7 @@ sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,m
 ### c. Interpretación
 
 ::: {style="text-align: justify"}
-En relación a la variable **"sexo"**, las chances de sentirse deprimida o desesperanzada para las **mujeres**, controlando el efecto de las otras variables, son un **43,2% mayores** respecto a las **chances** de sentirse deprimido o desesperanzada para los **hombres**. Asimismo, los resultados indican que la diferencia de probabilidades en la percepción de salud mental entre hombres y mujeres si es estadísticamente significativa con un valor p\<0,01.
 
-Con respecto a la variable **"trabajo productivo"**, las chances de que una persona que **no trabajó la semana pasada** se sienta deprimida o desesperanzada son **47,6% mayores** a las chances de que una persona que **sí trabajó la semana pasada** se sienta deprimida o desesperanzada. Asimismo, los resultados indican que la diferencia de probabilidades en la percepción de salud mental entrea una persona que sí trabajó la semana pasada y una persona que no lo hiz es estadísticamente significativa con un valor p\<0,01.
-
-Acerca de la variable **"trabajo doméstico"**, las chances de que una persona que ha percibido un aumento del trabajo doméstico durante la pandemia se sienta deprimida o desesperanzada son **32,3% mayores** a las chances de que una persona que ha percibido una mantención o disminución del trabajo doméstico durante la pandemia se sienta deprimida o desesperanzada. Sin embargo, los resultados muestran que la diferencia de probabilidades en la percepción de salud mental de alguien que percibió una mantención o disminución del trabajo doméstico y de alguien que percibió un aumento del trabajo domésticomujeres no es estadísticamente significativa.
-
-Por último, respecto de la variable **"trabajo de cuidados"**, las chances de sentirse deprimida o desesperanzada de una persona que percibe un aumento en el trabajo de cuidados son **26,4% mayores** respecto a las **chances** de sentirse deprimida o desesperanzada de una persona que percibe un mantenimiento o disminución en el trabajo de cuidados durante la pandemia respecto a la situación previa.
 :::
 
 ### d. Gráficos de valores predichos modelo 5 salud mental según sexo y trabajo productivo
