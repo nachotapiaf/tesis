@@ -11,7 +11,6 @@ load(url("https://dataverse.harvard.edu/api/access/datafile/6160180")) # cargar 
 
 datos_proc <- elsoc_2021 %>% 
   dplyr::select(idencuesta,
-                confianza_social = c02,
                 confianza_gob = c05_01,
                 confianza_pp = c05_02,
                 confianza_congreso = c05_07,
@@ -26,7 +25,6 @@ datos_proc <- elsoc_2021 %>%
                 nivel_educ = m01,
                 fact_exp02,
                 satis_dem = c01,
-                estrato,
                 c25)
 
 datos_proc <- datos_proc %>% dplyr::filter(edad <= 40)
@@ -54,8 +52,6 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                                       levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_pp = car::recode(.$confianza_pp, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                      levels = c("Nada o poca", "Algo", "Bastante o mucha")),
-         confianza_social = car::recode(.$confianza_social, recodes = c("1 = 'Casi siempre se puede confiar en las personas'; 2 = 'Casi siempre hay que tener cuidado al tratar con las personas'; c(-999,-888,-777,-666,3)= NA"),
-                                        as.factor = T,  levels = c('Casi siempre se puede confiar en las personas', 'Casi siempre hay que tener cuidado al tratar con las personas')),
          interes_politica = car::recode(.$interes_politica, recodes = c("c(1,2)='Nada o poco interesado'; 3='Algo interesado'; c(4,5)='Bastante o muy interesado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                         levels = c("Nada o poco interesado", "Algo interesado", "Bastante o muy interesado")),
          ident_ideologica = car::recode(.$ident_ideologica, recodes = c("c(0,1,2,3,4)='Izquierda'; 5='Centro'; c(6,7,8,9,10)='Derecha'; 11 = 'Independiente'; 12 = 'Ninguno'; c(-999,-888,-777,-666)= NA"), as.factor = T,
@@ -70,7 +66,7 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                             as.factor = T, levels = c("Joven", "Joven Adulto","Adulto")),
          nivel_educ = car::recode(.$nivel_educ, recodes = c("c(1,2,3) = 'Primaria'; c(4,5) = 'Secundaria'; c(6,7) = 'Educación técnica'; c(8,9,10) = 'Universitaria o posgrado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Primaria", "Secundaria", "Educación técnica", "Universitaria o posgrado"))) %>%
-  mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp, confianza_social,
+  mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp,
                  interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,nivel_educ,apoyo_dem_bin), ~(forcats::as_factor(.)))
 
 
