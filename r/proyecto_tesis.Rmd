@@ -226,18 +226,17 @@ Para los fines de nuestra investigación, hemos seleccionado nuestras variables 
 ::: {style="text-align: justify"}
 En función de nuestra pregunta de investigación en coherencia con nuestros objetivos e hipótesis, hemos escogido utilizar un diseño metodológico cuantitativo que a través del análisis de datos logre contestar nuestra pregunta de investigación y cumplir nuestros objetivos. En concreto, buscando realizar un análisis descriptivo presentaremos distintos indicadores sobre cultura política agrupados según las definiciones metodológicas que detallamos más adelante para de esta forma poder contextualizar lo que nuestros hallazgos muestran sobre el estado de las percepciones de cultura política y apoyo a la democracia desde las juventudes chilenas.  
 
-En vista de que la mayoría de nuestras variables son categóricas ordinales hemos escogido como técnica un análisis de regresión logística binaria múltiple que busca evaluar si existen relaciones significativas entre el apoyo a la democracia y el interés en la política, la confianza en el gobierno y la satisfacción con la democracia entre los jóvenes. Además, a través de muestras complejas en R se busca trabajar con muestras representativas de la población a estudiar. Esto nos permitirá realizar la construcción de nuestros modelos sin pesos muestrales y otro, idéntico, con pesos muestrales que permitan otorgar una mayor validez estadística a nuestro análisis. Posteriormente se compararán ambos modelos en busca de diferencias estadísticas que puedan ser significativas entre uno y otro modelo.
+En vista de que la mayoría de nuestras variables son categóricas ordinales hemos escogido como técnica un análisis de regresión logística binaria múltiple que busca evaluar si existen relaciones significativas entre el apoyo a la democracia y el interés en la política, la confianza en el gobierno y la satisfacción con la democracia entre los jóvenes. Además, a través de muestras complejas en R se busca trabajar con muestras representativas de la población a estudiar. Esto nos permitirá realizar la construcción de nuestros modelos sin pesos muestrales y otro, idéntico, con pesos muestrales que permitan otorgar una mayor validez estadística a nuestro análisis. Posteriormente se compararán ambos modelos en busca de diferencias estadísticas que puedan ser significativas entre uno y otro modelo. Así mismo, se busca entregar los valores predichos para cada variable independiente, identificando las chances que pueden aumentar el apoyo a la democracia.
 
-Por último, a través de nuestros modelos de regresión no solo buscamos conocer la relación entre el apoyo a la democracia y los indicadores de cultura política, sino también proponer variables predichas sobre el apoyo diferenciado controlando por sexo y edad. 
-
+Por último, a través de nuestros modelos de regresión no solo buscamos conocer la relación entre el apoyo a la democracia y los indicadores de cultura política, sino también entregar los valores predichos para cada variable independiente controlando por sexo, edad y nivel educativo identificando las chances que pueden aumentar el apoyo a la democracia. 
+:::
 ## 9.3 Unidad de observación
-
+:::
 En concordancia con nuestra muestra, la unidad de observación mínima serán los informantes entre 20 y 40 años que contestaron la encuesta durante el año 2021 distribuidos a lo largo del país. La definición que utilizaremos sobre juventud es la otorgada por el Instituto Nacional de Estadísticas para quienes define la población “Jóvenes” entre los 15-29 años y a la población adulta entre los 30 – 59 años. [@InstitutoNacionaldeEstadisticas] En base a esta consideración es que la recodificación de nuestra variable “edad_tramo” fue recodificada entre 18:24 como “Jóvenes”; 25:30 como “Adultos Jóvenes”, y; desde 31:40 como “Adulto”, esto buscando evaluar las diferencias entre estos breves tramos etarios en consideración de lo que ha sido previamente evaluado por la literatura propuesta.
-
 :::
 
 
-# 10. Análisis
+# 10. Reporte de resultados
 
 ## 10.1 carga de librerías
 
@@ -272,32 +271,68 @@ datos_proc <- readRDS("../output/datos/datos_proc.rds")
 view_df(datos_proc)
 ```
 
-# 12. Creación de objeto encuesta
-```{r echo=FALSE}
-elsoc_objeto <- datos_proc %>% # Creamos un nuevo objeto "elsoc_objeto" con "datos_proc"
-  as_survey_design(ids = 1, # Aplicamos diseño muestral, especificando los ids a partir de 1 (entrevistado seleccionado),
-                   weights = fact_exp02) # se agregan factores de expansión 
-```
-
-# 13. Descriptivos
-## 13.1 Descriptivos de "Confianza institucional"
+# 12. Descriptivos
+## 12.1 Descriptivos univariados de "Confianza institucional"
 ```{r echo=FALSE}
 plot_stackfrq(datos_proc[,c("confianza_pdte","confianza_gob","confianza_pp","confianza_congreso")]) + theme(legend.position="bottom")
 ```
 
-## 13.2 Descriptivos de "Conocimiento político"
+## 12.2 Descriptivos univariados de "Conocimiento político"
 ```{r echo=FALSE}
 plot_stackfrq(datos_proc[,c("opina_rrss","informa_politica","habla_politica")]) + theme(legend.position="bottom")
 ```
 
-## 13.3 Descriptivos de "Percepciones hacia la democracia"
+## 12.3 Descriptivos uniariados de "Percepciones hacia la democracia" 1
 ```{r eval=FALSE, include=FALSE}
-plot_stackfrq(datos_proc[,c("satis_dem","apoyo_dem")]) + theme(legend.position="bottom")
-
+frq(datos_proc$apoyo_dem,
+    show.na = F,
+    out = "viewer",
+    encoding = "UTF-8",
+    sort.frq = "desc") %>% 
+  as.data.frame() %>% # Transformamos en dataframe para manipular con dplyr
+  select(val, frq, raw.prc, cum.prc) %>% # Seleccionamos columnas de interés
+  mutate_at(vars(ends_with("prc")), # A las variables que terminen con "prc"
+                 ~(paste(., "%"))) %>% # Incorporamos porcentaje con paste()
+  kable(caption = "Distribución de las preferencias por régimen político", # Incorporamos título
+        format = "html", # Especificamos output en HTML
+        col.names = c("Apoyo a la democracia", # Definimos el nombre de las columnas
+                      "F. absoluta",
+                      "F. relativa",
+                      "F. rel. acumulada"),
+        position = "center") %>% # Especificamos que la tabla se muestre al centro
+  kable_classic(full_width = F, # Especificamos que el ancho de la tabla no se ajuste al de la página
+                html_font = "Cambria") %>% # Definimos fuente
+  footnote("Elaboración propia en base a ELSOC (2021)", # Especificamos la nota al pie
+           general_title = "Fuente: ") # personalizamos nota al pie
 ```
 
-# 14. Gráficos bivariados
-## 14.1  Gráficos bivariados: apoyo a la democracia según sexo
+## 12.4 Descriptivos uniariados de "Percepciones hacia la democracia" 
+```{r}
+frq(datos_proc$satis_dem,
+    show.na = F,
+    out = "viewer",
+    encoding = "UTF-8",
+    sort.frq = "desc") %>% 
+  as.data.frame() %>% # Transformamos en dataframe para manipular con dplyr
+  select(val, frq, raw.prc, cum.prc) %>% # Seleccionamos columnas de interés
+  mutate_at(vars(ends_with("prc")), # A las variables que terminen con "prc"
+                 ~(paste(., "%"))) %>% # Incorporamos porcentaje con paste()
+  kable(caption = "Distribución de la satisfacción con la democracia", # Incorporamos título
+        format = "html", # Especificamos output en HTML
+        col.names = c("Satisfacción con la democracia", # Definimos el nombre de las columnas
+                      "F. absoluta",
+                      "F. relativa",
+                      "F. rel. acumulada"),
+        position = "center") %>% # Especificamos que la tabla se muestre al centro
+  kable_classic(full_width = F, # Especificamos que el ancho de la tabla no se ajuste al de la página
+                html_font = "Cambria") %>% # Definimos fuente
+  footnote("Elaboración propia en base a ELSOC (2021)", # Especificamos la nota al pie
+           general_title = "Fuente: ") # personalizamos nota al pie
+```
+
+
+# 13. Gráficos bivariados
+## 13.1  Gráficos bivariados: apoyo a la democracia según sexo
 
 ```{r, apoyo_dem segun sexo}
 ggplot(datos_proc) + 
@@ -315,9 +350,7 @@ ggplot(datos_proc) +
   theme(legend.position="bottom")
 ```
 
-
-
-## 14.2 Gráficos bivariados: apoyo a la democracia según nivel educacional
+## 13.2 Gráficos bivariados: apoyo a la democracia según nivel educacional
 ```{r echo=FALSE}
 ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
   geom_mosaic(aes(x=product(apoyo_dem, nivel_educ), fill=nivel_educ)) +
@@ -334,7 +367,7 @@ ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
   theme(legend.position="bottom")
 ```
 
-## 14.3 Gráficos bivariados: apoyo a la democracia según interés en la política
+## 13.3 Gráficos bivariados: apoyo a la democracia según interés en la política
 ```{r echo=FALSE}
 ggplot(datos_proc) + # apoyo a la democracia según edad_tramo
   geom_mosaic(aes(x=product(apoyo_dem, interes_politica), fill=interes_politica)) +
@@ -351,7 +384,7 @@ ggplot(datos_proc) + # apoyo a la democracia según edad_tramo
   theme(legend.position="bottom")
 ```
 
-## 14.4 Gráficos bivariados: apoyo a la democracia según confianza en los partidos políticos
+## 13.4 Gráficos bivariados: apoyo a la democracia según confianza en los partidos políticos
 ```{r}
 ggplot(datos_proc) + 
   geom_mosaic(aes(x=product(apoyo_dem, confianza_pp), fill=confianza_pp)) +
@@ -368,7 +401,7 @@ ggplot(datos_proc) +
   theme(legend.position="bottom")
 ```
 
-## 14.5 Gráficos bivariados: apoyo a la democracia según la satisfacción con la democracia
+## 13.5 Gráficos bivariados: apoyo a la democracia según la satisfacción con la democracia
 ```{r}
 ggplot(datos_proc) + 
   geom_mosaic(aes(x=product(apoyo_dem, satis_dem), fill=satis_dem)) +
@@ -386,11 +419,9 @@ ggplot(datos_proc) +
 ```
 
 
-# 15. Modelo de regresión logística binaria
+# 14. Modelos de regresión logística binaria
 
-## 15.1 Construcción múltiple modelos logísticos
-
-## PRUEBA_R_U <- CREACIÓN DE OBJETO ENCUESTA CON esi_design
+## 14.1 Creación de objeto encuesta
 ```{r}
 esi_design <- as_survey_design(datos_proc,
                                ids = 1,
@@ -398,8 +429,9 @@ esi_design <- as_survey_design(datos_proc,
 ## gracias a esto, podemos después hacer el modelo5survey considerando diseño muestral complejo
 ```
 
+## 14.2 Construcción múltiple de modelos logísticos
 
-### Creamos modelos del 1:5 + un modelo 5 con diseño muestral complejo
+### Creamos modelos del 1:6 + un modelo 6 con diseño muestral complejo
 
 ```{r modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
 modelo0 <- glm(apoyo_dem_bin ~ 1, data = datos_proc, family = "binomial")
@@ -408,51 +440,53 @@ modelo2 <- glm(apoyo_dem_bin ~ edad, data = datos_proc, family = "binomial")
 modelo3 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica, data = datos_proc, family = "binomial")
 modelo4 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp, data = datos_proc, family = "binomial")
 modelo5 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem, data = datos_proc, family = "binomial")
-modelo5survey <- svyglm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem,
+modelo6 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem + nivel_educ,
+               data = datos_proc, family = "binomial")
+modelo6survey <- svyglm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem + nivel_educ,
                         family = binomial(link = "logit"),
                         design = esi_design)
-summary(modelo5survey)
-summary(modelo5survey)$deviance # devianza [371]
-summary(modelo5survey)$aic # Akaike [384]
-get_model_data(modelo5survey,# valores predichos 
+summary(modelo6survey)
+summary(modelo6survey)$deviance # devianza [371] disminuyó desde el modelo 5 == [345]
+summary(modelo6survey)$aic # Akaike [384] desciende == [364]
+get_model_data(modelo6survey,# valores predichos 
                type = "pred")
-get_model_data(modelo5,# valores predichos 
+get_model_data(modelo6,# valores predichos 
                type = "pred")
 ```
 
 
-## PRUEBA_MULTIVARIADA Tabulamos el modelo
+## 14.3 Tabulamos los modelos: se ofrecen dos formas de visualizar los modelos
 ```{r, modelos_listos_distinta_presentacion_indicadores_ip_cpp_satisdem}
-screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5), doctype = FALSE,
-          custom.coef.names=c("Intercepto","Sexo (Mujer=1)","Edad","Algo interesadoIP","Bastante o muy interesadoIP",
-                              "AlgoPP","Bastante o muchaPP","Algo satisfechoSD","Bastante o muy satisfechoSD"),
-          custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5"))
+#screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5,modelo6), doctype = FALSE,
+          #custom.coef.names=c("Intercepto","Sexo (Mujer=1)","Edad","Algo interesadoIP","Bastante o muy interesadoIP",
+                              #"AlgoPP","Bastante o muchaPP","Algo satisfechoSD","Bastante o muy
+                              #satisfechoSD","Secundaria","Técnica","Universitaria"),
+          #custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6"))
 
 
-sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5), # los modelos estimados
+sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5,modelo6), # los modelos estimados
                   show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
                   p.style = "stars", # asteriscos de significación estadística
                   df.method = 'wald',
-                  dv.labels = c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3","Modelo 4","Modelo 5"), # etiquetas de modelos o variables dep.
+                  dv.labels = c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6"), # etiquetas de modelos o variables dep.
                   string.pred = "Predictores", string.est = "β", # nombre predictores y símbolo beta en tabla
                   encoding =  "UTF-8")
 ```
 
+## 14.4 Representación de modelos en una tabla
 
+Luego, se visualizan los todos los modelos (excepto modelo5survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
 
-## 15.2 Representación de modelos en una tabla
-
-Luego, se visualizan los todos los modelos (excepto modelo7survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
-
+# este estadístico arroja problemas con NA que no deberían estar. Revisar
 ```{r tabla_modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,modelo7),
+sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6),
   string.intercept = "(Intercepto)",
   string.pred = "Predictores",
   string.est = "Estimación (OR)",
   p.style = "stars",
   collapse.ci = T,
   digits = 3,
-  dv.labels = c("Modelo 0","Modelo1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6","Modelo 7"),
+  dv.labels = c("Modelo 0","Modelo1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6"),
   transform = "exp",
   show.reflvl = TRUE,
   encoding = "UTF-8",
@@ -460,7 +494,7 @@ sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,m
 ```
 
 
-## 15.3 Interpretación
+## 14.5 Interpretación
 
 ::: {style="text-align: justify"}
 Nuestras interpretaciones descansan en que los hallazgos evidenciados muestran parte de aquello de lo que la literatura académica ya ha hablado y apuntado: la democracia enfrenta distintos desafíos en torno a la persistente y muy baja confianza institucional por parte de los ciudadanos.
@@ -468,71 +502,96 @@ Nuestras interpretaciones descansan en que los hallazgos evidenciados muestran p
 Espera, pero esto no era algo bueno? como es la cosa Tapia
 :::
 
-# 16. Gráficos de valores predichos según explicativas
+# 15. Gráficos de valores predichos con modelos con pesos muestrales según explicativas
 
-## 16.1 Gráfico 1: Modelo 5 de valores predichos apoyo a la democracia según sexo
+## 15.1 Gráfico 1: Modelo 5 de valores predichos apoyo a la democracia según sexo
 
 ```{r valores_predichos_sm_sexo, echo=FALSE, message=FALSE, warning=FALSE}
-plot_model(modelo5, type = c("pred"),
+plot_model(modelo6survey, type = c("pred"),
            terms = c("sexo"),  digits = 3,
            axis.title = c("Sexo", "Apoyo a la democracia"),
            title = "Gráfico 1. Modelo 5 que estima la frecuencia de apoyo a la demoracia según sexo")
 ```   
 
-## 16.2 Gráfico 2: Modelo 5 de valores predichos apoyo a la democracia según nivel educacional
+## 15.2 Gráfico 2: Modelo 5survey de valores predichos sobre apoyo a la democracia según nivel educacional
 
-```{r valores_predichos_sm_trabajo, echo=FALSE, message=FALSE, warning=FALSE}
-plot_model(modelo5, type = c("pred"),
+```{r}
+plot_model(modelo6survey, type = c("pred"),
            terms = c("nivel_educ"),  digits = 3,
            axis.title = c("Nivel educacional", "Apoyo a la democracia"),
-           title = "Gráfico 2. Modelo 5 que estima la frecuencia de apoyo a la democracia según nivel educacioanl")
+           title = "Gráfico 2. Modelo 5 que estima la frecuencia de apoyo a la democracia según nivel educacional")
 ```
 
-# 17. Comparación y reporte estimación modelo 7 con R base y modelo 7 con diseño muestral complejo
-
-## 17.1 Reporte con summary de modelo 7 con R base y diseño complejo
-
-## 17.2 ***Reporte de modelo sin pesos muestrales***
-
-```{r reporte_modelo7_R_base, echo=FALSE, message=FALSE, warning=FALSE}
-summary(modelo7)
+## 15.3 Gráfico 3: Modelo 6survey de valores predichos sobre apoya a la democracia según interés en la política
+```{r}
+plot_model(modelo6survey, type = c("pred"),
+           terms = c("interes_politica"),  digits = 3,
+           axis.title = c("Interés en la política", "Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según el interés en la política")
 ```
 
-## 17.3 ***Reporte de modelo con pesos muestrales***
+## 15.4 Gráfico 4: Modelo 6survey de valores predichos sobre el apoyo a la democracia según confianza en los partidos políticos
+```{r}
+plot_model(modelo6survey, type = c("pred"),
+           terms = c("confianza_pp"),  digits = 3,
+           axis.title = c("Confianza en los partidos políticos", "Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según el apoyo a los partidos políticos")
+```
+
+## 15.5 Gráfico 5: Modelo 6survey de valores predichos sobre el apoyo a la democracia según la satisfacción con la democracia
+```{r}
+plot_model(modelo6survey, type = c("pred"),
+           terms = c("satis_dem"),  digits = 3,
+           axis.title = c("Satisfacción con la democracia", "Apoyo a la democracia"),
+           title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según la satisfacción con la democracia")
+```
+
+
+# 16. Comparación y reporte estimación modelo 6 con R base y modelo 6 con diseño muestral complejo
+
+### Reporte con summary de modelo 6 con R base 
+
+## 16.1 Reporte de modelo ***sin*** pesos muestrales
+
+```{r reporte_modelo5_R_base, echo=FALSE, message=FALSE, warning=FALSE}
+summary(modelo6)
+```
+
+## 17.2 Reporte de modelo ***con*** pesos muestrales
 
 ```{r reporte_modelo7_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
-summary(modelo7survey)
+summary(modelo6survey)
 ```
 
-## 17.4 ***Reporte con tab_model de modelo 7 con R base y diseño complejo***
+## 18. Reporte con tab_model de modelo 6 con R base y modelo6survey con diseño complejo
 
-## 17.5 Se reporta la tabla del modelo 7 con R base:
+## 17.4 Se reporta la tabla del modelo 6 con R base:
 
-```{r tabla_modelo5_R_base, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(modelo7, 
+```{r tabla_modelo6_R_base, echo=FALSE, message=FALSE, warning=FALSE}
+sjPlot::tab_model(modelo5, 
                   show.ci=FALSE, 
                   transform = 'exp', 
                   p.style = "stars", 
                   df.method = 'wald', 
-                  dv.labels = "Modelo 7 con R base", 
+                  dv.labels = "Modelo 6 con R base", 
                   string.pred = "Predictores", string.est = "β", 
                   encoding =  "UTF-8")
 ```
 
-## 17.6 Se compara con la tabla de modelo 7 con diseño muestral complejo
+## 17.4 Se reporta la tabla del modelo 6 con diseño muestral complejo para comparación
 
-```{r tabla_modelo5_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(modelo7survey, 
+```{r tabla_modelo6_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
+sjPlot::tab_model(modelo6survey, 
                   show.ci=FALSE, 
                   transform = 'exp', 
                   p.style = "stars", 
                   df.method = 'wald',
-                  dv.labels = "Modelo 7 diseño complejo", 
+                  dv.labels = "Modelo 6 diseno complejo", 
                   string.pred = "Predictores", string.est = "β", 
                   encoding =  "UTF-8")
 ```
 
-## 17.7 Interpretación
+## 17.5 Interpretación
 
 # 18. Conclusión
 
