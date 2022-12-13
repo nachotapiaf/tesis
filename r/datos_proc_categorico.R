@@ -1,5 +1,5 @@
 
-pacman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey, corrplot, ggcorrplot)
+pacman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey, corrplot, ggcorrplot,dfSummary)
 
 options(scipen=999) # evita notación científica
 
@@ -21,8 +21,6 @@ datos_proc <- elsoc_2021 %>%
                 informa_politica = c14_02,
                 habla_politica = c14_01,
                 ident_ideologica = c15,
-                asiste_marcha = c08_02,
-                valor_movsoc = c20,
                 edad = m0_edad,
                 sexo = m0_sexo,
                 nivel_educ = m01,
@@ -31,27 +29,23 @@ datos_proc <- elsoc_2021 %>%
                 estrato,
                 c25)
 
+datos_proc <- datos_proc %>% dplyr::filter(edad <= 40)
+# el número de observaciones desciende a 882
 
-sum(is.na(datos_proc)) 
-# debería sacar los NA antes de hacer modelos?
-
-view(dfSummary(datos_proc, headings = FALSE, method = "render"))
-
-# elimnar NA 
+sum(is.na(datos_proc))
+view_df(datos_proc)
 datos_proc <- na.omit(datos_proc)
-sum(is.na(datos_proc_sin_na_dem))
-
-# 3. recodificar variables
-names(datos_proc)
-
 
 datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en conservar el lugar de cada categoría de respuesta
-  mutate_at(vars(sexo, satis_dem, c25, confianza_congreso, confianza_pdte,interes_politica,ident_ideologica), ~(as.numeric(.))) %>% 
+  mutate_at(vars(sexo, satis_dem, c25, confianza_congreso, confianza_pdte,interes_politica,ident_ideologica, opina_rrss,informa_politica,
+                 habla_politica,), ~(as.numeric(.))) %>% 
   mutate(satis_dem = car::recode(.$satis_dem, recodes = c("c(1,2)='Nada o poco satisfecho'; 3 ='Algo satisfecho'; c(4,5)='Bastante o muy satisfecho'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
                                     levels = c('Nada o poco satisfecho', 'Algo satisfecho', 'Bastante o muy satisfecho')),
-         sexo = car::recode(.$sexo, recodes = c("1 = 'Hombre'; 2 = 'Mujer'"), as.factor = T,  levels = c('Hombre', 'Mujer')),
-         apoyo_dem = car::recode(.$c25, recodes = c("1 = 'Apoya la democracia'; 2 = 'Apoya el autoritarismo'; c(-999,-888,-777,-666,3,4)= NA"), as.factor = T,
+         sexo = car::recode(.$sexo, recodes = c("1 = 'Hombre'; 2 = 'Mujer'"), as.factor = T,  levels = c('Hombre', 'Mujer'), drop_na(apoyo_dem)),
+         apoyo_dem_bin = car::recode(.$c25, recodes = c("c(1,3) = 'Apoya la democracia'; 2 = 'Apoya el autoritarismo'; c(-999,-888,-777,-666,4)= NA"), as.factor = T,
                            levels = c('Apoya la democracia', 'Apoya el autoritarismo')),
+         apoyo_dem = car::recode(.$c25, recodes = c("1 = 'La democracia es preferible a cualquier otra forma de gobierno'; 2 = 'En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico'; 3 = 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario'; c(-999,-888,-777,-666,4)= NA"), as.factor = T,
+                                     levels = c('La democracia es preferible a cualquier otra forma de gobierno','En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico', 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario')),
          confianza_congreso = car::recode(.$confianza_congreso, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                         levels = c("Nada o poca", "Algo", "Bastante o mucha")),
          confianza_pdte = car::recode(.$confianza_pdte, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
@@ -72,43 +66,22 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                                         levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
          habla_politica = car::recode(.$informa_politica, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
-         asiste_marcha = car::recode(.$asiste_marcha, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), as.factor = T,
-                                     levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
-         valor_movsoc = car::recode(.$valor_movsoc, recodes = c("1= 'Movimiento social de apoyo a la causa estudiantil';
-                                                                2 = 'Movimiento social de apoyo a demandas laborales';
-                                                                3 = 'Movimiento social de grupos ambientalistas';
-                                                                4 = 'Movimiento social de apoyo a las demandas indigenas';
-                                                                5 = 'Movimiento social de apoyo a la diversidad sexual';
-                                                                6 = 'Movimiento social provida o antiaborto';
-                                                                7 = 'Movimiento social antidelincuencia';
-                                                                8 = 'Movimiento feminista o de apoyo a la igualdad de genero';
-                                                                9 = 'Movimiento por el cambio al sistema de pensiones';
-                                                                10 = 'Estallido social del 18 de Octubre de 2019';
-                                                                11 = 'Otro';
-                                                                12 = 'Ninguno';
-                                                                c(-999,-888,-777,-666)= NA"), as.factor = T, 
-                                    levels = c("Movimiento social de apoyo a la causa estudiantil",
-                                               "Movimiento social de apoyo a demandas laborales",
-                                               "Movimiento social de grupos ambientalistas",
-                                               "Movimiento social de apoyo a las demandas indigenas",
-                                               "Movimiento social de apoyo a la diversidad sexual",
-                                               "Movimiento social provida o antiaborto",
-                                               "Movimiento social antidelincuencia",
-                                               "Movimiento feminista o de apoyo a la igualdad de genero",
-                                               "Movimiento por el cambio al sistema de pensiones",
-                                               "Estallido social del 18 de Octubre de 2019",
-                                               "Otro",
-                                               "Ninguno")),
-         edad_tramo = car::recode(.$edad, recodes = c("18:30='Joven';30:60='Adulto'; 61:hi='Adulto mayor'"),
-                            as.factor = T, levels = c("Joven", "Adulto", "Adulto mayor")),
+         edad_tramo = car::recode(.$edad, recodes = c("18:24='Joven';25:30='Joven Adulto'; 31:40='Adulto'"),
+                            as.factor = T, levels = c("Joven", "Joven Adulto","Adulto")),
          nivel_educ = car::recode(.$nivel_educ, recodes = c("c(1,2,3) = 'Primaria'; c(4,5) = 'Secundaria'; c(6,7) = 'Educación técnica'; c(8,9,10) = 'Universitaria o posgrado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Primaria", "Secundaria", "Educación técnica", "Universitaria o posgrado"))) %>%
   mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp, confianza_social,
-                 interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,valor_movsoc,nivel_educ,asiste_marcha), ~(forcats::as_factor(.)))
+                 interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,nivel_educ,apoyo_dem_bin), ~(forcats::as_factor(.)))
 
 
-view(dfSummary(datos_proc, headings = FALSE, method = "render"))
+datos_proc$apoyo_dem_bin <- na.omit(datos_proc$apoyo_dem_bin)
+sum(is.na(datos_proc$apoyo_dem))
+sum(is.na(datos_proc$apoyo_dem_bin))
+frq(datos_proc$apoyo_dem_bin)
 
+datos_proc <- na.omit(datos_proc)
+frq(datos_proc$apoyo_dem)
+view_df(datos_proc)
 
 # verificamos cambios -----------------------------------------------------
 
@@ -123,9 +96,7 @@ datos_proc$interes_politica = set_label(datos_proc$interes_politica, "¿Qué tan
 datos_proc$ident_ideologica = set_label(datos_proc$ident_ideologica, "Autoubicacion escala izquierda-derecha")
 datos_proc$apoyo_dem = set_label(datos_proc$apoyo_dem, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
 datos_proc$c25 = set_label(datos_proc$c25, "¿Con cuál de las siguientes frases está usted más de acuerdo?")
-datos_proc$asiste_marcha = set_label(datos_proc$asiste_marcha, "Frecuencia: Asiste a marcha o manifestacion pacifica")
 datos_proc$opina_rrss = set_label(datos_proc$opina_rrss, "Frecuencia: Usa redes sociales para opinar en temas publicos")
-datos_proc$valor_movsoc = set_label(datos_proc$valor_movsoc, "Movimiento social que mas valora")
 datos_proc$sexo = set_label(datos_proc$sexo, "Sexo del entrevistada/o")
 datos_proc$edad_tramo = set_label(datos_proc$edad_tramo, "Edad por tramo")
 datos_proc$nivel_educ = set_label(datos_proc$nivel_educ, "Nivel educacional")
@@ -133,12 +104,10 @@ datos_proc$habla_politica = set_label(datos_proc$habla_politica, "Frecuencia: Ha
 datos_proc$informa_politica = set_label(datos_proc$informa_politica, "Frecuencia: Se informa sobre politica en medios de comunicacion")
 datos_proc$confianza_gob = set_label(datos_proc$confianza_gob, "Grado de confianza: El Gobierno ")
 datos_proc$confianza_pp = set_label(datos_proc$confianza_pp, "Grado de confianza: Los Partidos Politicos")
+datos_proc$apoyo_dem_bin = set_label(datos_proc$apoyo_dem_bin, "Democracia o autoritarismo")
 
 
 view_df(datos_proc)
-
-frq(datos_proc$c25)
-
 
 # 7. Guardar y exportar los datos ----------------------------------------
   

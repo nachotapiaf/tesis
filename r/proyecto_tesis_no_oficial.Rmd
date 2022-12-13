@@ -1,27 +1,21 @@
 ---
-title: "La cultura política y el apoyo a la democracia en Chile durante 2021"
-subtitle: |
-  | Tesis: Proyecto final 
-  | Universidad Alberto Hurtado
-  | Taller de Memoria
-  | Profesor: Rodrígo Medel S.
-  | Ayudantes: Camila Rodríguez P.
+title: "Cultura política y apoyo a la democracia en Chile durante 2021"
+subtitle: 'Un análisis desde las juventudes'
 author: "Ignacio Tapia Fuentes"
-date: "12/12/2022"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+abstract: "dssds"
 output:
-  html_document: 
-    theme: cosmo
-    toc_depth: 2
-    toc_float: yes
-    highlight: pygments
-    code_folding: show
+  word_document:
+  pdf_document: default
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+always_allow_html: true
+biblio-style: apalike
+lang: es-CL
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, warning = F, message = F)
-Sys.setlocale("LC_CTYPE", "spanish")
-options(OutDec= ",", digits = 3)
-```
 
 # 1. Introducción
 La presente investigación de tesis tiene como principal objetivo, a través un análisis estadístico multivariado, evaluar la relación entre los conceptos de cultura política y apoyo a la democracia enfocado en analizar el estado de las percepciones de las juventudes chilenas durante el año 2021 y de cómo estas percepciones se proyectan a futuro. 
@@ -200,6 +194,7 @@ Esta definición será cambiada por otra más precisa respecto al indicador que 
 -	Fin del marco teórico
 
 
+
 # 7. Análisis
 
 ## 7.1 carga de librerías
@@ -232,32 +227,100 @@ datos_proc <- readRDS("../output/datos/datos_proc.rds")
 ```{r echo=FALSE}
 view_df(datos_proc)
 ```
-
-# 9. Creación de objeto encuesta
-```{r echo=FALSE}
-elsoc_objeto <- datos_proc %>% # Creamos un nuevo objeto "elsoc_objeto" con "datos_proc"
-  as_survey_design(ids = 1, # Aplicamos diseño muestral, especificando los ids a partir de 1 (entrevistado seleccionado),
-                   weights = fact_exp02) # se agregan factores de expansión 
-```
-
-# 9.1 Descriptivos de "Confianza institucional"
-```{r echo=FALSE}
-plot_stackfrq(datos_proc[,c("confianza_pdte","confianza_gob","confianza_pp","confianza_congreso")]) + theme(legend.position="bottom")
-```
-
-# 9.1 Descriptivos de "Conocimiento político"
-```{r echo=FALSE}
-plot_stackfrq(datos_proc[,c("opina_rrss","informa_politica","habla_politica")]) + theme(legend.position="bottom")
-```
-
-# 9.2 Descriptivos de "Percepciones hacia la democracia"
+# 9. Creación de objeto encuesta para trabajar con diseño muestral complejo de la ELSOC
 ```{r eval=FALSE, include=FALSE}
-plot_stackfrq(datos_proc[,c("satis_dem","apoyo_dem")]) + theme(legend.position="bottom")
+elsoc_objeto <- datos_proc %>% # Creamos un nuevo objeto "elsoc_proc" con los datos de "datos_proc"
+  as_survey_design(ids = 1, # Aplicamos diseño muestral, especificando los ids a partir de 1 (entrevistado seleccionado)
+                   weights = fact_exp02) # aplicamos factor de expansión de corte transversal ajustado por población y sexo. Se añaden pesos muestrales
 
 ```
 
+# 10. Estadísticos descriptivos
 
-# 10. Gráficos bivariados: apoyo a la democracia según sexo
+## 10.1 Descriptivos para "Confianza institucional"
+```{r, confianza institucional}
+plot_stackfrq(datos_proc[,c("confianza_gob","confianza_pp","confianza_congreso", "confianza_pdte")]) + theme(legend.position="bottom")
+```
+
+## 10.2 Descriptivos para "Interés y conocimiento político"
+```{r, conocimiento}
+plot_stackfrq(datos_proc[c("opina_rrss","informa_politica", "habla_politica")]) + theme(legend.position="bottom")
+```
+
+## 10.3 Descriptivos para dimensión "Percepciones hacia la democracia": Satisfacción con la democracia
+```{r echo=FALSE}
+frq(datos_proc$satis_dem,
+    show.na = F,
+    out = "viewer",
+    encoding = "UTF-8",
+    sort.frq = "desc") %>% 
+  as.data.frame() %>% # Transformamos en dataframe para manipular con dplyr
+  select(val, frq, raw.prc, cum.prc) %>% # Seleccionamos columnas de interés
+  mutate_at(vars(ends_with("prc")), # A las variables que terminen con "prc"
+                 ~(paste(., "%"))) %>% #Incorporamos porcentaje con paste()
+  kable(caption = "Distribución de satisfacción con la democracia", #Incorporamos título
+        format = "html", #Especificamos output en HTML
+        col.names = c("satis_dem", # Definimos el nombre de las columnas
+                      "F. absoluta",
+                      "F. relativa",
+                      "F. rel. acumulada"),
+        position = "center") %>% #Especificamos que la tabla se muestre al centro
+  kable_classic(full_width = F, #Especificamos que el ancho de la tabla no se ajuste al de la página
+                html_font = "Cambria") %>% #Definimos fuente
+  footnote("Elaboración propia en base a ELSOC (2021)", #Especificamos la nota al pie
+           general_title = "Fuente: ") #Personalizamos nota al pie
+```
+
+## 10.4 Descriptivos para dimensión "Percepciones hacia la democracia": Apoyo a la democracia
+```{r}
+frq(datos_proc$apoyo_dem,
+    show.na = F,
+    out = "viewer",
+    encoding = "UTF-8",
+    sort.frq = "desc") %>% 
+  as.data.frame() %>% # Transformamos en dataframe para manipular con dplyr
+  select(val, frq, raw.prc, cum.prc) %>% # Seleccionamos columnas de interés
+  mutate_at(vars(ends_with("prc")), # A las variables que terminen con "prc"
+                 ~(paste(., "%"))) %>% #Incorporamos porcentaje con paste()
+  kable(caption = "Distribución de apoyoa a la democracia", #Incorporamos título
+        format = "html", #Especificamos output en HTML
+        col.names = c("apoyo_dem", # Definimos el nombre de las columnas
+                      "F. absoluta",
+                      "F. relativa",
+                      "F. rel. acumulada"),
+        position = "center") %>% # Especificamos que la tabla se muestre al centro
+  kable_classic(full_width = F, # Especificamos que el ancho de la tabla no se ajuste al de la página
+                html_font = "Cambria") %>% # Definimos fuente
+  footnote("Elaboración propia en base a ELSOC (2021)", # Especificamos la nota al pie
+           general_title = "Fuente: ") #Personalizamos nota al pie
+```
+
+
+### 10.5 Tablas de continengencia de apoyo a la democracia según tramo edad
+```{r}
+sjt.xtab(datos_proc$apoyo_dem, datos_proc$edad_tramo,
+         show.col.prc=TRUE,
+         show.summary=FALSE, 
+         title = "Apoyo a la democracia según sexo",
+         encoding = "UTF-8")
+```
+
+
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_sexo.PNG")
+```
+
+### 4.2 Tabla de continengencia de apoyo a la democracia según nivel educacional 
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_educ.PNG")
+```
+
+### 4.3 Tabla de continengencia de apoyo a la democracia según tramo de edad 
+```{r echo=FALSE}
+knitr::include_graphics("../output/tables/apoyo_dem_edad_tramo.PNG")
+```
+
+### 4.4 Graficar: Apoyo a la democracia, según sexo 
 ```{r echo=FALSE}
 ggplot(datos_proc) + # apoyo a la democracia según sexo
   geom_mosaic(aes(x=product(apoyo_dem_bin, sexo), fill=sexo)) +
@@ -275,52 +338,27 @@ ggplot(datos_proc) + # apoyo a la democracia según sexo
 frq(datos_proc$apoyo_dem)
 ```
 
-# 10.1 Gráficos bivariados: apoyo a la democracia según nivel educacional
+### 4.5 Graficar: Apoyo a la democracia según nivel educacional 
 ```{r echo=FALSE}
-ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
+ggplot(datos_proc) +
   geom_mosaic(aes(x=product(apoyo_dem_bin, nivel_educ), fill=nivel_educ)) +
   geom_label(data = layer_data(last_plot(), 1),
-             aes(x = (xmin + xmax)/ 2,
-                 y = (ymin + ymax)/ 2,
+             aes(x = (xmin + xmax)/2,
+                 y = (ymin + ymax)/2,
                  label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
   labs(y = "Apoya la democracia",
-       x = "Nivel educacional") +
+       x = "Nivel Educacional") +
   scale_fill_discrete(name = "",
-                      labels = c("Primaria","Secundaria","Educación técncia","Universitaria o posgrado"))+
-  scale_y_continuous(breaks = c(0,1),
-                     labels = c("Apoya la democracia","Apoya el autoritarismo")) +
+                      labels = c("Primaria incompleta o menos",
+                                 "Primaria",
+                                 "Secundaria", "Técnica o Superior",
+                                 "Universitaria", "Postgrado"))+
+  scale_y_continuous(breaks = c(0,1),labels = c("Apoya la democracia","Apoya el autoritarismo")) +
   theme(legend.position="bottom")
-frq(datos_proc$apoyo_dem)
 ```
 
-# 10.3 Gráficos bivariados: apoyo a la democracia según edad
-```{r echo=FALSE}
-ggplot(datos_proc) + # apoyo a la democracia según edad_tramo
-  geom_mosaic(aes(x=product(apoyo_dem_bin, edad_tramo), fill=edad_tramo)) +
-  geom_label(data = layer_data(last_plot(), 1),
-             aes(x = (xmin + xmax)/ 2,
-                 y = (ymin + ymax)/ 2,
-                 label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
-  labs(y = "Apoya la democracia",
-       x = "Edad por tramo") +
-  scale_fill_discrete(name = "",
-                      labels = c("Joven","Adulto joven","Adulto"))+
-  scale_y_continuous(breaks = c(0,1),
-                     labels = c("Apoya la democracia","Apoya el autoritarismo")) +
-  theme(legend.position="bottom")
-frq(datos_proc$apoyo_dem)
-```
-
-# 10.2 Test de anova para variables categóricas y continuas
-```{r echo=FALSE}
-sjp.aov1(datos_proc$edad, datos_proc$apoyo_dem, 
-         title = "Test ANOVA para diferencias en apoyo a la democracia según edad",
-         axis.title = "Apoyo a la democracia")
-  theme_sjplot2()
-```
-
-# 10.3 Gráfico de correlaciones 
-```{r echo=FALSE}
+## 4. Análisis de correlación
+```{r, correlacion}
 data.frame(as_factor(sample(datos_proc$confianza_pdte, replace = TRUE)), #Transformamos variables
            as_factor(sample(datos_proc$confianza_gob, replace = TRUE)), #para hacerlas compatibles
            as_factor(sample(datos_proc$confianza_pp, replace = TRUE)), #con la función sjp.chi2
@@ -348,33 +386,40 @@ data.frame(as_factor(sample(datos_proc$confianza_pdte, replace = TRUE)), #Transf
                            "Nivel educacional",
                            "Satisfacción con la democracia")) +
   theme_sjplot2() 
+frq(datos_proc$apoyo_dem)
 ```
 
 
-# 10. Modelo de regresión logística binaria
 
-## 10.1. Construcción múltiple modelos logísticos
+## 5. Modelos de regresión logística para indicadores sobre el apoyo a la democracia según indicadores de dimensión "cognoscitiva" e indicadores de "interés en política", "opina_rrss", "informa_politica", "habla política"
 
-En este apartado se crean los modelos: 1, 2, 3, 4, 5,6 y 7 junto con el modelo 7 con el objeto encuesta.
-
-```{r modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
-
-modelo0 <- glm(apoyo_dem_bin ~ 1, family = binomial(link = "logit"), data = datos_proc)
-modelo1 <- glm(apoyo_dem_bin ~ sexo, family = binomial(link = "logit"), data = datos_proc) # modelo binario
-modelo2 <- glm(apoyo_dem_bin ~ edad, family = binomial(link = "logit"), data = datos_proc) # modelo continuo
-modelo3 <- glm(apoyo_dem_bin ~ edad + sexo + nivel_educ, family = binomial(link = "logit"), data = datos_proc) # modelo multivariado
-modelo4 <- glm(apoyo_dem_bin ~ edad + sexo + nivel_educ + interes_politica, family = binomial(link = "logit"), data = datos_proc) # modelo multivar
-modelo5 <- glm(apoyo_dem_bin ~ edad + sexo + nivel_educ + interes_politica + opina_rrss, family = binomial(link = "logit"), data = datos_proc)
-modelo6 <- glm(apoyo_dem_bin ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica, family = binomial(link = "logit"), data = datos_proc)
-modelo7 <- glm(apoyo_dem_bin ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica + habla_politica, family = binomial(link = "logit"), data = datos_proc)
-modelo7survey <- svyglm(apoyo_dem_bin ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica + habla_politica, family = binomial(link = "logit"), design = elsoc_objeto, data = datos_proc)
+```{r}
+modelo0 <- glm(apoyo_dem ~ 1, family = binomial(link = "logit"), data = datos_proc)
+modelo1 <- glm(apoyo_dem ~ sexo, family = binomial(link = "logit"), data = datos_proc) # modelo binario
+modelo2 <- glm(apoyo_dem ~ edad, family = binomial(link = "logit"), data = datos_proc) # modelo continuo
+modelo3 <- glm(apoyo_dem ~ edad + sexo + nivel_educ, family = binomial(link = "logit"), data = datos_proc) # modelo multivariado
+modelo4 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica, family = binomial(link = "logit"), data = datos_proc) # modelo multivar
+modelo5 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss, family = binomial(link = "logit"), data = datos_proc)
+modelo6 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica, family = binomial(link = "logit"), data = datos_proc)
+modelo7 <- glm(apoyo_dem ~ edad + sexo + nivel_educ + interes_politica + opina_rrss + informa_politica + habla_politica, family = binomial(link = "logit"), data = datos_proc)
 ```
 
-### b. Representación modelos en una tabla
+```{r}
+screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5,modelo6,modelo7), doctype = FALSE,
+          custom.coef.names=c("Intercepto","Sexo","Edad","Secundaria","Técnica","Superior","Algo interesado","Bastante o muy interesado","Algo","Bastante o mucha", "A veces", "Frecuente o muy frecuentemente"),
+          custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6","Modelo 7"))
+```
+
+```{r, gráfico de los modelos}
+
+```
+
+
+### 6. Representación de modelos en una tabla
 
 Luego, se visualizan los todos los modelos (excepto modelo5survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
 
-```{r tabla_modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, representación de modelos}
 sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,modelo7),
   string.intercept = "(Intercepto)",
   string.pred = "Predictores",
@@ -382,94 +427,10 @@ sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6,m
   p.style = "stars",
   collapse.ci = T,
   digits = 3,
-  dv.labels = c("Modelo 0","Modelo1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6","Modelo 7"),
+  dv.labels = c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6","Modelo 7"),
   transform = "exp",
   show.reflvl = TRUE,
   encoding = "UTF-8",
   lang = "es")
 ```
-
-
-### c. Interpretación
-
-::: {style="text-align: justify"}
-En relación a la variable **"sexo"**, las chances de sentirse deprimida o desesperanzada para las **mujeres**, controlando el efecto de las otras variables, son un **43,2% mayores** respecto a las **chances** de sentirse deprimido o desesperanzada para los **hombres**. Asimismo, los resultados indican que la diferencia de probabilidades en la percepción de salud mental entre hombres y mujeres si es estadísticamente significativa con un valor p\<0,01.
-
-Con respecto a la variable **"trabajo productivo"**, las chances de que una persona que **no trabajó la semana pasada** se sienta deprimida o desesperanzada son **47,6% mayores** a las chances de que una persona que **sí trabajó la semana pasada** se sienta deprimida o desesperanzada. Asimismo, los resultados indican que la diferencia de probabilidades en la percepción de salud mental entrea una persona que sí trabajó la semana pasada y una persona que no lo hiz es estadísticamente significativa con un valor p\<0,01.
-
-Acerca de la variable **"trabajo doméstico"**, las chances de que una persona que ha percibido un aumento del trabajo doméstico durante la pandemia se sienta deprimida o desesperanzada son **32,3% mayores** a las chances de que una persona que ha percibido una mantención o disminución del trabajo doméstico durante la pandemia se sienta deprimida o desesperanzada. Sin embargo, los resultados muestran que la diferencia de probabilidades en la percepción de salud mental de alguien que percibió una mantención o disminución del trabajo doméstico y de alguien que percibió un aumento del trabajo domésticomujeres no es estadísticamente significativa.
-
-Por último, respecto de la variable **"trabajo de cuidados"**, las chances de sentirse deprimida o desesperanzada de una persona que percibe un aumento en el trabajo de cuidados son **26,4% mayores** respecto a las **chances** de sentirse deprimida o desesperanzada de una persona que percibe un mantenimiento o disminución en el trabajo de cuidados durante la pandemia respecto a la situación previa.
-:::
-
-### d. Gráficos de valores predichos modelo 5 salud mental según sexo y trabajo productivo
-
-***Gráfico1 modelo 5 de valores predichos apoyo a la democracia según sexo***
-
-```{r valores_predichos_sm_sexo, echo=FALSE, message=FALSE, warning=FALSE}
-plot_model(modelo5, type = c("pred"),
-           terms = c("sexo"),  digits = 3,
-           axis.title = c("Sexo", "Apoyo a la democracia"),
-           title = "Gráfico 1. Modelo 5 que estima la frecuencia de apoyo a la demoracia según sexo")
-```   
-
-***Gráfico2 modelo 5 de valores predichos apoyo a la democracia según nivel educacional***
-
-```{r valores_predichos_sm_trabajo, echo=FALSE, message=FALSE, warning=FALSE}
-plot_model(modelo5, type = c("pred"),
-           terms = c("nivel_educ"),  digits = 3,
-           axis.title = c("Nivel educacional", "Apoyo a la democracia"),
-           title = "Gráfico 2. Modelo 5 que estima la frecuencia de apoyo a la democracia según nivel educacioanl")
-```
-
-### e. Comparación y reporte estimación modelo 7 con R base y modelo 7 con diseño complejo de encuestas.
-
-***Reporte con summary de modelo 7 con R base y diseño complejo***
-
-Primero se reporta el modelo 7 sin pesos muestrales:
-
-```{r reporte_modelo5_R_base, echo=FALSE, message=FALSE, warning=FALSE}
-
-summary(modelo7)
-```
-
-Luego se compara con el modelo con pesos muestrales:
-
-```{r reporte_modelo7_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
-
-summary(modelo7survey)
-
-```
-
-***Reporte con tab_model de modelo 7 con R base y diseño complejo***
-
-Asimismo, se reporta la tabla del modelo 7 con R base:
-
-```{r tabla_modelo5_R_base, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(modelo7, 
-                  show.ci=FALSE, 
-                  transform = 'exp', 
-                  p.style = "stars", 
-                  df.method = 'wald', 
-                  dv.labels = "Modelo 7 con R base", 
-                  string.pred = "Predictores", string.est = "β", 
-                  encoding =  "UTF-8")
-```
-
-Para luego compararla con la tabla del modelo 7 con diseño complejo:
-
-```{r tabla_modelo5_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(modelo7survey, 
-                  show.ci=FALSE, 
-                  transform = 'exp', 
-                  p.style = "stars", 
-                  df.method = 'wald',
-                  dv.labels = "Modelo 7 diseño complejo", 
-                  string.pred = "Predictores", string.est = "β", 
-                  encoding =  "UTF-8")
-```
-
-En resumen, se observa que cuando se utiliza el diseño complejo de encuestas en el modelo 5, la categoría "Mujer" deja de ser significativa eso implica que no tiene un efecto sobre la variable dependiente. Por otro lado, la categoría "Aumentó" de la variable trabajo doméstico se vuelve significativa. Finalmente, en ambos modelos la categoría "No trabajó" de la variable sobre trabajó la semana pasada es significativa, es decir, tiene un efecto sobre la percepción de la salud mental.
-
-# 4. Conclusión
 
