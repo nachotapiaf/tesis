@@ -233,6 +233,34 @@ Por último, a través de nuestros modelos de regresión no solo buscamos conoce
 En concordancia con nuestra muestra, la unidad de observación mínima serán los informantes entre 20 y 40 años que contestaron la encuesta durante el año 2021 distribuidos a lo largo del país. La definición que utilizaremos sobre juventud es la otorgada por el Instituto Nacional de Estadísticas para quienes define la población “Jóvenes” entre los 15-29 años y a la población adulta entre los 30 – 59 años. [@InstitutoNacionaldeEstadisticas] En base a esta consideración es que la recodificación de nuestra variable “edad_tramo” fue recodificada entre 18:24 como “Jóvenes”; 25:30 como “Adultos Jóvenes”, y; desde 31:40 como “Adulto”, esto buscando evaluar las diferencias entre estos breves tramos etarios en consideración de lo que ha sido previamente evaluado por la literatura propuesta.
 :::
 
+## 9.4 Matriz de operacionalización de variables
+
+|Concepto          |Dimensiones    |Subdimensiones                   |Indicador                |Pregunta                                  |Nivel de medición                |
+|------------------|---------------|---------------------------------|------------------------ |------------------------------------------|---------------------------------|
+|Cultura política  |Cognoscitiva   |Interés y conocimiento político  |Niveles de interés       |¿Qué tan interesado está usted            |Escala de Likert colapsadas      |
+|                  |               |                                 |en la política           |en la política?                           |en tres categorías de respuesta: | |                  |               |                                 |                         |                                          |1. Nada o poco interesado        |
+|                  |               |                                 |                         |                                          |2. Algo interesado               |
+|                  |               |                                 |                         |                                          |3. Bastamte o muy interesado     | |------------------|---------------|---------------------------------|-------------------------|------------------------------------------|---------------------------------|
+|                  |Afectiva       |Confianza institucional          |Grado de confianza en:   |Utilizando una escala donde 1 representa  |Escala de Likert colapsadas en   | 
+|                  |               |                                 |1. El presidente         |"Nada" y 5 representa "Mucho", ¿podría    |tres categorías de respuesta:    | 
+|                  |               |                                 |2. El congreso           |decirme cuánto confía ud. en cada una de  |1. Nada o poca                   | 
+|                  |               |                                 |3. El gobierno           |las siguientes instituciones?             |2. Algo                          |                    |               |                                 |4. Los partidos políticos|                                          |3. Bastamte o mucha              | |------------------|---------------|---------------------------------|-------------------------|------------------------------------------|---------------------------------|
+|                  |Evaluativa     |Percepciones hacia la democracia |Satisfacción con la      |¿Cuán satisfecho o insatisfecho está ud   |Escala de Likert colapsada en    | 
+|                  |               |                                 |democracia               |con el funcionamiento de la democracia en |tres categorías de respuesta:    |
+|                  |               |                                 |                         |Chile?                                    |1. Nada o poco satisfecho        |
+|                  |               |                                 |Apoyo a la democracia    |                                          |2. Algo satisfecho               |
+|                  |               |                                 |                         |                                          |3. Bastante o muy satisfechho    |
+|                  |               |                                 |                         |¿Con cuál de las siguientes frases está   |                                 | |                  |               |                                 |                         |más de acuerdo?                           |Pregunta cerrada con tres        | |                  |               |                                 |                         |                                          |categorías de respuesta:         |
+|                  |               |                                 |                         |                                          |1.La democracia es preferible a  |
+|                  |               |                                 |                         |                                          |cualquier otra forma de gobierno |
+|                  |               |                                 |                         |                                          |2.En algunas circunstancias, un  |
+|                  |               |                                 |                         |                                          |gobierno autoritario puede ser   |
+|                  |               |                                 |                         |                                          |preferible a uno democrático     | |                  |               |                                 |                         |                                          |3. A la gente como uno, nos da   |
+|                  |               |                                 |                         |                                          |lo mismo un régimen democrático  |
+|                  |               |                                 |                         |                                          |que uno autoritario              | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+ 
+
+
 
 # 10. Reporte de resultados
 
