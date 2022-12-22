@@ -309,7 +309,7 @@ plot_stackfrq(datos_proc[,c("opina_rrss","informa_politica","habla_politica")]) 
 ```
 
 ## 12.3 Descriptivos uniariados de "Percepciones hacia la democracia" 1
-```{r eval=FALSE, include=FALSE}
+```{r echo=FALSE}
 frq(datos_proc$apoyo_dem,
     show.na = F,
     out = "viewer",
@@ -368,7 +368,7 @@ ggplot(datos_proc) +
                  y = (ymin + ymax)/ 2,
                  label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
   labs(y = "Apoya la democracia",
-       x = "Nivel educacional") +
+       x = "Sexo") +
   scale_fill_discrete(name = "",
                       labels = c("Hombre","Mujer"))+
   scale_y_continuous(breaks = c(0,1,2),
@@ -387,7 +387,7 @@ ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
   labs(y = "Apoya la democracia",
        x = "Nivel educacional") +
   scale_fill_discrete(name = "",
-                      labels = c("Primaria","Secundaria","Educación técncia"))+
+                      labels = c("Primaria","Secundaria","Educación técncia","Universitaria o posgrado"))+
   scale_y_continuous(breaks = c(0,1,2),
                      labels = c("Democracia como mejor forma de gobierno","A veces es mejor un régimen autoritario","No nos importa si uno u otro")) +
   theme(legend.position="bottom")
