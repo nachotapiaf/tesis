@@ -1,0 +1,34 @@
+---
+title: "Thesis Presentation"
+author: "Your Name"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+css: https://cdn.rawgit.com/lf-araujo/thesis-presentation-xaringan/4a4db9e4/css/thesis.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Introduction
+
+---
+
+# The First Photographs
+
+The first photographs were made in the early 19th century using a process called heliography.
+
+---
+
+# The Daguerreotype
+
+In 1839, Louis Daguerre introduced the daguerreotype process, which produced highly detailed and polished images on silver-plated copper sheets.
+
+---
+
+# The Collodion Process
+
+In the 1850s, the collodion process was developed, which allowed for faster exposure times and the production of glass plate negatives.
