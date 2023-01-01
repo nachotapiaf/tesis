@@ -130,7 +130,7 @@ Teniendo en cuenta la discusión que hemos propuesto anteriormente, hemos defini
 
 ## 8.1 Cultura política
 ::: {style="text-align: justify"}
-En términos generales, el estudio y constante debate en torno al concepto de cultura política es amplio y diverso entre las disciplinas de la sociología y ciencia política, existiendo vasta literatura académica respecto a sus constantes diagnósticos e interpretaciones. Es necesario, entonces, para los fines de esta investigación hacer una breve revisión sobre la variación que el concepto ha tenido en las últimas décadas en torno a la luz de nuevas propuestas teóricas relacionadas a las nuevas conceptualizaciones de cultura política. Para hacerlo, proponemos tomar como referencia el modelo de Almond y Verba propuesto en _Civic Culture_ para de esta forma poder contrastar los cambios que ha enfrentado la teoría desde sus simientes iniciales.
+En términos generales, el estudio y constante debate en torno al concepto de cultura política es amplio y diverso entre las disciplinas de la sociología y ciencia política, existiendo vasta literatura académica respecto a sus constantes diagnósticos e interpretaciones. Es necesario, entonces, para los fines de esta investigación hacer una breve revisión sobre la variación que el concepto ha tenido en las últimas décadas en torno a la luz de nuevas propuestas teóricas relacionadas a las nuevas conceptualizaciones de cultura política. Para hacerlo, proponemos tomar como referencia el modelo de Almond y Verba propuesto en _Civic Culture_ para de esta forma poder contrastar los cambios que ha enfrentado la teoría desde sus simientes.
 
 ***El modelo de Almond y Verba*** 
 
@@ -501,7 +501,7 @@ sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5,modelo
 
 ## 14.4 Representación de modelos en una tabla
 
-Luego, se visualizan los todos los modelos (excepto modelo5survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
+Luego, se visualizan los todos los modelos (excepto modelo6survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
 
 # este estadístico arroja problemas con NA que no deberían estar. Revisar
 ```{r tabla_modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
