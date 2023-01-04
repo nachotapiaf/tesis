@@ -1,5 +1,5 @@
 
-pacman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey, corrplot, ggcorrplot,dfSummary)
+pacman::p_load(car,tidyverse,sjmisc,sjPlot,dplyr,haven,sjlabelled,forcats, texreg,srvyr,survey)
 
 options(scipen=999) # evita notación científica
 
@@ -27,12 +27,11 @@ datos_proc <- elsoc_2021 %>%
                 satis_dem = c01,
                 c25)
 
-datos_proc <- datos_proc %>% dplyr::filter(edad <= 40)
-# el número de observaciones desciende a 882
+# 3. Sumar NA antes de procesar -------------------------------------------
 
 sum(is.na(datos_proc))
-view_df(datos_proc)
-datos_proc <- na.omit(datos_proc)
+
+# 4. recodificación ----------------------------------------------------------
 
 datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en conservar el lugar de cada categoría de respuesta
   mutate_at(vars(sexo, satis_dem, c25, confianza_congreso, confianza_pdte,interes_politica,ident_ideologica, opina_rrss,informa_politica,
@@ -40,8 +39,6 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
   mutate(satis_dem = car::recode(.$satis_dem, recodes = c("c(1,2)='Nada o poco satisfecho'; 3 ='Algo satisfecho'; c(4,5)='Bastante o muy satisfecho'; c(-999,-888,-777,-666)= NA"), as.factor = T, 
                                     levels = c('Nada o poco satisfecho', 'Algo satisfecho', 'Bastante o muy satisfecho')),
          sexo = car::recode(.$sexo, recodes = c("1 = 'Hombre'; 2 = 'Mujer'"), as.factor = T,  levels = c('Hombre', 'Mujer'), drop_na(apoyo_dem)),
-         apoyo_dem_bin = car::recode(.$c25, recodes = c("c(1,3) = 'Apoya la democracia'; 2 = 'Apoya el autoritarismo'; c(-999,-888,-777,-666,4)= NA"), as.factor = T,
-                           levels = c('Apoya la democracia', 'Apoya el autoritarismo')),
          apoyo_dem = car::recode(.$c25, recodes = c("1 = 'La democracia es preferible a cualquier otra forma de gobierno'; 2 = 'En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico'; 3 = 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario'; c(-999,-888,-777,-666,4)= NA"), as.factor = T,
                                      levels = c('La democracia es preferible a cualquier otra forma de gobierno','En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico', 'A la gente como uno, nos da lo mismo un regimen democratico que uno autoritario')),
          confianza_congreso = car::recode(.$confianza_congreso, recodes = c("c(1,2)='Nada o poca'; 3='Algo'; c(4,5)='Bastante o mucha'; c(-999,-888,-777,-666)= NA"), as.factor = T,
@@ -62,26 +59,49 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
                                         levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
          habla_politica = car::recode(.$informa_politica, recodes = c("c(1,2)='Nunca o casi nunca'; 3='A veces'; c(4,5)='Frecuente o muy frecuentemente'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Nunca o casi nunca", "A veces", "Frecuente o muy frecuentemente")),
-         edad_tramo = car::recode(.$edad, recodes = c("18:24='Joven';25:30='Joven Adulto'; 31:40='Adulto'"),
-                            as.factor = T, levels = c("Joven", "Joven Adulto","Adulto")),
+         edad_tramo = car::recode(.$edad, recodes = c("18:29='Joven';30:65='Adulto'; 66:hi ='Adulto mayor'"),
+                            as.factor = T, levels = c("Joven", "Adulto","Adulto mayor")),
          nivel_educ = car::recode(.$nivel_educ, recodes = c("c(1,2,3) = 'Primaria'; c(4,5) = 'Secundaria'; c(6,7) = 'Educación técnica'; c(8,9,10) = 'Universitaria o posgrado'; c(-999,-888,-777,-666)= NA"), as.factor = T,
                                       levels = c("Primaria", "Secundaria", "Educación técnica", "Universitaria o posgrado"))) %>%
   mutate_at(vars(edad_tramo, sexo, satis_dem, apoyo_dem, confianza_congreso, confianza_pdte, confianza_gob, confianza_pp,
-                 interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,nivel_educ,apoyo_dem_bin), ~(forcats::as_factor(.)))
+                 interes_politica,ident_ideologica,opina_rrss,informa_politica,habla_politica,nivel_educ), ~(forcats::as_factor(.)))
 
 
-datos_proc$apoyo_dem_bin <- na.omit(datos_proc$apoyo_dem_bin)
-sum(is.na(datos_proc$apoyo_dem))
-sum(is.na(datos_proc$apoyo_dem_bin))
-frq(datos_proc$apoyo_dem_bin)
+str(datos_proc) # se verifican los cambios en los datos
 
-datos_proc <- na.omit(datos_proc)
-frq(datos_proc$apoyo_dem)
-view_df(datos_proc)
+## 4.1 transformar variable de apoyo a la democracia en dicotómica desde variable recodificada de apoyo_dem 
+## esto crea una nueva variable
 
-# verificamos cambios -----------------------------------------------------
+datos_proc <- datos_proc %>% # esto crea una variable dicotómica con dos niveles y deja la tercera categoría de respuesta como NA
+  mutate(apoyo_dem_dic = ifelse(apoyo_dem == "La democracia es preferible a cualquier otra forma de gobierno",
+                                        "Preferencia por democracia",
+                                        ifelse(apoyo_dem == "En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico",
+                                               "Preferencia por autoritarismo",
+                                               NA))) %>%
+  mutate(apoyo_dem_dic = factor(apoyo_dem_dic,
+                                        levels = c("Preferencia por democracia", "Preferencia por autoritarismo")))
 
-# asignamos etiquetas
+
+# 4.2 Se revisan los datos para ver cómo quedaron ---------------------------------------------------------------------
+
+str(datos_proc)
+frq(datos_proc$apoyo_dem_dic)
+
+# 5. se revisan NA  -------------------------------------------------------
+sum(is.na(datos_proc))
+
+
+# 5.1 se eliminan NA y se comprueba ---------------------------------------
+
+sum(is.na(datos_proc))
+datos_proc <- na.omit(datos_proc) # se eliminan NA al no poder imputar datos y en orden a crear modelos de regresión logística
+sum(is.na(datos_proc))
+
+datos_proc %>% # se verifican NA por cada variable
+summarize_all(funs(sum(is.na(.)))) 
+
+
+# 6. asignamos etiquetas
 
 view_df(datos_proc)
 datos_proc$satis_dem = set_label(datos_proc$satis_dem, "¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?")
@@ -100,28 +120,13 @@ datos_proc$habla_politica = set_label(datos_proc$habla_politica, "Frecuencia: Ha
 datos_proc$informa_politica = set_label(datos_proc$informa_politica, "Frecuencia: Se informa sobre politica en medios de comunicacion")
 datos_proc$confianza_gob = set_label(datos_proc$confianza_gob, "Grado de confianza: El Gobierno ")
 datos_proc$confianza_pp = set_label(datos_proc$confianza_pp, "Grado de confianza: Los Partidos Politicos")
-datos_proc$apoyo_dem_bin = set_label(datos_proc$apoyo_dem_bin, "Democracia o autoritarismo")
-
+datos_proc$apoyo_dem_dic = set_label(datos_proc$apoyo_dem_dic, "Democracia o autoritarismo")
 
 view_df(datos_proc)
 
 # 7. Guardar y exportar los datos ----------------------------------------
   
 saveRDS(datos_proc, file = "output/datos/datos_proc.rds")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
