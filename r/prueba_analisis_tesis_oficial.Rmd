@@ -1,0 +1,444 @@
+---
+title: "La cultura política y el apoyo a la democracia en Chile durante 2021"
+subtitle: |
+  | Tesis: Proyecto final 
+  | Universidad Alberto Hurtado
+  | Taller de Memoria
+  | Profesor: Rodrígo Medel S.
+  | Ayudantes: Camila Rodríguez P.
+author: "Ignacio Tapia Fuentes"
+date: "12/12/2022"
+bibliography: ../input/bib/tesis.bib
+csl: ../input/bib/apa.csl
+output:
+  html_document: 
+    theme: cosmo
+    toc_depth: 2
+    toc_float: yes
+    highlight: pygments
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+Sys.setlocale("LC_CTYPE", "spanish")
+options(OutDec= ",", digits = 3)
+```
+
+::: {style="text-align: justify"} \# 1. Introducción Los análisis que se hagan en este .rmd son parte solamente de un **borrador** por lo tanto, se espera que desde aquí salgan los análisis finales a presentar en la defensa de tesis.
+
+## 1. carga de paquetes
+
+```{r include=FALSE}
+pacman::p_load(dplyr,
+              car,
+              tidyverse,
+              magrittr,
+              srvyr,
+              survey,
+              remotes,
+              texreg,
+              sjPlot,
+              corrplot,
+              sjmisc,
+              summarytools,
+              ggplot2,
+              ggmosaic,
+              kableExtra,
+              knitr,
+              ggrepel,
+              gmodels,
+              performance,
+              see,
+              broom,
+              ggcoefstats,stargazer)
+options(scipen=999)
+```
+
+## 2 . carga de datos y visualización
+
+```{r include=FALSE}
+datos_proc <- readRDS("../output/datos/datos_proc.rds")
+```
+
+La idea de este análisis aparte es poder seguir en un primer momento el práctico de regresión logística del curso de estadística mulitvariada del profesor Castillo de sociología de la U de Chile. Trataremos de emular los resultados
+
+## 3. exploración de datos
+
+```{r, explorar datos}
+view(dfSummary(datos_proc, headings = FALSE, method = "render"))
+```
+
+###. 3.1 proporción de apoyo a la democracia según sexo
+
+```{r, descriptivos}
+tab_xtab(var.row = datos_proc$apoyo_dem_dic,datos_proc$sexo,show.cell.prc = T,show.summary = F)
+```
+
+### 3.2 proporción de apoyo a la democracia según nivel educacional
+
+```{r}
+tab_xtab(var.row = datos_proc$apoyo_dem_dic,datos_proc$nivel_educ,
+         show.cell.prc = T,show.summary = F, encoding = "UTF-8")
+```
+
+### 3.3 graficar ambas tablas
+
+```{r}
+ggplot(datos_proc) +
+  geom_mosaic(aes(x=product(apoyo_dem_dic, sexo), fill=sexo)) +
+  geom_label(data = layer_data(last_plot(), 1),
+             aes(x = (xmin + xmax)/ 2,
+                 y = (ymin + ymax)/ 2,
+                 label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
+  labs(y = "Apoyo a la democracia o al autoritarismo",
+       x = "Sexo") +
+  scale_fill_discrete(name = "",
+                      labels = c("Hombre","Mujer"))+
+  scale_y_continuous(breaks = c(0,1),
+                   labels = c("0","1")) +
+  theme(legend.position="bottom")
+
+
+ggplot(datos_proc) +
+  geom_mosaic(aes(x=product(apoyo_dem_dic, nivel_educ), fill=nivel_educ)) +
+  geom_label(data = layer_data(last_plot(), 1),
+             aes(x = (xmin + xmax)/2,
+                 y = (ymin + ymax)/2,
+                 label = paste0(round((.wt/sum(.wt))*100,1),"%"))) +
+  labs(y = "Apoyo a la democracia o al autoritarismo",
+       x = "Nivel Educacional") +
+  scale_fill_discrete(name = "",
+                      labels = c("Primaria",
+                                 "Secundaria",
+                                 "Educación técnica",
+                                 "Universitaria o posgrado"))+
+  scale_y_continuous(breaks = c(0,1),labels = c("0","1")) +
+  theme(legend.position="bottom")
+frq(datos_proc$apoyo_dem)
+```
+
+## 4. crear objeto encuesta
+
+```{r}
+survey_design_elsoc <- function(.data, ids = 'segmento', strata = 'estrato', weights = 'ponderador02', nest = TRUE, ...) {
+    # Crear objeto encuesta
+    design <- .data %>%
+        srvyr::as_survey(ids = !!rlang::ensym(ids),
+                         strata = !!rlang::ensym(strata),
+                         weights = !!rlang::ensym(weights),
+                         nest = nest,
+                         ...)
+    return(design)
+}
+
+# crear objeto 
+design_obj <- survey_design_elsoc(datos_proc)
+summary(design_obj)
+```
+
+## 5. Estimación
+
+```{r}
+modelo0 <- glm(apoyo_dem_dic ~ 1, data = datos_proc, family = "binomial")
+modelo1 <- glm(apoyo_dem_dic ~ sexo, data = datos_proc, family = "binomial")
+modelo2 <- glm(apoyo_dem_dic ~ edad_tramo, data = datos_proc,  family = "binomial")
+modelo3 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ, data = datos_proc,family = "binomial")
+modelo4 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica, data = datos_proc, family = "binomial")
+modelo5 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica + confianza_pp, data = datos_proc, family = "binomial")
+modelo6 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica + confianza_pp + satis_dem, data = datos_proc, family = "binomial")
+modelo6_pm <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica + confianza_pp + satis_dem, data = datos_proc, weights = ponderador02, family = "binomial")
+```
+
+```{r}
+summary(modelo6)
+confint(modelo6)
+```
+
+```{r, probabilidades predichas para apoyo_dem_dic según nivel educacional}
+plot_model(modelo6_pm,type = "pred",
+           terms = "nivel_educ",
+           title = "Probabilidades predichas para Apoyo a la democracia según sexo") + geom_line()
+```
+
+```{r, probabilidades predichas para apoyo_dem_dic según edad CORREGIR}
+plot_model(modelo6_pm,type = "pred",
+           terms = "edad_tramo",
+           title = "Probabilidades predichas para Apoyo a la democracia según edad") + geom_line()
+```
+
+```{r, probabilidades predichas para apoyo_dem_dic según interés en la política}
+plot_model(modelo6,type = "pred",
+           terms = "interes_politica",
+           title = "") + geom_line()
+```
+
+```{r, probabilidades predichas para apoyo_dem_dic según confianza en partidos políticos}
+plot_model(modelo6,type = "pred",
+           terms = "confianza_pp",
+           title = "") + geom_line()
+```
+
+```{r, probabilidades predichas para apoyo_dem_dic según satisfacción con la democracia}
+plot_model(modelo6,type = "pred",
+           terms = "satis_dem",
+           title = "") + geom_line()
+```
+
+## Ajuste de modelos
+
+```{r}
+test01<- anova(modelo0,modelo1,test = "Chisq")
+test02<- anova(modelo0,modelo2,test = "Chisq")
+test03<- anova(modelo0,modelo3,test = "Chisq")
+test04<- anova(modelo0,modelo4,test = "Chisq")
+test05<- anova(modelo0,modelo5,test = "Chisq")
+test06<- anova(modelo0,modelo6,test = "Chisq")
+test07<- anova(modelo0,modelo6_pm,test = "Chisq")
+lrt02<- rbind(test01,test02,test03,test04,test05,test06) %>% unique()
+row.names(lrt02) <- c("Modelo nulo",
+                      "Modelo 1",
+                      "Modelo 2",
+                      "Modelo 3",
+                      "Modelo 4",
+                      "Modelo 5",
+                      "Modelo 6")
+knitr::kable(lrt02,digits = 3, caption = "Test de devianza entre modelos")
+```
+
+## Pseudo R2 McFadden's
+
+```{r, pseudo r2}
+1-(logLik(modelo1)[1]/ logLik(modelo0)[1]) # modelo 1 vs modelo nulo
+1-(logLik(modelo2)[1]/ logLik(modelo0)[1]) # modelo 2 vs modelo nulo
+1-(logLik(modelo3)[1]/ logLik(modelo0)[1]) # modelo 3 vs modelo nulo
+1-(logLik(modelo4)[1]/ logLik(modelo0)[1]) # modelo 4 vs modelo nulo
+1-(logLik(modelo5)[1]/ logLik(modelo0)[1]) # modelo 5 vs modelo nulo
+1-(logLik(modelo6)[1]/ logLik(modelo0)[1]) # modelo 6 vs modelo nulo
+```
+
+## Presentación de resultados
+
+### Plot de coeficientes 1
+
+```{r, plot de coeficientes modelo6}
+sjPlot::plot_model(modelo6, 
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = 0.95, 
+                   title = "Estimación de predictores",
+                   vline.color = "black")
+frq(datos_proc$satis_dem)
+```
+
+### Plot de coeficientes 2
+
+```{r}
+sjPlot::tab_model(modelo6_pm, 
+                  show.ci=FALSE, 
+                  transform = 'exp', 
+                  p.style = "stars", 
+                  df.method = 'wald',
+                  dv.labels = "Modelo 6 ", 
+                  string.pred = "Predictores", string.est = "β", 
+                  encoding =  "UTF-8")
+
+```
+
+## ajustes de modelos
+
+```{r, test de independencia Durbin-Watson}
+check_autocorrelation(modelo6_pm) # residuos independientes
+```
+
+```{r, test de multicolinealidad factor de inflación de varianza VIF}
+plot(check_collinearity(modelo6_pm)) 
+check_collinearity(modelo6_pm) # baja
+```
+
+```{r, casos influyentes, distancia de Cook}
+plot(check_outliers(modelo6_pm))
+check_outliers(modelo6_pm) # sin outliers
+```
+
+![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAABAklEQVR42mNgGAVDCqxdvzVhzcbNm6mBK6uqVuO06P///4xr128pptSSmtrarSCz8Ppq//79LGs3bGkl15K6hsZ9IDOICsJFO3dyr1m/tZdUS+obGw+D9JIUX6tW7eZfs2HLLGItaWxqPQXSQ17iWLtDEhiMSwhZ0tzceh6klqKUuGrjdvU1G7esxGVJU0vbJZAaqiT7NRs36q3ZsHU9hiWtbVdBclTNY6vXb3YAWrYJHlyt7ddAYrTJ0Bs2h0B80n4dxB4t4lAA4yK/zdTAhC1a4LOZYZsnRRhsBkGLZntRbhHIDIIWTfek3CKQGQQtmuxGuUUgMwiCPpfNVMGjYMgBAEpfBd1AknheAAAAAElFTkSuQmCC "Run All Chunks Above")
+
+```{r, comparación de índices de performance de los modelos}
+compare_performance(modelo1, modelo2,modelo3,modelo4,modelo5,modelo6,modelo6_pm) %>%
+  print_md() # la performance mejora a medida que se incluyen variables pero no significativamente
+```
+
+```{r, devianza}
+summary(modelo6)$deviance
+```
+
+```{r, Criterio de Información de Akaike (AIC)}
+summary(modelo6)$aic
+```
+
+```{r, valores predichos}
+get_model_data(modelo6_pm, 
+               type = "pred")
+```
+
+```{r}
+frq(datos_proc$apoyo_dem)
+```
+
+```{r}
+
+
+kable(datos_proc$apoyo_dem, caption = "Frequency of Responses", align = c("l", "c", "c", "c", "c"))
+```
+
+```{r}
+table <- table(datos_proc$apoyo_dem, datos_proc$interes_politica)
+
+# Perform the chi-squared test
+chisq.test(table)
+```
+
+```{r}
+table2 <- table(datos_proc$apoyo_dem, datos_proc$confianza_pp)
+
+# Perform the chi-squared test
+chisq.test(table2)
+```
+
+```{r}
+table3 <- table(datos_proc$apoyo_dem, datos_proc$satis_dem)
+
+# Perform the chi-squared test
+chisq.test(table3)
+```
+
+```{r}
+table4 <- table(datos_proc$apoyo_dem, datos_proc$sexo)
+
+# Perform the chi-squared test
+chisq.test(table4)
+```
+
+```{r}
+table5 <- table(datos_proc$apoyo_dem, datos_proc$edad)
+
+# Perform the chi-squared test
+chisq.test(table5)
+```
+
+```{r}
+table6 <- table(datos_proc$apoyo_dem, datos_proc$nivel_educ)
+
+# Perform the chi-squared test
+summary(table6)
+```
+
+
+
+```{r}
+sjt.ftab(datos_proc$apoyo_dem, datos_proc$interes_politica)
+
+```
+
+
+
+```{r}
+sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6),
+  string.intercept = "(Intercepto)",
+  string.pred = "Predictores",
+  string.est = "Estimación (OR)",
+  p.style = "stars",
+  collapse.ci = T,
+  digits = 3,
+  dv.labels = c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6"),
+  transform = "exp",
+  show.reflvl = TRUE,
+  encoding = "UTF-8",
+  lang = "es")
+```
+
+
+
+
+
+```{r}
+# create a data frame with the McFadden R-squared test results
+mcfadden_results <- data.frame(model = c("Modelo 1 vs Modelo nulo","Modelo 2 vs Modelo nulo",
+                                        "Modelo 3 vs Modelo nulo","Modelo 4 vs Modelo nulo",
+                                        "Modelo 5 vs Modelo nulo","Modelo 6 vs Modelo nulo"),
+                               R_squared = c(0.000134,0.00953,0.0609,0.0835,0.0853,0.0873))
+
+# create the table
+kable(mcfadden_results, caption = "McFadden test", align = c("l","c"))
+```
+
+
+
+
+
+
+```{r}
+d = mcfadden_results1 %>% 
+  group_by(model) %>% tally %>% 
+  spread(model, n, fill=0) 
+
+d = d %>% bind_rows(d %>% 
+                      summarise_if(is.numeric, sum) %>% 
+                      mutate(model="Total")) %>% 
+  mutate(`All Models` = rowSums(.[-1])) %>%
+  rename(`R-squared`=R_squared) %>% 
+  set_names(gsub(".*_","", names(.)))
+d<-d %>% mutate_if(is.character, as.numeric)
+
+kable(d, format="latex", booktabs=TRUE) %>% 
+  kable_styling() %>%
+  add_header_above(c(" " = 1, "R-squared" = 1, "Total" = 1)) %>% 
+  row_spec(nrow(d) - 1, extra_latex_after="\\hline") %>% 
+  column_spec(ncol(d), border_left=TRUE)
+```
+
+```{r}
+mcfadden_results2 <- data.frame(model = c("Modelo 1 vs Modelo nulo","Modelo 2 vs Modelo nulo","Modelo 3 vs Modelo nulo","Modelo 4 vs Modelo nulo","Modelo 5 vs Modelo nulo","Modelo 6 vs Modelo nulo"),
+                                R_squared = c(0.000134,0.009530,0.060900,0.083500,0.085300,0.087300))
+stargazer(mcfadden_results,
+          type = "text", 
+          summary = F,
+          title = "McFadden test",
+          column.labels = c("Model","R-squared"),
+          digits = 4)
+
+```
+```{r}
+stargazer(mcfadden_results2,
+          type = "latex", 
+          summary = F,
+          column.labels = c("Model","R-squared"),
+          digits = 4,
+          file = "output/tables/mcfadden_test_results.tex")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

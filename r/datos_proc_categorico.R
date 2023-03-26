@@ -68,24 +68,12 @@ datos_proc <- datos_proc %>% # se seleccionan las variables poniendo cuidado en 
 
 
 str(datos_proc) # se verifican los cambios en los datos
-
-## 4.1 transformar variable de apoyo a la democracia en dicotómica desde variable recodificada de apoyo_dem 
-## esto crea una nueva variable
-
-datos_proc <- datos_proc %>% # esto crea una variable dicotómica con dos niveles y deja la tercera categoría de respuesta como NA
-  mutate(apoyo_dem_dic = ifelse(apoyo_dem == "La democracia es preferible a cualquier otra forma de gobierno",
-                                        "Preferencia por democracia",
-                                        ifelse(apoyo_dem == "En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democratico",
-                                               "Preferencia por autoritarismo",
-                                               NA))) %>%
-  mutate(apoyo_dem_dic = factor(apoyo_dem_dic,
-                                        levels = c("Preferencia por democracia", "Preferencia por autoritarismo")))
+frq(datos_proc$apoyo_dem)
 
 
-# 4.2 Se revisan los datos para ver cómo quedaron ---------------------------------------------------------------------
+## 4.1 crear variable dicotómica de apoyo a la democracia (1 == apoyo a la democracia; 0 == todo el resto)
+datos_proc$apoyo_dem_dic <- ifelse(datos_proc$apoyo_dem == "La democracia es preferible a cualquier otra forma de gobierno", 1, 0)
 
-str(datos_proc)
-frq(datos_proc$apoyo_dem_dic)
 
 # 5. se revisan NA  -------------------------------------------------------
 sum(is.na(datos_proc))
@@ -99,6 +87,7 @@ sum(is.na(datos_proc))
 
 datos_proc %>% # se verifican NA por cada variable
 summarize_all(funs(sum(is.na(.)))) 
+
 
 
 # 6. asignamos etiquetas
@@ -129,6 +118,37 @@ view_df(datos_proc)
 saveRDS(datos_proc, file = "output/datos/datos_proc.rds")
 
 
+mcfadden_results1 <- data.frame(model = c("Modelo 1 vs Modelo nulo","Modelo 2 vs Modelo nulo",
+                                         "Modelo 3 vs Modelo nulo","Modelo 4 vs Modelo nulo",
+                                         "Modelo 5 vs Modelo nulo","Modelo 6 vs Modelo nulo"),
+                               R_squared = c(0.000134,0.00953,0.0609,0.0835,0.0853,0.0873))
+
+# create the table
+kable(mcfadden_results1, caption = "McFadden test", align = c("l","c"))
+
+print(mcfadden_results1)
 
 
+
+
+
+
+
+
+d = mcfadden_results %>% 
+  group_by(model) %>% tally %>% 
+  spread(model, n, fill=0) 
+
+d = d %>% bind_rows(d %>% 
+                      summarise_if(is.numeric, sum) %>% 
+                      mutate(model="Total")) %>% 
+  mutate(`All Models` = rowSums(.[-1])) %>%
+  rename(`R-squared`=R_squared) %>% 
+  set_names(gsub(".*_","", names(.)))
+
+kable(d, format="latex", booktabs=TRUE) %>% 
+  kable_styling() %>%
+  add_header_above(c(" " = 1, "R-squared" = 1, "Total" = 1)) %>% 
+  row_spec(nrow(d) - 1, extra_latex_after="\\hline") %>% 
+  column_spec(ncol(d), border_left=TRUE)
 

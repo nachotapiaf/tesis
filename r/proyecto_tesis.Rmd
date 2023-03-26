@@ -13,6 +13,7 @@ csl: ../input/bib/apa.csl
 output:
   html_document: 
     theme: cosmo
+    toc: TRUE 
     toc_depth: 2
     toc_float: yes
     highlight: pygments
@@ -24,13 +25,15 @@ knitr::opts_chunk$set(echo = F, warning = F, message = F)
 Sys.setlocale("LC_CTYPE", "spanish")
 options(OutDec= ",", digits = 3)
 ```
+
 ::: {style="text-align: justify"}
 # 1. Introducción
+
 La presente investigación de tesis tiene como principal objetivo, a través un análisis estadístico multivariado, evaluar la relación entre los conceptos de cultura política y apoyo a la democracia enfocado en analizar el estado de las percepciones de las juventudes chilenas durante el año 2021 y de cómo estas percepciones se proyectan a futuro.
 
 El estudio de la cultura política y el apoyo a la democracia proviene de antiguas teorías nacidas al alero de estudios conductuales en el área de la psicología. Almond y Verba como propondremos, fueron algunos de los autores pioneros en explicar la naturaleza existente entre cómo los ciudadanos y sus opiniones y percepciones podían influir en la estabilidad democrática. Este trabajo muestra que aunque criticados y ampliamente debatidos, las conceptualizaciones que Almond y Verba propusieron pueden hoy ayudar a explicar no solo el cambio en las formas en que se comparte la política, sino también en cómo esta se ve sumergida en una red cultural mucho más amplia que moldea la vida social y otorga elementos y definiciones comunes entre la ciudadanía.
 
-De esta forma, a la luz de las propuestas teóricas clásicas también se examinará en aquellas teorías contemporáneas que han redefinido el estudio de la cultura política, expandiendo sus alcances a través de los cambios que generaron las problemáticas asociadas a la calidad de las democracias que transitaron desde regímenes autoritarios en América Latina. [@Morlino] Estas problemáticas han sido identificadas como parte de las causas que distintos autores han teorizado como el surgimiento de 'ciudadanías críticas' [@norrisCriticalCitizensGlobal1999] así como también 'demócratas insatisfechos', [@Klingemann;@Bianchini] tipos de ciudadanos que, "si bien consideran que la democracia es la mejor forma de gobierno y rechazan los regímenes autoritarios, identifican varios aspectos negativos en la forma como la democracia funciona en sus países". [@bargsted-sommaCulturaPolitica2018]
+De esta forma, a la luz de las propuestas teóricas clásicas también se examinará en aquellas teorías contemporáneas que han redefinido el estudio de la cultura política, expandiendo sus alcances a través de los cambios que generaron las problemáticas asociadas a la calidad de las democracias que transitaron desde regímenes autoritarios en América Latina. [@Morlino] Estas problemáticas han sido identificadas como parte de las causas que distintos autores han teorizado como el surgimiento de 'ciudadanías críticas' [@norrisCriticalCitizensGlobal1999] así como también 'demócratas insatisfechos', [@Klingemann; @Bianchini] tipos de ciudadanos que, "si bien consideran que la democracia es la mejor forma de gobierno y rechazan los regímenes autoritarios, identifican varios aspectos negativos en la forma como la democracia funciona en sus países". [@bargsted-sommaCulturaPolitica2018]
 
 Esto ha convergido en lo que algunos autores han denominado el cambio desde una cultura política de 'lealtad' a una de 'asertividad' hacia el régimen democrático, [@daltonCivicCultureTransformed2014] oponiéndose en su lógica de entender la necesidad de un alto apego hacia el régimen democrático como forma de mantener la estabilidad democrática, sino explicando que un bajo apego hacia el régimen puede ser en realidad síntoma de una democracia activa. En palabras de Pippa Norris "una larga tradición jeffersoniana dice que no debemos preocuparnos demasiado por el declive en la confianza en el gobierno. Si las encuestas reflejan cautela en vez de cinismo, los resultados podrían ser saludables: ciudadanos críticos son buenos para la democracia". [@norrisCriticalCitizensGlobal1999]
 
@@ -46,47 +49,53 @@ Avanzado el marco teórico, expondremos la metodología que hemos diseñado para
 
 Entonces, a la luz de nuestros resultados proponemos realizar un análisis e interpretación de estos datos bajo el prisma de lo que la teoría y nuestra propia experiencia nos puede otorgar. De esta forma buscamos lograr entregarle sentido a aquello que proponemos.
 
-Por último, en las conclusiones debatiremos en torno a los hallazgos encontrados y propondremos nuevas líneas de investigación en torno a aquellos componentes que puedan ser interesantes. Esperamos de esta forma poder entregar un relato coherente desde principio a fin, que a pesar de sus debilidades, pueda exponer aquello que no resulta tan evidente de ver, o más difícil aún, de _demostrar_.
+Por último, en las conclusiones debatiremos en torno a los hallazgos encontrados y propondremos nuevas líneas de investigación en torno a aquellos componentes que puedan ser interesantes. Esperamos de esta forma poder entregar un relato coherente desde principio a fin, que a pesar de sus debilidades, pueda exponer aquello que no resulta tan evidente de ver, o más difícil aún, de *demostrar*.
 :::
+
 # 2. Justificación
+
 ::: {style="text-align: justify"}
 En el caso chileno, consideramos que estudiar la cultura política de las juventudes es un aporte que va en la dirección correcta. Esto pues los jóvenes no han sido objeto predilecto del estudio de las ciencias sociales y tampoco en la historia (...) no han sido considerados como actores o sujetos sociales, minimizándolos en otras categorías. [@Zarzuri] Esta situación nos invita a reflexionar desde la ciencia política en torno al estudio de las juventudes ciudadanas y sus percepciones hacia la democracia y sus valores de cultura política.
 
 Además de esto, estudiar la relación entre política y juventud puede estar alertando al mundo social sobre nuevas formas de entendimiento público, liderados por jóvenes que hoy se identifican como parte de una multitud que ha experimentado un despertar ciudadano, exigiendo mayor participación social. [@Rivera-Aguilera] Ante esto, esperamos nuestra investigación pueda otorgar pequeños aportes en torno a estas investigaciones surgidas previamente y posterior al Estallido Social de 2019 en donde por una parte vemos cómo ya las ciencias sociales advertían hace años problemáticas que necesitaban ser resueltas en pos de una mejor convivencia social, por ejemplo, respecto a la herencia de enclaves autoritarios en Chile que, algunos, han logrado persistir hasta hoy. [@garretonDemocraciaIncompletaChile2010]
 
-Tenemos en cuenta también que la desafección política y la baja abstención electoral es uno de los grandes desafíos que enfrentan las juventudes en términos de participación política. Autores como Parker definen la abstención electoral como el “desinterés creciente por la política, utilizando como indicador la escasa inscripción de los jóvenes en los registros electorales y en la escasa voluntad de participación activa en política”. [@Parker] Sin embargo, hay quienes contrargumentan esta situación explicando que la actitud desafecta sería coherente con un escenario político en el cual estén vigentes los denominados poderes fácticos, los cuales distorsionan el sistema político, es decir, el fenómeno de la desafección se correlacionaría positivamente con la existencia de un sistema político alterado. [@Mardones] Esta desafección, sin embargo, según la evidencia científica sitúa sus causas en el rechazo hacia el sistema electoral y los políticos, y no por ‘apatía’ o ’desinterés’ hacia la política. [@Sola-Morales]
+Tenemos en cuenta también que la desafección política y la baja abstención electoral es uno de los grandes desafíos que enfrentan las juventudes en términos de participación política. Autores como Parker definen la abstención electoral como el "desinterés creciente por la política, utilizando como indicador la escasa inscripción de los jóvenes en los registros electorales y en la escasa voluntad de participación activa en política". [@Parker] Sin embargo, hay quienes contrargumentan esta situación explicando que la actitud desafecta sería coherente con un escenario político en el cual estén vigentes los denominados poderes fácticos, los cuales distorsionan el sistema político, es decir, el fenómeno de la desafección se correlacionaría positivamente con la existencia de un sistema político alterado. [@Mardones] Esta desafección, sin embargo, según la evidencia científica sitúa sus causas en el rechazo hacia el sistema electoral y los políticos, y no por 'apatía' o 'desinterés' hacia la política. [@Sola-Morales]
 
-Con mayor importancia aún, es preciso cuestionar y hallar las motivaciones sociopolíticas y culturales de este supuesto desinterés generalizado. La cada vez más elevada indiferencia o rechazo de los jóvenes  hacia  el  sistema  político  pone  de  manifiesto  la necesidad de reflexionar y profundizar en las posibles causas de este fenómeno. [@Sola-Moralesa]
+Con mayor importancia aún, es preciso cuestionar y hallar las motivaciones sociopolíticas y culturales de este supuesto desinterés generalizado. La cada vez más elevada indiferencia o rechazo de los jóvenes hacia el sistema político pone de manifiesto la necesidad de reflexionar y profundizar en las posibles causas de este fenómeno. [@Sola-Moralesa]
 
 Ante esto, consideramos que aunque los jóvenes no hayan sido un importante objeto de estudio por parte de las ciencias sociales, sumado a que parte de la evidencia sobre desafección política explica que la escasa participación de los jóvenes ha llegado a reducir su capacidad para influir en la priorización de sus políticas públicas, [@Toro] proponemos que estas situaciones no solo han ido cambiando con el paso de los años a raíz de las transformaciones y desafíos que el mismo sistema político chileno ha enfrentado, justamente, desde las juventudes, sino que también a su vez proponen formas distintas de resignificar el concepto de la política, en oposición a lo que los jóvenes identifican con la 'vieja política'. (Zarzuri, 2020)
 
 En este sentido, estudiar qué piensa la juventud puede ser clave pues los jóvenes de este nuevo siglo no solo tienen que enfrentar a las crisis de instituciones clásicas como la educación o la familia, sino también a las transformaciones de las formas de participación clásica en la esfera de lo público, abandonando de cierto modo esos lugares tradicionales para transitar hacia otros ámbitos. [@zarzuriDespolitizacionRepolitizacionPolitica2020]
 :::
+
 # 3. Contextualización
+
 ::: {style="text-align: justify"}
 Si bien el contexto en el que ubicamos nuestra investigación corresponde al año 2021, el telón de fondo a través del cual se han desarrollado aquellas problemáticas asociadas al funcionamiento del sistema político chileno en términos de representatividad política están arraigados en lo que la literatura académica ha identificado desde los primeros estudios relacionados a la cultura política de la época de la transición, la cual en el caso chileno se caracterizó según Huneeus por la división originada por el régimen militar que creó una democracia semisoberana, caracterizada por la distinta evaluación que hacen de su desempeño los partidarios y detractores de la dictadura, por la baja confianza interpersonal en las instituciones y en las elites políticas, junto a una evaluación crítica del desempeño de los políticos, además de un bajo apoyo a la democracia. [@Avendano]
 
-A nuestro parecer, este contexto está marcado por lo que es identificado como el _debilitamiento del desarrollo político_ comenzado desde 1990 atribuible a que los nuevos gobiernos optaron por una forma de representación tecnocrática, en la lógica de los expertos, y no por otra que girara en torno a los partidos, lo que les ha debilitado ante el electorado como organización y en sus capacidades de participar en el gobierno [@Avendano] De esta forma, identificamos que nuestro problema de investigación está cruzado por estas dos dimensiones del debilitamiento del desarrollo político en Chile: por un lado, los efectos de la política tecnocrática en la representatividad política y por otro, los efectos de la desconexión entre movimientos sociales y partidos políticos. 
+A nuestro parecer, este contexto está marcado por lo que es identificado como el *debilitamiento del desarrollo político* comenzado desde 1990 atribuible a que los nuevos gobiernos optaron por una forma de representación tecnocrática, en la lógica de los expertos, y no por otra que girara en torno a los partidos, lo que les ha debilitado ante el electorado como organización y en sus capacidades de participar en el gobierno [@Avendano] De esta forma, identificamos que nuestro problema de investigación está cruzado por estas dos dimensiones del debilitamiento del desarrollo político en Chile: por un lado, los efectos de la política tecnocrática en la representatividad política y por otro, los efectos de la desconexión entre movimientos sociales y partidos políticos.
 
-Bajo este contexto, primó la llamada _política de los consensos_, por medio de la cual las decisiones políticas de envergadura eran adoptadas por las elites políticas sin mayor influjo de la ciudadanía organizada. [@Sommaa; citado en @Huneeus] En este sentido, distintos autores explican que la lógica que operó en la política de los 90’ estuvo caracterizada por una _desmovilización desde arriba_ por parte de los partidos concertacionistas de la transición, los cuales apostaron por una transición contenida, motivada por el miedo a que las movilizaciones sociales superen el marco de la negociación y que los militares vuelvan a imponerse, como eco de los años 1970. [@Barozet]
+Bajo este contexto, primó la llamada *política de los consensos*, por medio de la cual las decisiones políticas de envergadura eran adoptadas por las elites políticas sin mayor influjo de la ciudadanía organizada. [@Sommaa; citado en @Huneeus] En este sentido, distintos autores explican que la lógica que operó en la política de los 90' estuvo caracterizada por una *desmovilización desde arriba* por parte de los partidos concertacionistas de la transición, los cuales apostaron por una transición contenida, motivada por el miedo a que las movilizaciones sociales superen el marco de la negociación y que los militares vuelvan a imponerse, como eco de los años 1970. [@Barozet]
 
-Esta situación creó a lo largo de los 90’ el desacople entre los partidos políticos y la opinión pública, particularmente sus sectores activos representados por movimientos sociales, con un receso de la conflictividad social, en un marco de des-ideologización. [@Barozet] Todo esto supuso la desmovilización de los movimientos sociales, los cuales, en aras de la construcción de una democracia que fue concebida como frágil en sus inicios, tenían que desaparecer o invisibilizarse en la llamada transición. (...) Entonces, no hubo más movilizaciones ni movimientos, porque no calzaban con el nuevo orden democrático o, mejor dicho, ponían en riesgo la frágil democracia y su estabilidad. [@Zarzuri]
+Esta situación creó a lo largo de los 90' el desacople entre los partidos políticos y la opinión pública, particularmente sus sectores activos representados por movimientos sociales, con un receso de la conflictividad social, en un marco de des-ideologización. [@Barozet] Todo esto supuso la desmovilización de los movimientos sociales, los cuales, en aras de la construcción de una democracia que fue concebida como frágil en sus inicios, tenían que desaparecer o invisibilizarse en la llamada transición. (...) Entonces, no hubo más movilizaciones ni movimientos, porque no calzaban con el nuevo orden democrático o, mejor dicho, ponían en riesgo la frágil democracia y su estabilidad. [@Zarzuri]
 
 Este escenario con el paso del tiempo fue advertido tempranamente por parte de las ciencias sociales, quienes focalizaron su estudio en el distanciamiento y elitización cada vez más evidente entre partidos políticos y movimientos sociales ciudadanos. Este periodo del término de la década de 1990 es identificado con como el comienzo del proceso de autonomización de la protesta contextualizado por una situación que combinaba la ausencia de grandes movilizaciones colectivas contra el gobierno con altos niveles de afección política, que ya para el fin del 90 empieza a mostrar signos de agotamiento de la desmovilización que la sociedad chilena venía experimentando desde 1980. [@Sommaa]
 
-Posteriormente, Medel y Somma argumentan en favor de la tesis del desapego entre movimientos sociales y partidos políticos, donde con el paso del tiempo se volvió evidente que los gobiernos concertacionistas no querían envolverse en reformas estructurales en torno a demandas del mercado laboral, la educación, derechos indígenas, el sistema electoral, entre otros. Los autores aportan evidencia sobre que, desde comienzos del nuevo milenio las protestas colectivas han crecido en Chile en el periodo entre 2000 – 2012 y que esto es exacerbado porque como la política institucional no produce los cambios que exigen los movimientos sociales, la protesta colectiva se convierte en una estrategia política más atractiva y plausible. [@Somma]
+Posteriormente, Medel y Somma argumentan en favor de la tesis del desapego entre movimientos sociales y partidos políticos, donde con el paso del tiempo se volvió evidente que los gobiernos concertacionistas no querían envolverse en reformas estructurales en torno a demandas del mercado laboral, la educación, derechos indígenas, el sistema electoral, entre otros. Los autores aportan evidencia sobre que, desde comienzos del nuevo milenio las protestas colectivas han crecido en Chile en el periodo entre 2000 -- 2012 y que esto es exacerbado porque como la política institucional no produce los cambios que exigen los movimientos sociales, la protesta colectiva se convierte en una estrategia política más atractiva y plausible. [@Somma]
 
 Sumado a esto, distintos autores explican que varios fenómenos que ocupan a los académicos en Chile desde la segunda mitad de los años noventa pueden leerse en clave de cultura política: la dramática caída de la participación electoral y en la confianza en las instituciones políticas (citado en Navia et al. 2004) el declive de la identificación partidaria y la identificación con ideologías políticas (citado en @Navia), el desarraigo del sistema de partidos (citado en @Lunaa) y la emergencia de movimientos sociales y olas de protestas de gran magnitud (citado en Sommaa). Esto pues la ventaja del enfoque de la cultura cívica es que ofrece un marco unificado para entender todos estos procesos que, si bien relacionados, por lo general se estudian de modo independiente. [@bargsted-sommaCulturaPolitica2018]
 
-Teniendo estos antecedentes en cuenta, el periodo en el que se enmarca esta investigación es durante el año 2021 y se ha escogido en consideración de lo que la evidencia académica ha identificado desde 2006 como el inicio de un nuevo ciclo de protesta que es intensificado desde 2011 _"cuyas principales expresiones son el movimiento de los ‘pingüinos’ y luego el estudiantil. (...) Este ciclo se abrió en 2006 pero sigue generando a la fecha expresiones y demandas variadas, que se mantienen o reactivan cada cierto tiempo, con fórmulas diversas y cambiantes de relaciones con los partidos políticos”_. [@Barozet;@Sommaa] En este sentido, se propone que este nuevo ciclo de protestas puede ser interpretado como un cambio en la cultura política de las juventudes ciudadanas chilenas apoyado desde las nuevas teorías que explican la variación en el concepto desde sus orígenes propuestos por autores como Almond y Verba. 
+Teniendo estos antecedentes en cuenta, el periodo en el que se enmarca esta investigación es durante el año 2021 y se ha escogido en consideración de lo que la evidencia académica ha identificado desde 2006 como el inicio de un nuevo ciclo de protesta que es intensificado desde 2011 *"cuyas principales expresiones son el movimiento de los 'pingüinos' y luego el estudiantil. (...) Este ciclo se abrió en 2006 pero sigue generando a la fecha expresiones y demandas variadas, que se mantienen o reactivan cada cierto tiempo, con fórmulas diversas y cambiantes de relaciones con los partidos políticos"*. [@Barozet; @Sommaa] En este sentido, se propone que este nuevo ciclo de protestas puede ser interpretado como un cambio en la cultura política de las juventudes ciudadanas chilenas apoyado desde las nuevas teorías que explican la variación en el concepto desde sus orígenes propuestos por autores como Almond y Verba.
 :::
-# 4. Problematización 
+
+# 4. Problematización
+
 ::: {style="text-align: justify"}
-En términos de representatividad política, el estilo tecnocrático de la política chilena llevada adelante desde la transición a la democracia ha tenido importantes efectos en la relación tanto entre partidos políticos y gobierno, y partidos políticos y movimientos sociales, lo que pone al centro del análisis la capacidad de la estructura intermedia del sistema para absorber y procesar las demandas ciudadanas. 
+En términos de representatividad política, el estilo tecnocrático de la política chilena llevada adelante desde la transición a la democracia ha tenido importantes efectos en la relación tanto entre partidos políticos y gobierno, y partidos políticos y movimientos sociales, lo que pone al centro del análisis la capacidad de la estructura intermedia del sistema para absorber y procesar las demandas ciudadanas.
 
 Por una parte, privilegiar la política tecnocrática a través de expertos sin incluir a los partidos políticos en la definición de la política programática ha disminuido la capacidad de agencia por parte de estos para promover la instalación de los intereses de sus representados, generando una lejanía entre los intereses ciudadanos y los resultados ofrecidos por sus representantes.
 
-Sumado a esto, autores como Garretón exponen que en Chile vivimos en una _democracia incompleta_ debido a la persistencia institucional de enclaves autoritarios [@garretonDemocraciaIncompletaChile2010] que constituirían parte importante de los factores que estrecharían aquellos márgenes de acción y de cambio dentro del sistema político chileno hacia una mayor profundización de la democracia. Específicamente, cuando hablamos de representatividad política estos enclaves heredados de la dictadura han constreñido importantemente la participación política de la ciudadanía, acotando su margen de acción a los actores directamente vinculados a su ejecución, a saber, la clase política representada por los partidos políticos y el gobierno, representados por los actores políticos en posiciones de poder. [@Siavelisa]
+Sumado a esto, autores como Garretón exponen que en Chile vivimos en una *democracia incompleta* debido a la persistencia institucional de enclaves autoritarios [@garretonDemocraciaIncompletaChile2010] que constituirían parte importante de los factores que estrecharían aquellos márgenes de acción y de cambio dentro del sistema político chileno hacia una mayor profundización de la democracia. Específicamente, cuando hablamos de representatividad política estos enclaves heredados de la dictadura han constreñido importantemente la participación política de la ciudadanía, acotando su margen de acción a los actores directamente vinculados a su ejecución, a saber, la clase política representada por los partidos políticos y el gobierno, representados por los actores políticos en posiciones de poder. [@Siavelisa]
 
 No obstante, otros autores advierten que pareciera ser que Chile ha resuelto la tensión entre estabilidad política democrática e incorporación social, pero los análisis ahora apuntan a los riesgos de una desmovilización política diseñada por élites desconectadas. En este sentido, el escenario político que enfrenta la contingencia del sistema chileno está atravesado fuertemente por una crisis de representatividad caracterizada por tener un sistema de partidos altamente estable y comparativamente bajos niveles de identificación ciudadana con los partidos políticos. [@Luna]
 
@@ -96,7 +105,9 @@ Por esta razón, este estudio buscará analizar e interpretar los cambios en las
 
 Bajo este contexto y diagnóstico que identificamos en el sistema político chileno es donde situamos el problema central de nuestra investigación, a saber, el desencuentro entre la política institucional y la ciudadanía en su conjunto y los efectos de esta situación en el apoyo a la democracia por parte de los jóvenes. Esta desconexión, evidenciada de manera importante por múltiples autores es reflejada a través de una estructura política no solo desconectada, sino también exclusiva en términos de participación política en la toma de decisiones que ha provocado reacciones inesperadas por parte de los actores políticos ciudadanos.
 :::
+
 # 5. Pregunta de investigación
+
 ::: {style="text-align: justify"}
 En este contexto nos parece relevante entonces preguntarnos *¿De qué forma los indicadores de cultura política impactan en el apoyo a la democracia en las juventudes chilenas durante el año 2021?*; *¿Pueden las preferencias de la cultura política aumentar las chances de apoyar la democracia?*
 
@@ -108,159 +119,156 @@ Por esta razón, justificamos nuestra propuesta de investigación en torno a la 
 # 7. Objetivos e hipótesis
 
 ## 7.1 Objetivos
+
 ::: {style="text-align: justify"}
 Teniendo en cuenta la discusión que hemos propuesto anteriormente, hemos definido nuestros objetivos de la siguiente forma:
 
-*	*Objetivo general*: Conocer la relación entre el apoyo a la democracia y el interés en la política, la confianza en los partidos políticos y la satisfacción con la democracia en la población chilena entre 18-40 años durante el año 2021.
+-   *Objetivo general*: Conocer la relación entre el apoyo a la democracia y el interés en la política, la confianza en los partidos políticos y la satisfacción con la democracia en la población chilena entre 18-40 años durante el año 2021.
 
-* *Objetivos específicos*: 
+-   *Objetivos específicos*:
 
-1.	Describir el estado actual de indicadores de cultura política asociados a conocimiento e interés en la política.
-2.	Describir el estado actual de indicadores de cultura política asociados a confianza institucional.
-3.	Describir el estado actual de indicadores de cultura política asociados a percepciones hacia la democracia.
-4.	Conocer la relación entre el apoyo a la democracia y distintos indicadores de cultura política a través de un modelo de regresión logístico binario múltiple.
-5.	Interpretar los modelos de regresión.
+1.  Describir el estado actual de indicadores de cultura política asociados a conocimiento e interés en la política.
+2.  Describir el estado actual de indicadores de cultura política asociados a confianza institucional.
+3.  Describir el estado actual de indicadores de cultura política asociados a percepciones hacia la democracia.
+4.  Conocer la relación entre el apoyo a la democracia y distintos indicadores de cultura política a través de un modelo de regresión logístico binario múltiple.
+5.  Interpretar los modelos de regresión.
 :::
+
 ## 7.2 Hipótesis
+
 ::: {style="text-align: justify"}
-*	Hipótesis general: Existe una relación positiva entre los indicadores de cultura política y el apoyo a la democracia.
-:::	
+-   Hipótesis general: Existe una relación positiva entre los indicadores de cultura política y el apoyo a la democracia.
+:::
 
 # 8. Marco teórico
 
 ## 8.1 Cultura política
+
 ::: {style="text-align: justify"}
-En términos generales, el estudio y constante debate en torno al concepto de cultura política es amplio y diverso entre las disciplinas de la sociología y ciencia política, existiendo vasta literatura académica respecto a sus constantes diagnósticos e interpretaciones. Es necesario, entonces, para los fines de esta investigación hacer una breve revisión sobre la variación que el concepto ha tenido en las últimas décadas en torno a la luz de nuevas propuestas teóricas relacionadas a las nuevas conceptualizaciones de cultura política. Para hacerlo, proponemos tomar como referencia el modelo de Almond y Verba propuesto en _Civic Culture_ para de esta forma poder contrastar los cambios que ha enfrentado la teoría desde sus simientes.
+En términos generales, el estudio y constante debate en torno al concepto de cultura política es amplio y diverso entre las disciplinas de la sociología y ciencia política, existiendo vasta literatura académica respecto a sus constantes diagnósticos e interpretaciones. Es necesario, entonces, para los fines de esta investigación hacer una breve revisión sobre la variación que el concepto ha tenido en las últimas décadas en torno a la luz de nuevas propuestas teóricas relacionadas a las nuevas conceptualizaciones de cultura política. Para hacerlo, proponemos tomar como referencia el modelo de Almond y Verba propuesto en *Civic Culture* para de esta forma poder contrastar los cambios que ha enfrentado la teoría desde sus simientes.
 
-***El modelo de Almond y Verba*** 
+***El modelo de Almond y Verba***
 
-Desde los primeros estudios empíricos como _Civic Culture (1963)_ Almond y Verba explican que el estudio de la cultura política debe su origen a las investigaciones que surgieron desde el enfoque conductual sobre las políticas originadas del periodo de entreguerras. Desde ese momento, la investigación desde la ciencia política se volcó a estudiar los nuevos aspectos de la política relacionados al escenario internacional de posguerra y de las transformaciones sociales que experimentaron las naciones industrializadas que serían parte temática de su libro. En él, los autores buscaron analizar lo que los griegos llamaron _virtud cívica_ y sus consecuencias en la efectividad y estabilidad de la política democrática. [@almondCivicCulturePolitical1963]
+Desde los primeros estudios empíricos como *Civic Culture (1963)* Almond y Verba explican que el estudio de la cultura política debe su origen a las investigaciones que surgieron desde el enfoque conductual sobre las políticas originadas del periodo de entreguerras. Desde ese momento, la investigación desde la ciencia política se volcó a estudiar los nuevos aspectos de la política relacionados al escenario internacional de posguerra y de las transformaciones sociales que experimentaron las naciones industrializadas que serían parte temática de su libro. En él, los autores buscaron analizar lo que los griegos llamaron *virtud cívica* y sus consecuencias en la efectividad y estabilidad de la política democrática. [@almondCivicCulturePolitical1963]
 
-Aunque criticado y cuestionado, creemos que el modelo para estudiar la cultura política propuesto por Almond y Verba en Civic Culture es un marco analítico sólido pero no exclusivo para aproximarnos al estudio de este concepto en el caso chileno. En términos generales, los autores explican que la cultura política de una sociedad es referida a la _“internalización del sistema político en las cogniciones, sentimientos y evaluaciones de su población”_ refiriéndose a que es condición necesaria para la formación de una cultura política el haber tenido _“acercamientos individuales sistemáticos hacia los objetos políticos”_. (Ídem, 1963) 
+Aunque criticado y cuestionado, creemos que el modelo para estudiar la cultura política propuesto por Almond y Verba en Civic Culture es un marco analítico sólido pero no exclusivo para aproximarnos al estudio de este concepto en el caso chileno. En términos generales, los autores explican que la cultura política de una sociedad es referida a la *"internalización del sistema político en las cogniciones, sentimientos y evaluaciones de su población"* refiriéndose a que es condición necesaria para la formación de una cultura política el haber tenido *"acercamientos individuales sistemáticos hacia los objetos políticos"*. (Ídem, 1963)
 
-Más precisamente, los autores se refieren a la cultura política como el resultado de _“la particular distribución de las pautas de orientación hacia los objetos políticos entre los miembros de una nación”_. (Ídem, 1963) Estas orientaciones son definidas como _“cognitivas, de afecto y de evaluación”_ y son estas las que pueden ser dirigidas hacia distintos componentes de un sistema político, entre ellos, _“el sistema como objeto general, objetos políticos (inputs), objetos administrativos (outputs) y uno mismo como objeto”_. (Ídem, 1963)
+Más precisamente, los autores se refieren a la cultura política como el resultado de *"la particular distribución de las pautas de orientación hacia los objetos políticos entre los miembros de una nación"*. (Ídem, 1963) Estas orientaciones son definidas como *"cognitivas, de afecto y de evaluación"* y son estas las que pueden ser dirigidas hacia distintos componentes de un sistema político, entre ellos, *"el sistema como objeto general, objetos políticos (inputs), objetos administrativos (outputs) y uno mismo como objeto"*. (Ídem, 1963)
 
 Las orientaciones cognitivas son referidas al interés y conocimiento político, que procura medir el grado de interés y conocimiento de los asuntos políticos y públicos. La dimensión afectiva está relacionada con los sentimientos y actitudes generadas hacia el sistema en su conjunto: hacia la nación, sus virtudes y del afecto al sistema, así como también el afecto hacia los outputs, es decir, de las clases de expectativas que tiene la gente sobre el trato a recibir de manos de las autoridades gubernativas. [@almondCivicCulturePolitical1963] Por último, las orientaciones evaluativas están asociadas a las percepciones sobre la democracia y la satisfacción que pretenden medir el nivel de eficacia del sistema. [@Martinez]
 
-Sin entrar en mayor detalle, estas orientaciones dirigidas hacia distintos componentes del sistema político son clasificadas entre tres tipos de cultura política: parroquial, de súbdito y de participante. En términos generales, la cultura política parroquial se refiere a aquellos ciudadanos que tienen una nula o escasa vinculación con el sistema, generalmente ubicados en zonas rurales e identificados en países en desarrollo con una baja institucionalidad política; la cultura de súbdito es referida a tipos de ciudadanos que se relacionan en mayor medida con el sistema político, conocen acerca de sus representantes, interactúan con sus instituciones pero limitan su vinculación solo a un nivel administrativo sin tener orientaciones definidas en torno a objetos políticos; por último, la cultura política de participante se caracteriza por ser la de un tipo de ciudadano que tiende a tener una vinculación sistémica hacia el régimen democrático, sostienen opiniones hacia los objetos políticos tanto como a los inputs y outputs del sistema y se identifican a sí mismos como personas con un rol activo. 
+Sin entrar en mayor detalle, estas orientaciones dirigidas hacia distintos componentes del sistema político son clasificadas entre tres tipos de cultura política: parroquial, de súbdito y de participante. En términos generales, la cultura política parroquial se refiere a aquellos ciudadanos que tienen una nula o escasa vinculación con el sistema, generalmente ubicados en zonas rurales e identificados en países en desarrollo con una baja institucionalidad política; la cultura de súbdito es referida a tipos de ciudadanos que se relacionan en mayor medida con el sistema político, conocen acerca de sus representantes, interactúan con sus instituciones pero limitan su vinculación solo a un nivel administrativo sin tener orientaciones definidas en torno a objetos políticos; por último, la cultura política de participante se caracteriza por ser la de un tipo de ciudadano que tiende a tener una vinculación sistémica hacia el régimen democrático, sostienen opiniones hacia los objetos políticos tanto como a los inputs y outputs del sistema y se identifican a sí mismos como personas con un rol activo.
 
-Vale mencionar que además de estas tres tipologías, los autores advierten que este “solo es el comienzo” para evaluar la cultura política de una nación, pues estas pueden matizarse entre sí dando espacio a culturas políticas que combinen distintos componentes de otra. En este sentido, se hace hincapié en que la cultura cívica es una mezcla entre estos distintos tipos de culturas entre los ciudadanos, por lo que no pretenden ser categorías exclusivas.
+Vale mencionar que además de estas tres tipologías, los autores advierten que este "solo es el comienzo" para evaluar la cultura política de una nación, pues estas pueden matizarse entre sí dando espacio a culturas políticas que combinen distintos componentes de otra. En este sentido, se hace hincapié en que la cultura cívica es una mezcla entre estos distintos tipos de culturas entre los ciudadanos, por lo que no pretenden ser categorías exclusivas.
 
-Dentro de las conclusiones de su trabajo, los autores buscan desarrollar la respuesta a la pregunta de si _¿existe una cultura democrática -una pauta de actitudes políticas que fomente la estabilidad democrática, que en algún sentido “resulta apropiada” al sistema político democrático?_ Para responder a esta pregunta, los autores argumentan sobre un “tipo de ciudadano” que sería necesario para la estabilidad democrática, referente a _“un ciudadano informado, comprometido, racional y activo”_. Nos referimos con esto a que el modelo propuesto en _Civic Culture_ era uno según el cual la prosperidad democrática provenía también de un alto apego afectivo desde el ciudadano hacia el régimen democrático, que entendía su participación dentro del sistema político como un individuo que incluso con un perfil de participante entendía que había _ciertos escenarios_ o _acciones_ que no estaban dentro de sus capacidades, como fiscalizar a las autoridades o en general, desconfiar del sistema político. En otras palabras, este modelo es el que autores como Dalton identifican como un modelo basado en la lealtad o allegiance hacia el régimen político. [@daltonCivicCultureTransformed2014]
+Dentro de las conclusiones de su trabajo, los autores buscan desarrollar la respuesta a la pregunta de si *¿existe una cultura democrática -una pauta de actitudes políticas que fomente la estabilidad democrática, que en algún sentido "resulta apropiada" al sistema político democrático?* Para responder a esta pregunta, los autores argumentan sobre un "tipo de ciudadano" que sería necesario para la estabilidad democrática, referente a *"un ciudadano informado, comprometido, racional y activo"*. Nos referimos con esto a que el modelo propuesto en *Civic Culture* era uno según el cual la prosperidad democrática provenía también de un alto apego afectivo desde el ciudadano hacia el régimen democrático, que entendía su participación dentro del sistema político como un individuo que incluso con un perfil de participante entendía que había *ciertos escenarios* o *acciones* que no estaban dentro de sus capacidades, como fiscalizar a las autoridades o en general, desconfiar del sistema político. En otras palabras, este modelo es el que autores como Dalton identifican como un modelo basado en la lealtad o allegiance hacia el régimen político. [@daltonCivicCultureTransformed2014]
 
-***Un debate abierto*** 
+***Un debate abierto***
 
-Es por estas y otras razones que el mundo académico ha reconocido la obra de Almond y Verba como pionera en lo que respecta al análisis de la política comparada en términos de los valores culturales y políticos que comparten las ciudadanías dentro de las sociedades. Sus hallazgos sobre cómo se vinculan las personas con el sistema bajo el cual viven, aunque cuestionados, invitaron a la investigación científica a ampliar el campo de estudio, profundizando aquellas vetas que no habían sido hasta ese entonces exploradas. Sin embargo, a pesar del mérito académico que despierta hasta hoy, como cualquier otro objeto de estudio, la cultura política ha sido reinterpretada a la luz de las transformaciones sociopolíticas que han sido evidenciados tanto por la sociología y la ciencia política en torno a los procesos de modernización, transición y democratización en distintos regímenes políticos alrededor del mundo así como también en América Latina. [@Huntington];@Garretona) 
+Es por estas y otras razones que el mundo académico ha reconocido la obra de Almond y Verba como pionera en lo que respecta al análisis de la política comparada en términos de los valores culturales y políticos que comparten las ciudadanías dentro de las sociedades. Sus hallazgos sobre cómo se vinculan las personas con el sistema bajo el cual viven, aunque cuestionados, invitaron a la investigación científica a ampliar el campo de estudio, profundizando aquellas vetas que no habían sido hasta ese entonces exploradas. Sin embargo, a pesar del mérito académico que despierta hasta hoy, como cualquier otro objeto de estudio, la cultura política ha sido reinterpretada a la luz de las transformaciones sociopolíticas que han sido evidenciados tanto por la sociología y la ciencia política en torno a los procesos de modernización, transición y democratización en distintos regímenes políticos alrededor del mundo así como también en América Latina. [@Huntington];@Garretona)
 
-Entrando más a fondo en la discusión, desde el mundo europeo y estadounidense a nuestro parecer es donde hemos identificado grandes debates en torno a la cultura política, sus variaciones tanto conceptuales como metodológicas respecto a sus formas de entenderlas e intentar medirlas, así como también sobre la reflexión en torno al diagnóstico propuesto por distintos autores acerca de las teorías de la modernización y posmodernización que se posiciona como un paradigma en la teoría. 
+Entrando más a fondo en la discusión, desde el mundo europeo y estadounidense a nuestro parecer es donde hemos identificado grandes debates en torno a la cultura política, sus variaciones tanto conceptuales como metodológicas respecto a sus formas de entenderlas e intentar medirlas, así como también sobre la reflexión en torno al diagnóstico propuesto por distintos autores acerca de las teorías de la modernización y posmodernización que se posiciona como un paradigma en la teoría.
 
-Respecto a esto último, ya durante esos años, Inglehart advertía que un cambio significativo estaba tomando lugar respecto a la distribución de habilidades políticas debido a que una importante proporción del público comienza a tener suficiente interés y entendimiento sobre política nacional e internacional para participar a este nivel en la toma de decisiones. Argumentaba, Inglehart, que los cambios actuales han permitido (al público) desempeñar un creciente rol activo en la formulación de la política y cada vez más envuelta en lo que ha sido llamado “elite-challenging”, entendido como el hecho de que el potencial de las “contra-elites” estaba abiertamente distribuido entre el público como nunca antes. [@Inglehart] Esto es lo que sería entendido posteriormente como el comienzo de la erosión del modelo de lealtad de ciudadanías democráticas. [@daltonCivicCultureTransformed2014]
+Respecto a esto último, ya durante esos años, Inglehart advertía que un cambio significativo estaba tomando lugar respecto a la distribución de habilidades políticas debido a que una importante proporción del público comienza a tener suficiente interés y entendimiento sobre política nacional e internacional para participar a este nivel en la toma de decisiones. Argumentaba, Inglehart, que los cambios actuales han permitido (al público) desempeñar un creciente rol activo en la formulación de la política y cada vez más envuelta en lo que ha sido llamado "elite-challenging", entendido como el hecho de que el potencial de las "contra-elites" estaba abiertamente distribuido entre el público como nunca antes. [@Inglehart] Esto es lo que sería entendido posteriormente como el comienzo de la erosión del modelo de lealtad de ciudadanías democráticas. [@daltonCivicCultureTransformed2014]
 
-Entre sus hallazgos, Inglehart identificó un aumento generacional de la seguridad existencial (respecto a la seguridad e integridad física) y la movilización cognitiva como las fuerzas sociales que impulsan el surgimiento de estos nuevos valores; de esta forma, el autor extendió los conceptos de valores postmaterialistas, desarrollado en _Modernization and Postmodernization_ [@inglehartModernizationPostmodernization1997a] hacia un concepto más amplio de valores de auto-expresión. De esta forma, se reconoce que estas teorías enriquecieron el campo de estudio de la cultura política con un set de ideas y conceptos que incrementaron de forma importante el entendimiento del cambio cultural. (Ídem, 2014)
+Entre sus hallazgos, Inglehart identificó un aumento generacional de la seguridad existencial (respecto a la seguridad e integridad física) y la movilización cognitiva como las fuerzas sociales que impulsan el surgimiento de estos nuevos valores; de esta forma, el autor extendió los conceptos de valores postmaterialistas, desarrollado en *Modernization and Postmodernization* [@inglehartModernizationPostmodernization1997a] hacia un concepto más amplio de valores de auto-expresión. De esta forma, se reconoce que estas teorías enriquecieron el campo de estudio de la cultura política con un set de ideas y conceptos que incrementaron de forma importante el entendimiento del cambio cultural. (Ídem, 2014)
 
 De hecho, sería Inglehart quien ayudó a desarrollar las encuestas del Eurobarómetro, contribuyó al Estudio de Valores Europeos y fundó la Encuesta Mundial de Valores, que es considerada la base de datos más completa, citada y utilizada, y más reconocida para estudiar la cultura política y el cambio cultural de las sociedades alrededor del mundo. (Ídem, 2014) De esta forma, a modo de síntesis, podríamos decir que la variedad de estos estudios ha creado una infraestructura teórica y metodológica robusta en torno a la investigación de la cultura política. Se advierte, por la misma razón, que si bien esta es una parte importante de su desarrollo conceptual, el estudio de la cultura política trasciende en muchas más direcciones y elaboraciones académicas.
 
-Por otra parte, Robert Dalton en su libro _Democratic challenges – democratic choicees_ aborda los desafíos que enfrentan las democracias contemporáneas que, en su perspectiva, tiene sus orígenes en la erosión de la confianza y el apoyo ciudadano. De esta forma, buscar analizar los cambios y problemáticas que, según el autor, no provienen de enemigos dentro o fuera de la nación. En cambio, estos desafíos derivan de los propios ciudadanos de la democracia, quienes se han vuelto desconfiados de los políticos, escépticos de las instituciones de la democracia y desilusionados acerca de cómo funciona el proceso democrático. (Dalton, 2004) Esta situación es la que Dalton identifica como el surgimiento de un nuevo tipo de ciudadano: el crítico o el demócrata insatisfechos, ambos productos de los argumentos planteados anteriormente. Por último, en su análisis incluyendo tres de las dimensiones propuestas por Almond y Verba, lo complementa añadiendo dos dimensiones: la participativa y la dimensión institucional. Entre otros, evalúa indicadores de apoyo político, como la confianza hacia las instituciones democráticas, la satisfacción con la democracia, la identificación política, el efecto de los medios de comunicación, entre otros. (Dalton, 2004)
+Por otra parte, Robert Dalton en su libro *Democratic challenges -- democratic choicees* aborda los desafíos que enfrentan las democracias contemporáneas que, en su perspectiva, tiene sus orígenes en la erosión de la confianza y el apoyo ciudadano. De esta forma, buscar analizar los cambios y problemáticas que, según el autor, no provienen de enemigos dentro o fuera de la nación. En cambio, estos desafíos derivan de los propios ciudadanos de la democracia, quienes se han vuelto desconfiados de los políticos, escépticos de las instituciones de la democracia y desilusionados acerca de cómo funciona el proceso democrático. (Dalton, 2004) Esta situación es la que Dalton identifica como el surgimiento de un nuevo tipo de ciudadano: el crítico o el demócrata insatisfechos, ambos productos de los argumentos planteados anteriormente. Por último, en su análisis incluyendo tres de las dimensiones propuestas por Almond y Verba, lo complementa añadiendo dos dimensiones: la participativa y la dimensión institucional. Entre otros, evalúa indicadores de apoyo político, como la confianza hacia las instituciones democráticas, la satisfacción con la democracia, la identificación política, el efecto de los medios de comunicación, entre otros. (Dalton, 2004)
 
-Por otra parte, es largamente identificado dentro de la literatura sobre cultura política la conceptualización propuesta por David Easton respecto al análisis de lo que el denomina ‘apoyo político’. Para esto, distingue categorías de apoyo hacia los objetos políticos en tres dimensiones: la comunidad política, el régimen y las autoridades políticas. En los términos de nuestra investigación, solo nos enfocaremos en explicar la dimensión de ‘apoyo al régimen’. Fundamentalmente, este concepto es referido como las actitudes públicas hacia el orden constitucional. Estas actitudes pueden ser de distintos tipos que escapan a nuestro análisis, siendo el más importante las orientaciones hacia las instituciones políticas, tales como la evaluación del Congreso, los partidos políticos, las instituciones de justicia, así como cualquier otro actor institucional, entre los que pueden identificarse aquellas autoridades que detenten cargos de autoridad política tales como presidentes, ministros, legisladores o en un amplio espectro entre las elites políticas. [@Easton; citado en @Dalton]
+Por otra parte, es largamente identificado dentro de la literatura sobre cultura política la conceptualización propuesta por David Easton respecto al análisis de lo que el denomina 'apoyo político'. Para esto, distingue categorías de apoyo hacia los objetos políticos en tres dimensiones: la comunidad política, el régimen y las autoridades políticas. En los términos de nuestra investigación, solo nos enfocaremos en explicar la dimensión de 'apoyo al régimen'. Fundamentalmente, este concepto es referido como las actitudes públicas hacia el orden constitucional. Estas actitudes pueden ser de distintos tipos que escapan a nuestro análisis, siendo el más importante las orientaciones hacia las instituciones políticas, tales como la evaluación del Congreso, los partidos políticos, las instituciones de justicia, así como cualquier otro actor institucional, entre los que pueden identificarse aquellas autoridades que detenten cargos de autoridad política tales como presidentes, ministros, legisladores o en un amplio espectro entre las elites políticas. [@Easton; citado en @Dalton]
 
-En vista de los cambios producidos en las ciudadanías del mundo occidental, Pippa Norris extiende la investigación sobre las dimensiones del apoyo político por parte de la ciudadanía. Explica que para realizar una correcta evaluación en términos de asociatividad con el sistema político, los ciudadanos deben poder comparar y evaluar tipos de regímenes alternativos, más allá del régimen particular bajo el cual estén viviendo. [@norrisCriticalCitizensGlobal1999] Por esta razón, fija su análisis en tres dimensiones: el apoyo de la comunidad política, la democracia como forma ideal de gobierno y la actuación del régimen a través de preguntas concernientes al tipo de régimen político preferido, hacia la evaluación de la democracia, hacia la satisfacción con la misma, así como la evaluación que los ciudadanos puedan hacer sobre los distintos actores políticos como el congreso o el gobierno. (Ídem, 1999) Para el caso chileno, Norris identifica un alto apoyo a la democracia como forma ideal de gobierno con un 79% siendo esta una de las pocas mediciones realizadas en este estudio en la región latinoamericana. 
+En vista de los cambios producidos en las ciudadanías del mundo occidental, Pippa Norris extiende la investigación sobre las dimensiones del apoyo político por parte de la ciudadanía. Explica que para realizar una correcta evaluación en términos de asociatividad con el sistema político, los ciudadanos deben poder comparar y evaluar tipos de regímenes alternativos, más allá del régimen particular bajo el cual estén viviendo. [@norrisCriticalCitizensGlobal1999] Por esta razón, fija su análisis en tres dimensiones: el apoyo de la comunidad política, la democracia como forma ideal de gobierno y la actuación del régimen a través de preguntas concernientes al tipo de régimen político preferido, hacia la evaluación de la democracia, hacia la satisfacción con la misma, así como la evaluación que los ciudadanos puedan hacer sobre los distintos actores políticos como el congreso o el gobierno. (Ídem, 1999) Para el caso chileno, Norris identifica un alto apoyo a la democracia como forma ideal de gobierno con un 79% siendo esta una de las pocas mediciones realizadas en este estudio en la región latinoamericana.
 
-Por último, y como se mencionó anteriormente, hemos tomado el modelo de Almond y Verba como referencia debido al valor de su propuesta teórica, precisamente, para poder en última instancia contrastar este modelo de lealtad con aquel modelo de asertividad propuesto por Russell Dalton y Christian Welzel desarrollado en _The Civic Culture Transformed: from allegiant to assertive citizens_. En él, los autores reevalúan las ideas de Almond y Verba y Pye explicando que, reconociendo el valor único de sus propuestas, estas tampoco deben ser exageradas. Según los autores, su investigación argumenta que los públicos contemporáneos están desarrollando valores más asertivos y autoexpresivos que contrastan con los valores leales del modelo de _Civic Culture_ cambiando así la naturaleza de la ciudadanía democrática. En lugar de un público fiel y leal, las democracias establecidas ahora tienen un público de ciudadanos críticos. [@daltonCivicCultureTransformed2014]
+Por último, y como se mencionó anteriormente, hemos tomado el modelo de Almond y Verba como referencia debido al valor de su propuesta teórica, precisamente, para poder en última instancia contrastar este modelo de lealtad con aquel modelo de asertividad propuesto por Russell Dalton y Christian Welzel desarrollado en *The Civic Culture Transformed: from allegiant to assertive citizens*. En él, los autores reevalúan las ideas de Almond y Verba y Pye explicando que, reconociendo el valor único de sus propuestas, estas tampoco deben ser exageradas. Según los autores, su investigación argumenta que los públicos contemporáneos están desarrollando valores más asertivos y autoexpresivos que contrastan con los valores leales del modelo de *Civic Culture* cambiando así la naturaleza de la ciudadanía democrática. En lugar de un público fiel y leal, las democracias establecidas ahora tienen un público de ciudadanos críticos. [@daltonCivicCultureTransformed2014]
 
-En su desarrollo, explican con claridad las diferencias que ellos entienden entre un ciudadano ‘leal’ y un ciudadano ‘asertivo’ en base a seis dimensiones: 1. La prioridad de valores; 2. Las orientaciones hacia la autoridad; 3. La confianza institucional; 4. El apoyo a la democracia; 5. La noción de democracia, y; 6. El activismo político. 
+En su desarrollo, explican con claridad las diferencias que ellos entienden entre un ciudadano 'leal' y un ciudadano 'asertivo' en base a seis dimensiones: 1. La prioridad de valores; 2. Las orientaciones hacia la autoridad; 3. La confianza institucional; 4. El apoyo a la democracia; 5. La noción de democracia, y; 6. El activismo político.
 
-En este sentido, un ciudadano ‘leal’ es entendido como uno que prioriza y enfatiza el orden y la seguridad limitando prioridades que quizás enfaticen la voz y la participación. Son ciudadanos en que predominan valores materialistas y de protección. En términos de orientaciones hacia la autoridad, se caracterizan por la deferencia hacia esta, en distintos escenarios como su trabajo, su familia, hacia el sistema; posee además una alta confianza en las instituciones; son considerados demócratas satisfechos debido a que apoyan tanto al régimen como a sus instituciones. Por último, las formas de activismo político son convencionales a través del voto o actividades que legitimen al sistema. 
+En este sentido, un ciudadano 'leal' es entendido como uno que prioriza y enfatiza el orden y la seguridad limitando prioridades que quizás enfaticen la voz y la participación. Son ciudadanos en que predominan valores materialistas y de protección. En términos de orientaciones hacia la autoridad, se caracterizan por la deferencia hacia esta, en distintos escenarios como su trabajo, su familia, hacia el sistema; posee además una alta confianza en las instituciones; son considerados demócratas satisfechos debido a que apoyan tanto al régimen como a sus instituciones. Por último, las formas de activismo político son convencionales a través del voto o actividades que legitimen al sistema.
 
-Por otra parte, el ciudadano que es identificado como ‘asertivo’ es uno, digamos, opuesto a este ciudadano ‘leal’. Sus valores y prioridades enfatizan su expresión y participación en vez de prioridades asociadas a la seguridad o el orden. Responden a valores postmaterialistas según lo entiende Inglehart (1997). Su orientación hacia la autoridad se basa en distanciarse de esta en su trabajo o en su familia así como de la política; tiene una baja confianza en las instituciones. Sin embargo, apoya fuertemente los principios de la democracia pero tiene un débil apoyo por su performance práctica; son demócratas insatisfechos. De esta forma identifican la democracia con conceptos como la participación y expresión como componentes dominantes. Por último, tienen una fuerte afinidad con la acción no violenta que desafía a las elites. [@daltonCivicCultureTransformed2014]
+Por otra parte, el ciudadano que es identificado como 'asertivo' es uno, digamos, opuesto a este ciudadano 'leal'. Sus valores y prioridades enfatizan su expresión y participación en vez de prioridades asociadas a la seguridad o el orden. Responden a valores postmaterialistas según lo entiende Inglehart (1997). Su orientación hacia la autoridad se basa en distanciarse de esta en su trabajo o en su familia así como de la política; tiene una baja confianza en las instituciones. Sin embargo, apoya fuertemente los principios de la democracia pero tiene un débil apoyo por su performance práctica; son demócratas insatisfechos. De esta forma identifican la democracia con conceptos como la participación y expresión como componentes dominantes. Por último, tienen una fuerte afinidad con la acción no violenta que desafía a las elites. [@daltonCivicCultureTransformed2014]
 
-Ahora, hasta aquí hemos hablado sobre el concepto de cultura política así como distintas interpretaciones que fueron dándose con el paso del tiempo, tomando en consideración nuevos ‘indicadores’ de los cambios en las sociedades del mundo. No obstante, estas apreciaciones provienen en su gran mayoría desde corrientes europeas y estadounidenses que, si bien explican las formas mediante las que se da el cambio social, lo hacen desde contextos sociales, inevitablemente, muy distanciados de las sociedades y realidades latinoamericanas. 
+Ahora, hasta aquí hemos hablado sobre el concepto de cultura política así como distintas interpretaciones que fueron dándose con el paso del tiempo, tomando en consideración nuevos 'indicadores' de los cambios en las sociedades del mundo. No obstante, estas apreciaciones provienen en su gran mayoría desde corrientes europeas y estadounidenses que, si bien explican las formas mediante las que se da el cambio social, lo hacen desde contextos sociales, inevitablemente, muy distanciados de las sociedades y realidades latinoamericanas.
 
-Ante esto, nos parece importante entonces preguntarnos ¿qué ha pasado entonces con la cultura política en Chile? ¿Qué nos pueden aportar a nuestra discusión distintos autores nacionales y latinoamericanos sobre el devenir en las formas en que la ciudadanía chilena ha visto imbuida su relación con el Estado y la política? Ante esto, creemos que ciertos autores claves pueden darnos ideas interesantes sobre esta búsqueda.  
+Ante esto, nos parece importante entonces preguntarnos ¿qué ha pasado entonces con la cultura política en Chile? ¿Qué nos pueden aportar a nuestra discusión distintos autores nacionales y latinoamericanos sobre el devenir en las formas en que la ciudadanía chilena ha visto imbuida su relación con el Estado y la política? Ante esto, creemos que ciertos autores claves pueden darnos ideas interesantes sobre esta búsqueda.
 
-En este sentido, académicos como Jorge Larraín nos aportan valiosísimos alcances y explicaciones que nos permitirán entender de mejor forma cómo es entendido el cambio social en contraposición de lo que han sido las teorías de la modernización y postmodernización propuestas y descritas anteriormente. 
+En este sentido, académicos como Jorge Larraín nos aportan valiosísimos alcances y explicaciones que nos permitirán entender de mejor forma cómo es entendido el cambio social en contraposición de lo que han sido las teorías de la modernización y postmodernización propuestas y descritas anteriormente.
 
-Larraín explica que es necesario advertir contra dos formas equivocadas y parciales de entenderlo. Una fue utilizada por las teorías de la modernización de la sociología norteamericana, que lo describen como un proceso evolucionario continuo desde la sociedad tradicional hacia la sociedad moderna, que sigue un curso histórico similar, aunque desfasado, en todos los países, de acuerdo con ciertas leyes generales. El error aquí, según el autor, es la reducción del proceso de modernización a la trayectoria europea o norteamericana. Explica que los procesos modernizadores en Chile no siempre obedecieron a una lógica “completa” de la modernidad; la modernidad ha avanzado, pero de manera asincrónica e incompleta, y muchas veces, los propios agentes sociales han tenido una concepción reduccionista de ella. [@larrainIdentidadChilena2001]
+Larraín explica que es necesario advertir contra dos formas equivocadas y parciales de entenderlo. Una fue utilizada por las teorías de la modernización de la sociología norteamericana, que lo describen como un proceso evolucionario continuo desde la sociedad tradicional hacia la sociedad moderna, que sigue un curso histórico similar, aunque desfasado, en todos los países, de acuerdo con ciertas leyes generales. El error aquí, según el autor, es la reducción del proceso de modernización a la trayectoria europea o norteamericana. Explica que los procesos modernizadores en Chile no siempre obedecieron a una lógica "completa" de la modernidad; la modernidad ha avanzado, pero de manera asincrónica e incompleta, y muchas veces, los propios agentes sociales han tenido una concepción reduccionista de ella. [@larrainIdentidadChilena2001]
 
-En este sentido, la problematización realizada inicialmente propone entender que en Chile el desarrollo y profundización de la democracia no estuvo marcado por aquella “receta” de las teorías del hemisferio norte mediante la cual la mayoría de las democracias transitarían hacia el desarrollo político y económico de forma inevitable, sino que más bien la propia historia política de nuestro país puede ser explicativa en sí misma en términos de cultura política, tomando en cuenta, claro está, los aportes anteriormente expuestos. 
+En este sentido, la problematización realizada inicialmente propone entender que en Chile el desarrollo y profundización de la democracia no estuvo marcado por aquella "receta" de las teorías del hemisferio norte mediante la cual la mayoría de las democracias transitarían hacia el desarrollo político y económico de forma inevitable, sino que más bien la propia historia política de nuestro país puede ser explicativa en sí misma en términos de cultura política, tomando en cuenta, claro está, los aportes anteriormente expuestos.
 
-Desde este punto de vista, autores como Daniela Martínez y José Eduardo Jorge han realizado revisiones sistemáticas sobre el concepto de cultura política y su relación tanto con el apoyo a la democracia, como con el concepto de cultura democrática. Por una parte, Jorge explica que el campo de estudio de la cultura política reúne hoy un conjunto convergente de sistemas teóricos e hipótesis. El principal objetivo de estas perspectivas teóricas –que dialogan entre sí y detentan puntos comunes y diferencias- es identificar los componentes fundamentales de la cultura política democrática, sus mecanismos de formación y cambio y su rol en la emergencia, la estabilidad y la calidad de la democracia. [@jorgeCulturaPoliticaDemocracia2009]
+Desde este punto de vista, autores como Daniela Martínez y José Eduardo Jorge han realizado revisiones sistemáticas sobre el concepto de cultura política y su relación tanto con el apoyo a la democracia, como con el concepto de cultura democrática. Por una parte, Jorge explica que el campo de estudio de la cultura política reúne hoy un conjunto convergente de sistemas teóricos e hipótesis. El principal objetivo de estas perspectivas teóricas --que dialogan entre sí y detentan puntos comunes y diferencias- es identificar los componentes fundamentales de la cultura política democrática, sus mecanismos de formación y cambio y su rol en la emergencia, la estabilidad y la calidad de la democracia. [@jorgeCulturaPoliticaDemocracia2009]
 
 Además, define que la cultura política comprende los valores, creencias y pautas de conducta relevantes para el proceso político que prevalecen entre los individuos y grupos de la sociedad, siendo una variable que mantiene relaciones complejas de interacción con la economía, la estructura social y la esfera político-institucional. (Ídem, 2009)
 
-Por otra parte, Martínez define la cultura política como _“un sistema de creencias (...) se trata no de lo que ocurre efectivamente en el mundo de la política, sino de lo que los agentes creen que ocurre”_. [@Martinez] Además de esto, la autora propone una definición muy clara en torno a la conceptualización de la cultura política. Ella define estudiar el concepto a través de tres las tres dimensiones propuestas en Almond y Verba (1963) entendidas como _“cognoscitiva, afectiva y evaluativa”_ y que a su vez estas dimensiones tienen subdimensiones para cada una; entiende la cognoscitiva desde el interés y conocimiento político, la afectiva a través de la confianza institucional y la evaluativa a través de las percepciones hacia la democracia. Entre estas subdimensiones encontramos para cada una distintos indicadores desde interés en la política, confianza en las instituciones hasta el apoyo a la democracia. (Ídem, 2012)
+Por otra parte, Martínez define la cultura política como *"un sistema de creencias (...) se trata no de lo que ocurre efectivamente en el mundo de la política, sino de lo que los agentes creen que ocurre"*. [@Martinez] Además de esto, la autora propone una definición muy clara en torno a la conceptualización de la cultura política. Ella define estudiar el concepto a través de tres las tres dimensiones propuestas en Almond y Verba (1963) entendidas como *"cognoscitiva, afectiva y evaluativa"* y que a su vez estas dimensiones tienen subdimensiones para cada una; entiende la cognoscitiva desde el interés y conocimiento político, la afectiva a través de la confianza institucional y la evaluativa a través de las percepciones hacia la democracia. Entre estas subdimensiones encontramos para cada una distintos indicadores desde interés en la política, confianza en las instituciones hasta el apoyo a la democracia. (Ídem, 2012)
 
-Por último, en el caso chileno la investigación sobre la cultura política ha sido indagada por variados autores quienes han hecho contribuciones explicativas propias de nuestro contexto nacional. En este sentido, Bargsted y Somma fundamentan su análisis en dos dimensiones: las actitudes hacia el régimen político del país y el apego hacia la política y proponen distinguir para cada dimensión lo que denominan ‘orientaciones difusas y específicas’, que, como explican, es un concepto propuesto por Easton y que ha sido profusamente utilizado por la literatura más reciente. [@bargsted-sommaCulturaPolitica2018]
+Por último, en el caso chileno la investigación sobre la cultura política ha sido indagada por variados autores quienes han hecho contribuciones explicativas propias de nuestro contexto nacional. En este sentido, Bargsted y Somma fundamentan su análisis en dos dimensiones: las actitudes hacia el régimen político del país y el apego hacia la política y proponen distinguir para cada dimensión lo que denominan 'orientaciones difusas y específicas', que, como explican, es un concepto propuesto por Easton y que ha sido profusamente utilizado por la literatura más reciente. [@bargsted-sommaCulturaPolitica2018]
 
 Ante esto, explican que las orientaciones democráticas difusas hacen referencia a la evaluación de los ciudadanos sobre la democracia como régimen de gobierno abstracto, más allá de circunstancias puntuales del momento. Por otra parte, las orientaciones específicas se refieren a cómo los ciudadanos evalúan el funcionamiento de la democracia de su país en un momento dado. En su noción, esta distinción resulta clave porque las orientaciones difusas no necesariamente deben coincidir con las orientaciones específicas, puesto que indicadores difusos como apoyo a la democracia, interés en la política o involucramiento político en general (que son utilizados por ellos) pueden diferir en sus preferencias contra indicadores específicos, como la evaluación al congreso, al presidente o a los objetos políticos. (Ídem, 2018)
 
-Por último, teniendo en consideración distintas aproximaciones conceptuales hacia la cultura política, para los términos de esta investigación proponemos utilizar aquella definición clásica de Almond y Verba, respecto a la “particular distribución de las pautas de orientación hacia los objetos políticos entre los miembros de una nación” y además, proponemos evaluar estas orientaciones bajo los conceptos propuestos por Bargsted  y Somma sobre “orientaciones difusas y específicas”, para así poder interpretar bajo estas teorías los resultados que logremos presentar. 
+Por último, teniendo en consideración distintas aproximaciones conceptuales hacia la cultura política, para los términos de esta investigación proponemos utilizar aquella definición clásica de Almond y Verba, respecto a la "particular distribución de las pautas de orientación hacia los objetos políticos entre los miembros de una nación" y además, proponemos evaluar estas orientaciones bajo los conceptos propuestos por Bargsted y Somma sobre "orientaciones difusas y específicas", para así poder interpretar bajo estas teorías los resultados que logremos presentar.
 
-# 8.2 El apoyo a la democracia 
+# 8.2 El apoyo a la democracia
 
-Por otra parte, las definiciones sobre qué tipo de democracia es la que se apoya cuando se contesta ante una encuesta de opinión pública pueden variar de maneras importantes. Por esta misma razón, para saber a qué tipo de democracia nos referiremos en adelante, es importante mencionar brevemente que entenderemos el apoyo a la democracia como “el apoyo explícito a la democracia – afirmación verbal- y el apoyo intrínseco a los valores democráticos como la libertad, expresión pública, tolerancia a la diversidad, confianza interpersonal y satisfacción con la vida”. (Sanhueza et al. 2015) Sin embargo, debemos advertir que esta definición no es exclusiva pues más adelante se propondrá una discusión teórica en torno a la misma. 
-Esta definición será cambiada por otra más precisa respecto al indicador que será operacionalizado en la metodología. Lo dejo para continuar la idea después. 
--	Explicar el origen del concepto
--	Discutir teóricamente
--	Proponer mi definición de apoyo a la democracia
--	Fin del marco teórico
+Por otra parte, las definiciones sobre qué tipo de democracia es la que se apoya cuando se contesta ante una encuesta de opinión pública pueden variar de maneras importantes. Por esta misma razón, para saber a qué tipo de democracia nos referiremos en adelante, es importante mencionar brevemente que entenderemos el apoyo a la democracia como "el apoyo explícito a la democracia -- afirmación verbal- y el apoyo intrínseco a los valores democráticos como la libertad, expresión pública, tolerancia a la diversidad, confianza interpersonal y satisfacción con la vida". (Sanhueza et al. 2015) Sin embargo, debemos advertir que esta definición no es exclusiva pues más adelante se propondrá una discusión teórica en torno a la misma. Esta definición será cambiada por otra más precisa respecto al indicador que será operacionalizado en la metodología. Lo dejo para continuar la idea después. - Explicar el origen del concepto - Discutir teóricamente - Proponer mi definición de apoyo a la democracia - Fin del marco teórico
 :::
-
-
 
 # 9. Diseño metodológico
 
 ## 9.1 Descripción de los datos a utilizar
+
 ::: {style="text-align: justify"}
 Teniendo en cuenta que buscamos estudiar sobre opiniones y percepciones ciudadanas, hemos escogido para esta investigación los datos proporcionados por el Centro de Estudios de Conflicto y Cohesión Social a través de la Encuesta Longitudinal Social correspondientes a su ola 5 durante el año 2021. Se ha escogido estos datos debido a que el diseño muestral de la encuesta cumple con las características para otorgar representatividad nacional, en este caso, siendo esta de un 77% para la población de todo el país y un 93% de la población urbana. [@COESa] Además, cuenta con un muestreo probabilístico, estratificado y multietápico.
 
-De esta forma, la ELSOC busca ser un estudio cuyo horizonte temporal se encuentra en el desarrollo continuo de olas de encuestas que contempla hasta el año 2024 en la cual espera lograr entrevistar cerca de 3000 mil chilenos a lo largo de una década con el fin de evaluar sus pensamientos, opiniones y sentimientos hacia distintas estructuras que giran en torno al conflicto y cohesión social. 
+De esta forma, la ELSOC busca ser un estudio cuyo horizonte temporal se encuentra en el desarrollo continuo de olas de encuestas que contempla hasta el año 2024 en la cual espera lograr entrevistar cerca de 3000 mil chilenos a lo largo de una década con el fin de evaluar sus pensamientos, opiniones y sentimientos hacia distintas estructuras que giran en torno al conflicto y cohesión social.
 
-En su versión 2021, la Ola número 5 de la ELSOC es una base de datos que cuenta con 311 variables y 2740 observaciones, compuestas en un 63,36% por mujeres y un 36,64% por hombres. 
+En su versión 2021, la Ola número 5 de la ELSOC es una base de datos que cuenta con 311 variables y 2740 observaciones, compuestas en un 63,36% por mujeres y un 36,64% por hombres.
 
-Para los fines de nuestra investigación, hemos seleccionado nuestras variables de interés en función de los distintos módulos de investigación que componen el diseño del instrumento así como el diseño del cuestionario. En este sentido, el módulo de nuestro interés es el de ‘Ciudadanía y Democracia’ referente, entre otras, a las apreciaciones ciudadanas respecto al vínculo existente entre ambos componentes.
+Para los fines de nuestra investigación, hemos seleccionado nuestras variables de interés en función de los distintos módulos de investigación que componen el diseño del instrumento así como el diseño del cuestionario. En este sentido, el módulo de nuestro interés es el de 'Ciudadanía y Democracia' referente, entre otras, a las apreciaciones ciudadanas respecto al vínculo existente entre ambos componentes.
 :::
+
 ## 9.2 Técnica de análisis a utilizar
+
 ::: {style="text-align: justify"}
-En función de nuestra pregunta de investigación en coherencia con nuestros objetivos e hipótesis, hemos escogido utilizar un diseño metodológico cuantitativo que a través del análisis de datos logre contestar nuestra pregunta de investigación y cumplir nuestros objetivos. En concreto, buscando realizar un análisis descriptivo presentaremos distintos indicadores sobre cultura política agrupados según las definiciones metodológicas que detallamos más adelante para de esta forma poder contextualizar lo que nuestros hallazgos muestran sobre el estado de las percepciones de cultura política y apoyo a la democracia desde las juventudes chilenas.  
+En función de nuestra pregunta de investigación en coherencia con nuestros objetivos e hipótesis, hemos escogido utilizar un diseño metodológico cuantitativo que a través del análisis de datos logre contestar nuestra pregunta de investigación y cumplir nuestros objetivos. En concreto, buscando realizar un análisis descriptivo presentaremos distintos indicadores sobre cultura política agrupados según las definiciones metodológicas que detallamos más adelante para de esta forma poder contextualizar lo que nuestros hallazgos muestran sobre el estado de las percepciones de cultura política y apoyo a la democracia desde las juventudes chilenas.
 
 En vista de que la mayoría de nuestras variables son categóricas ordinales hemos escogido como técnica un análisis de regresión logística binaria múltiple que busca evaluar si existen relaciones significativas entre el apoyo a la democracia y el interés en la política, la confianza en el gobierno y la satisfacción con la democracia entre los jóvenes. Además, a través de muestras complejas en R se busca trabajar con muestras representativas de la población a estudiar. Esto nos permitirá realizar la construcción de nuestros modelos sin pesos muestrales y otro, idéntico, con pesos muestrales que permitan otorgar una mayor validez estadística a nuestro análisis. Posteriormente se compararán ambos modelos en busca de diferencias estadísticas que puedan ser significativas entre uno y otro modelo. Así mismo, se busca entregar los valores predichos para cada variable independiente, identificando las chances que pueden aumentar el apoyo a la democracia.
 
-Por último, a través de nuestros modelos de regresión no solo buscamos conocer la relación entre el apoyo a la democracia y los indicadores de cultura política, sino también entregar los valores predichos para cada variable independiente controlando por sexo, edad y nivel educativo identificando las chances que pueden aumentar el apoyo a la democracia. 
+Por último, a través de nuestros modelos de regresión no solo buscamos conocer la relación entre el apoyo a la democracia y los indicadores de cultura política, sino también entregar los valores predichos para cada variable independiente controlando por sexo, edad y nivel educativo identificando las chances que pueden aumentar el apoyo a la democracia.
 :::
+
 ## 9.3 Unidad de observación
-:::
-En concordancia con nuestra muestra, la unidad de observación mínima serán los informantes entre 20 y 40 años que contestaron la encuesta durante el año 2021 distribuidos a lo largo del país. La definición que utilizaremos sobre juventud es la otorgada por el Instituto Nacional de Estadísticas para quienes define la población “Jóvenes” entre los 15-29 años y a la población adulta entre los 30 – 59 años. [@InstitutoNacionaldeEstadisticas] En base a esta consideración es que la recodificación de nuestra variable “edad_tramo” fue recodificada entre 18:24 como “Jóvenes”; 25:30 como “Adultos Jóvenes”, y; desde 31:40 como “Adulto”, esto buscando evaluar las diferencias entre estos breves tramos etarios en consideración de lo que ha sido previamente evaluado por la literatura propuesta.
-:::
+
+::: En concordancia con nuestra muestra, la unidad de observación mínima serán los informantes entre 20 y 40 años que contestaron la encuesta durante el año 2021 distribuidos a lo largo del país. La definición que utilizaremos sobre juventud es la otorgada por el Instituto Nacional de Estadísticas para quienes define la población "Jóvenes" entre los 15-29 años y a la población adulta entre los 30 -- 59 años. [@InstitutoNacionaldeEstadisticas] En base a esta consideración es que la recodificación de nuestra variable "edad_tramo" fue recodificada entre 18:24 como "Jóvenes"; 25:30 como "Adultos Jóvenes", y; desde 31:40 como "Adulto", esto buscando evaluar las diferencias entre estos breves tramos etarios en consideración de lo que ha sido previamente evaluado por la literatura propuesta. :::
 
 ## 9.4 Matriz de operacionalización de variables
 
-|Concepto          |Dimensiones    |Subdimensiones                   |Indicador                |Pregunta                                  |Nivel de medición                |
-|------------------|---------------|---------------------------------|------------------------ |------------------------------------------|---------------------------------|
-|Cultura política  |Cognoscitiva   |Interés y conocimiento político  |Niveles de interés       |¿Qué tan interesado está usted            |Escala de Likert colapsadas      |
-|                  |               |                                 |en la política           |en la política?                           |en tres categorías de respuesta: | |                  |               |                                 |                         |                                          |1. Nada o poco interesado        |
-|                  |               |                                 |                         |                                          |2. Algo interesado               |
-|                  |               |                                 |                         |                                          |3. Bastamte o muy interesado     | |------------------|---------------|---------------------------------|-------------------------|------------------------------------------|---------------------------------|
-|                  |Afectiva       |Confianza institucional          |Grado de confianza en:   |Utilizando una escala donde 1 representa  |Escala de Likert colapsadas en   | 
-|                  |               |                                 |1. El presidente         |"Nada" y 5 representa "Mucho", ¿podría    |tres categorías de respuesta:    | 
-|                  |               |                                 |2. El congreso           |decirme cuánto confía ud. en cada una de  |1. Nada o poca                   | 
-|                  |               |                                 |3. El gobierno           |las siguientes instituciones?             |2. Algo                          |                    |               |                                 |4. Los partidos políticos|                                          |3. Bastamte o mucha              | |------------------|---------------|---------------------------------|-------------------------|------------------------------------------|---------------------------------|
-|                  |Evaluativa     |Percepciones hacia la democracia |Satisfacción con la      |¿Cuán satisfecho o insatisfecho está ud   |Escala de Likert colapsada en    | 
-|                  |               |                                 |democracia               |con el funcionamiento de la democracia en |tres categorías de respuesta:    |
-|                  |               |                                 |                         |Chile?                                    |1. Nada o poco satisfecho        |
-|                  |               |                                 |Apoyo a la democracia    |                                          |2. Algo satisfecho               |
-|                  |               |                                 |                         |                                          |3. Bastante o muy satisfechho    |
-|                  |               |                                 |                         |¿Con cuál de las siguientes frases está   |                                 | |                  |               |                                 |                         |más de acuerdo?                           |Pregunta cerrada con tres        | |                  |               |                                 |                         |                                          |categorías de respuesta:         |
-|                  |               |                                 |                         |                                          |1.La democracia es preferible a  |
-|                  |               |                                 |                         |                                          |cualquier otra forma de gobierno |
-|                  |               |                                 |                         |                                          |2.En algunas circunstancias, un  |
-|                  |               |                                 |                         |                                          |gobierno autoritario puede ser   |
-|                  |               |                                 |                         |                                          |preferible a uno democrático     | |                  |               |                                 |                         |                                          |3. A la gente como uno, nos da   |
-|                  |               |                                 |                         |                                          |lo mismo un régimen democrático  |
-|                  |               |                                 |                         |                                          |que uno autoritario              | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
- 
-
-
+| Concepto         | Dimensiones  | Subdimensiones                   | Indicador              | Pregunta                                  | Nivel de medición                |
+|------------|------------|------------|------------|-------------|------------|
+| Cultura política | Cognoscitiva | Interés y conocimiento político  | Niveles de interés     | ¿Qué tan interesado está usted            | Escala de Likert colapsadas      |
+|                  |              |                                  | en la política         | en la política?                           | en tres categorías de respuesta: |
+|                  |              |                                  |                        |                                           | 2\. Algo interesado              |
+|                  |              |                                  |                        |                                           | 3\. Bastamte o muy interesado    |
+|                  | Afectiva     | Confianza institucional          | Grado de confianza en: | Utilizando una escala donde 1 representa  | Escala de Likert colapsadas en   |
+|                  |              |                                  | 1\. El presidente      | "Nada" y 5 representa "Mucho", ¿podría    | tres categorías de respuesta:    |
+|                  |              |                                  | 2\. El congreso        | decirme cuánto confía ud. en cada una de  | 1\. Nada o poca                  |
+|                  |              |                                  | 3\. El gobierno        | las siguientes instituciones?             | 2\. Algo                         |
+|                  | Evaluativa   | Percepciones hacia la democracia | Satisfacción con la    | ¿Cuán satisfecho o insatisfecho está ud   | Escala de Likert colapsada en    |
+|                  |              |                                  | democracia             | con el funcionamiento de la democracia en | tres categorías de respuesta:    |
+|                  |              |                                  |                        | Chile?                                    | 1\. Nada o poco satisfecho       |
+|                  |              |                                  | Apoyo a la democracia  |                                           | 2\. Algo satisfecho              |
+|                  |              |                                  |                        |                                           | 3\. Bastante o muy satisfechho   |
+|                  |              |                                  |                        | ¿Con cuál de las siguientes frases está   |                                  |
+|                  |              |                                  |                        |                                           | 1.La democracia es preferible a  |
+|                  |              |                                  |                        |                                           | cualquier otra forma de gobierno |
+|                  |              |                                  |                        |                                           | 2.En algunas circunstancias, un  |
+|                  |              |                                  |                        |                                           | gobierno autoritario puede ser   |
+|                  |              |                                  |                        |                                           | preferible a uno democrático     |
+|                  |              |                                  |                        |                                           | lo mismo un régimen democrático  |
+|                  |              |                                  |                        |                                           | que uno autoritario              |
 
 # 10. Reporte de resultados
 
@@ -268,6 +276,7 @@ En concordancia con nuestra muestra, la unidad de observación mínima serán lo
 
 ```{r include=FALSE}
 pacman::p_load(dplyr,
+              car,
               tidyverse,
               magrittr,
               srvyr,
@@ -284,31 +293,39 @@ pacman::p_load(dplyr,
               knitr,
               ggrepel,
               gmodels,
-              citr)
+              performance,
+              see)
 ```
 
-## 10.2 carga de datos y visualización 
+## 10.2 carga de datos y visualización
+
 ```{r include=FALSE}
 datos_proc <- readRDS("../output/datos/datos_proc.rds")
 ```
 
-# 11. Presentación de variables 
+# 11. Presentación de variables
+
 ```{r echo=FALSE}
 view_df(datos_proc)
+str(datos_proc)
 ```
 
 # 12. Descriptivos
+
 ## 12.1 Descriptivos univariados de "Confianza institucional"
+
 ```{r echo=FALSE}
 plot_stackfrq(datos_proc[,c("confianza_pdte","confianza_gob","confianza_pp","confianza_congreso")]) + theme(legend.position="bottom")
 ```
 
 ## 12.2 Descriptivos univariados de "Conocimiento político"
+
 ```{r echo=FALSE}
 plot_stackfrq(datos_proc[,c("opina_rrss","informa_politica","habla_politica")]) + theme(legend.position="bottom")
 ```
 
 ## 12.3 Descriptivos uniariados de "Percepciones hacia la democracia" 1
+
 ```{r echo=FALSE}
 frq(datos_proc$apoyo_dem,
     show.na = F,
@@ -332,7 +349,8 @@ frq(datos_proc$apoyo_dem,
            general_title = "Fuente: ") # personalizamos nota al pie
 ```
 
-## 12.4 Descriptivos uniariados de "Percepciones hacia la democracia" 
+## 12.4 Descriptivos uniariados de "Percepciones hacia la democracia"
+
 ```{r}
 frq(datos_proc$satis_dem,
     show.na = F,
@@ -356,9 +374,9 @@ frq(datos_proc$satis_dem,
            general_title = "Fuente: ") # personalizamos nota al pie
 ```
 
-
 # 13. Gráficos bivariados
-## 13.1  Gráficos bivariados: apoyo a la democracia según sexo
+
+## 13.1 Gráficos bivariados: apoyo a la democracia según sexo
 
 ```{r, apoyo_dem segun sexo}
 ggplot(datos_proc) + 
@@ -377,6 +395,7 @@ ggplot(datos_proc) +
 ```
 
 ## 13.2 Gráficos bivariados: apoyo a la democracia según nivel educacional
+
 ```{r echo=FALSE}
 ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
   geom_mosaic(aes(x=product(apoyo_dem, nivel_educ), fill=nivel_educ)) +
@@ -394,6 +413,7 @@ ggplot(datos_proc) + # apoyo a la democracia según nivel educacional
 ```
 
 ## 13.3 Gráficos bivariados: apoyo a la democracia según interés en la política
+
 ```{r echo=FALSE}
 ggplot(datos_proc) + # apoyo a la democracia según edad_tramo
   geom_mosaic(aes(x=product(apoyo_dem, interes_politica), fill=interes_politica)) +
@@ -411,6 +431,7 @@ ggplot(datos_proc) + # apoyo a la democracia según edad_tramo
 ```
 
 ## 13.4 Gráficos bivariados: apoyo a la democracia según confianza en los partidos políticos
+
 ```{r}
 ggplot(datos_proc) + 
   geom_mosaic(aes(x=product(apoyo_dem, confianza_pp), fill=confianza_pp)) +
@@ -425,9 +446,12 @@ ggplot(datos_proc) +
   scale_y_continuous(breaks = c(0,1,2),
                      labels = c("Democracia como mejor forma de gobierno","A veces es mejor un régimen autoritario","No nos importa si uno u otro")) +
   theme(legend.position="bottom")
+frq(datos_proc$apoyo_dem_dic)
+addmargins(table(datos_proc$apoyo_dem_dic,datos_proc$sexo)) # entrega frecuencias marginales y absolutas para apoyo_dem_dic y sexo
 ```
 
 ## 13.5 Gráficos bivariados: apoyo a la democracia según la satisfacción con la democracia
+
 ```{r}
 ggplot(datos_proc) + 
   geom_mosaic(aes(x=product(apoyo_dem, satis_dem), fill=satis_dem)) +
@@ -444,10 +468,15 @@ ggplot(datos_proc) +
   theme(legend.position="bottom")
 ```
 
-
 # 14. Modelos de regresión logística binaria
 
+```{r, revision de NA}
+datos_proc %>% # se verifican NA por cada variable
+summarize_all(funs(sum(is.na(.)))) 
+```
+
 ## 14.1 Creación de objeto encuesta
+
 ```{r}
 esi_design <- as_survey_design(datos_proc,
                                ids = 1,
@@ -460,15 +489,14 @@ esi_design <- as_survey_design(datos_proc,
 ### Creamos modelos del 1:6 + un modelo 6 con diseño muestral complejo
 
 ```{r modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
-modelo0 <- glm(apoyo_dem_bin ~ 1, data = datos_proc, family = "binomial")
-modelo1 <- glm(apoyo_dem_bin ~ sexo, data = datos_proc, family = "binomial")
-modelo2 <- glm(apoyo_dem_bin ~ edad, data = datos_proc, family = "binomial")
-modelo3 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica, data = datos_proc, family = "binomial")
-modelo4 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp, data = datos_proc, family = "binomial")
-modelo5 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem, data = datos_proc, family = "binomial")
-modelo6 <- glm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem + nivel_educ,
-               data = datos_proc, family = "binomial")
-modelo6survey <- svyglm(apoyo_dem_bin ~ sexo + edad + interes_politica + confianza_pp + satis_dem + nivel_educ,
+modelo0 <- glm(apoyo_dem_dic ~ 1, data = datos_proc, family = "binomial")
+modelo1 <- glm(apoyo_dem_dic ~ sexo, data = datos_proc, family = "binomial")
+modelo2 <- glm(apoyo_dem_dic ~ edad_tramo, data = datos_proc, family = "binomial")
+modelo3 <- glm(apoyo_dem_dic ~ nivel_educ, data = datos_proc, family = "binomial")
+modelo4 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + interes_politica, data = datos_proc, family = "binomial")
+modelo5 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + interes_politica + confianza_pp, data = datos_proc, family = "binomial")
+modelo6 <- glm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica + confianza_pp + satis_dem, data = datos_proc, family = "binomial")
+modelo6survey <- svyglm(apoyo_dem_dic ~ sexo + edad_tramo + nivel_educ + interes_politica + confianza_pp + satis_dem,
                         family = binomial(link = "logit"),
                         design = esi_design)
 summary(modelo6survey)
@@ -480,17 +508,8 @@ get_model_data(modelo6,# valores predichos
                type = "pred")
 ```
 
-
-## 14.3 Tabulamos los modelos: se ofrecen dos formas de visualizar los modelos
-```{r, modelos_listos_distinta_presentacion_indicadores_ip_cpp_satisdem}
-#screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5,modelo6), doctype = FALSE,
-          #custom.coef.names=c("Intercepto","Sexo (Mujer=1)","Edad","Algo interesadoIP","Bastante o muy interesadoIP",
-                              #"AlgoPP","Bastante o muchaPP","Algo satisfechoSD","Bastante o muy
-                              #satisfechoSD","Secundaria","Técnica","Universitaria"),
-          #custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6"))
-
-
-sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5,modelo6), # los modelos estimados
+```{r, modelos_listos_}
+sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5, modelo6), # los modelos estimados
                   show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
                   p.style = "stars", # asteriscos de significación estadística
                   df.method = 'wald',
@@ -499,11 +518,68 @@ sjPlot::tab_model(list(modelo0, modelo1, modelo2,modelo3, modelo4,modelo5,modelo
                   encoding =  "UTF-8")
 ```
 
+```{r, ajuste de modelos_1}
+check_autocorrelation(modelo6survey) # se verifica la independencia de los residuos a través de la prueba de Durbin - Watson (p = 0.474) Residuos parecen ser independientes y no autocorrelacionados
+plot(check_collinearity(modelo6survey)) # se grafican valores de multicolinealidad
+check_collinearity(modelo6survey) # se verifican estos valores. Baja colinealidad
+plot(check_outliers(modelo6survey)) # se grafican los valores influyentes
+check_outliers(modelo6survey) # no se detectan outliers
+```
+
+```{r eval=FALSE, include=FALSE}
+performance::model_performance(modelo6) %>%
+  print_md() # entrega una tabla 
+performance::model_performance(modelo6survey) %>%
+  print_md() # entrega una tabla 
+
+check_model(modelo6survey, check = c("vif", "homogeneity"))
+```
+
+```{r eval=FALSE, include=FALSE}
+# crear una lista con los modelos
+models <- list(modelo0, modelo1, modelo2,modelo3,modelo4,modelo5,modelo6,modelo6survey)
+
+# plotear modelos usando sjplot
+plot_model(models, 
+           type = "pred", 
+           show.ci = TRUE, 
+           legend.title = "Modelos")
+
+# extraer elementos de los modelos
+modelo6$coefficients
+modelo6$coefficients[3]
+summary(modelo6)$deviance # devianza
+summary(modelo6)$aic # Akaike
+get_model_data(modelo6survey, 
+               type = "pred")
+
+
+# extraer resúmenes de los modelos
+model_summaries <- lapply(models, tidy)
+
+# Vincular los resúmenes del modelo en un solo marco de datos
+model_summaries_df <- bind_rows(model_summaries)
+```
+
+```{r, el modelo graficado}
+sjPlot::plot_model(modelo6, 
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = c(0.95), 
+                   title = "Estimación de predictores", 
+                   digits = 3,
+                   vline.color = "black",
+                   axis.title = "Modelo 6",
+                   color.p = "blue",
+                   color.val = "green")
+```
+
 ## 14.4 Representación de modelos en una tabla
 
 Luego, se visualizan los todos los modelos (excepto modelo6survey) en una tabla única con coeficientes exponenciados correspondendientes a los Odds ratio que permiten reflejar la asociación entre las chances de las variables predictoras.
 
 # este estadístico arroja problemas con NA que no deberían estar. Revisar
+
 ```{r tabla_modelos_logisticos, echo=FALSE, message=FALSE, warning=FALSE}
 sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6),
   string.intercept = "(Intercepto)",
@@ -518,7 +594,6 @@ sjPlot::tab_model(list(modelo0,modelo1,modelo2,modelo3,modelo4,modelo5,modelo6),
   encoding = "UTF-8",
   lang = "es")
 ```
-
 
 ## 14.5 Interpretación
 
@@ -537,45 +612,47 @@ plot_model(modelo6survey, type = c("pred"),
            terms = c("sexo"),  digits = 3,
            axis.title = c("Sexo", "Apoyo a la democracia"),
            title = "Gráfico 1. Modelo 5 que estima la frecuencia de apoyo a la demoracia según sexo")
-```   
+```
 
-## 15.2 Gráfico 2: Modelo 5survey de valores predichos sobre apoyo a la democracia según nivel educacional
+## 15.2 Gráfico 2: Modelo 6survey de valores predichos sobre apoyo a la democracia según nivel educacional
 
-```{r}
-plot_model(modelo6survey, type = c("pred"),
-           terms = c("nivel_educ"),  digits = 3,
-           axis.title = c("Nivel educacional", "Apoyo a la democracia"),
-           title = "Gráfico 2. Modelo 5 que estima la frecuencia de apoyo a la democracia según nivel educacional")
+```{r eval=FALSE, include=FALSE}
+plot_model(modelo6, type = c("pred"),
+           terms = c("edad"),  digits = 3,
+           axis.title = c("Edad tramo", "Apoyo a la democracia"),
+           title = "Gráfico 2. Modelo 5 que estima la frecuencia de apoyo a la democracia según tramo de edad")
 ```
 
 ## 15.3 Gráfico 3: Modelo 6survey de valores predichos sobre apoya a la democracia según interés en la política
+
 ```{r}
-plot_model(modelo6survey, type = c("pred"),
+plot_model(modelo6, type = c("pred"),
            terms = c("interes_politica"),  digits = 3,
            axis.title = c("Interés en la política", "Apoyo a la democracia"),
            title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según el interés en la política")
 ```
 
 ## 15.4 Gráfico 4: Modelo 6survey de valores predichos sobre el apoyo a la democracia según confianza en los partidos políticos
+
 ```{r}
-plot_model(modelo6survey, type = c("pred"),
+plot_model(modelo6, type = c("pred"),
            terms = c("confianza_pp"),  digits = 3,
            axis.title = c("Confianza en los partidos políticos", "Apoyo a la democracia"),
            title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según el apoyo a los partidos políticos")
 ```
 
 ## 15.5 Gráfico 5: Modelo 6survey de valores predichos sobre el apoyo a la democracia según la satisfacción con la democracia
+
 ```{r}
-plot_model(modelo6survey, type = c("pred"),
+  plot_model(modelo6, type = c("pred"),
            terms = c("satis_dem"),  digits = 3,
            axis.title = c("Satisfacción con la democracia", "Apoyo a la democracia"),
            title = "Gráfico 3. Modelo 6 que estima la frecuencia de apoyo a la democracia según la satisfacción con la democracia")
 ```
 
-
 # 16. Comparación y reporte estimación modelo 6 con R base y modelo 6 con diseño muestral complejo
 
-### Reporte con summary de modelo 6 con R base 
+### Reporte con summary de modelo 6 con R base
 
 ## 16.1 Reporte de modelo ***sin*** pesos muestrales
 
@@ -583,7 +660,7 @@ plot_model(modelo6survey, type = c("pred"),
 summary(modelo6)
 ```
 
-## 17.2 Reporte de modelo ***con*** pesos muestrales
+## 17.2 Reporte de modelo 6survey ***con*** pesos muestrales
 
 ```{r reporte_modelo7_diseño_complejo, echo=FALSE, message=FALSE, warning=FALSE}
 summary(modelo6survey)
@@ -594,12 +671,12 @@ summary(modelo6survey)
 ## 17.4 Se reporta la tabla del modelo 6 con R base:
 
 ```{r tabla_modelo6_R_base, echo=FALSE, message=FALSE, warning=FALSE}
-sjPlot::tab_model(modelo5, 
+sjPlot::tab_model(modelo6, 
                   show.ci=FALSE, 
                   transform = 'exp', 
                   p.style = "stars", 
                   df.method = 'wald', 
-                  dv.labels = "Modelo 6 con R base", 
+                  dv.labels = "Modelo 5 con R base", 
                   string.pred = "Predictores", string.est = "β", 
                   encoding =  "UTF-8")
 ```
@@ -617,10 +694,36 @@ sjPlot::tab_model(modelo6survey,
                   encoding =  "UTF-8")
 ```
 
+```{r}
+sjPlot::plot_model(modelo6,  
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = c(0.95), 
+                   title = "Estimación de predictores", 
+                   digits = 3,
+                   vline.color = "black",
+                   axis.title = "Satisfacción con la democracia")
+```
+
 ## 17.5 Interpretación
+
+```{r eval=FALSE, include=FALSE}
+sjPlot::plot_model(modelo6survey, 
+                   show.p = T,
+                   show.values =  T,
+                   ci.lvl = 0.95, 
+                   title = "Estimación de predictores",
+                   vline.color = "green")
+```
 
 # 18. Conclusión
 
 # 19. Referencias bibliográficas
 
-
+```{r}
+ # crear tabla de contingencia
+table_dem_interes <- table(datos_proc$apoyo_dem_dic, datos_proc$interes_politica)
+ 
+ # Perform the chi-squared test
+ chisq.test(table_dem_interes)
+```

@@ -1,0 +1,175 @@
+---
+title: "borrador_analisis"
+author: "Ignacio Tapia Fuentes"
+date: "2023-01-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+## PRUEBA 1
+```{r}
+# Extract model coefficients and standard errors
+coefs <- cbind(coef(modelo0), coef(modelo1), coef(modelo2), coef(modelo3), coef(modelo4), coef(modelo5), coef(modelo6))
+se <- cbind(sqrt(diag(vcov(modelo0))), sqrt(diag(vcov(modelo1))), sqrt(diag(vcov(modelo2))), sqrt(diag(vcov(modelo3))), sqrt(diag(vcov(modelo4))), sqrt(diag(vcov(modelo5))), sqrt(diag(vcov(modelo6))))
+
+# Create matrix or data frame of model coefficients, standard errors, and labels
+coef_df <- data.frame(
+  predictor = names(coefs),
+  modelo0 = coefs[,1], se0 = se[,1],
+  modelo1 = coefs[,2], se1 = se[,2],
+  modelo2 = coefs[,3], se2 = se[,3],
+  modelo3 = coefs[,4], se3 = se[,4],
+  modelo4 = coefs[,5], se4 = se[,5],
+  modelo5 = coefs[,6], se5 = se[,6],
+  modelo6 = coefs[,7], se6 = se[,7]
+)
+
+# Create plot title
+title <- "Modelos de Regresión Logística para el Apoyo a la Democracia o Autoritarismo"
+
+# Create empty matrix for horizontal lines
+hrz_lines <- matrix(nrow = 0, ncol = 9)
+
+# Create vector of y axis labels
+y_labels <- c("Intercepto", "Sexo del entrevistada/o: Mujer", "Edad por tramo: Adulto", "Edad por tramo: Adulto mayor", "Nivel educacional: Secundaria", "Nivel educacional: Educación técnica", "Nivel educacional: Universitaria o posgrado", "¿Qué tan interesado está usted en la política?: Algo interesado", "¿Qué tan interesado está usted en la política?: Bastante o muy interesado", "Grado de confianza: Los Partidos Politicos: Algo", "Grado de confianza: Los Partidos Politicos: Bastante o mucha", "¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?: Algo satisfecho", "¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?: Bastante o muy satisfecho")
+
+# crear vectOr de etiquetas del eje X 
+
+x_labels <- c("Modelo 0", "Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5","Modelo 6")
+
+# Crear una matriz de intervalos de confianza
+
+ci_low <- coef_df[,c("modelo0", "modelo1", "modelo2", "modelo3", "modelo4", "modelo5", "modelo6")] - 1.96 * coef_df[,c("se0", "se1", "se2", "se3", "se4", "se5", "se6")]
+ci_high <- coef_df[,c("modelo0", "modelo1", "modelo2", "modelo3", "modelo4", "modelo5", "modelo6")] + 1.96 * coef_df[,c("se0", "se1", "se2", "se3", "se4","se5","se6")]
+
+# Crear vector de límites de intervalos de confianza inferiores
+
+ci_bajo_vector <- as.vector(t(ci_low))
+
+# Crear vector de límites de intervalo de confianza superior
+ci_alto_vector <- as.vector(t(ci_high))
+
+# crear gráfico
+
+forestplot(
+plot_title = title,
+plot_matrix = coef_df[,c("modelo0", "modelo1", "modelo2", "modelo3", "modelo4", "modelo5", "modelo6")],
+plot_rhs = hrz_lines,
+plot_ci_lower = ci_low_vector,
+plot_ci_upper = ci_high_vector,
+plot_x_text = x_labels,
+plot_y_text = y_labels,
+plot_box_width = 0.5,
+plot_text_size = 9
+)
+
+```
+
+
+```{r}
+# check for missing values in the data
+is.na(datos_proc)
+
+# check for missing values in a calculated statistic
+my_statistic <- mean(datos_proc$x1)
+is.na(my_statistic)
+
+# check for missing values in a logical operation
+my_logical <- my_statistic > 0
+is.na(my_logical)
+
+which(datos_proc$x1 != 1 & datos_proc$x1 != 2)
+
+apply(datos_proc, 2, function(x) sum(is.na(x)))
+names(datos_proc)
+which(datos_proc$x8 != 1 & datos_proc$x8 != 2)
+
+which(datos_proc$x19 != "A" & datos_proc$x19 != "B")
+which(!is.numeric(datos_proc$x19))
+datos_proc[which(!is.numeric(datos_proc$x19)), "x19"]
+which(is.na(datos_proc$x19))
+
+summary(modelo6survey)
+```
+
+
+
+## PRUEBA 2 MULTICOLINEALIDAD
+```{r}
+vif(modelo6survey)
+rsquaredGLM(modelo6survey)
+```
+
+
+## PRUEBA 3: AJUSTES DEL MODELO
+
+```{r}
+# calculate the pseudo R-squared
+pseudo_r2 <- summary(modelo6survey)$r.squared.ncx
+
+print(pseudo_r2)
+
+# calculate the concordance index
+c_index <- cindex(modelo6survey)
+
+# calculate the AUC
+auc <- auc(modelo6survey)
+```
+
+
+
+## 14.3 Tabulamos los modelos: se ofrecen dos formas de visualizar los modelos
+```{r, modelos_listos_distinta_presentacion_indicadores_ip_cpp_satisdem}
+screenreg(l = list(modelo0, modelo1, modelo2, modelo3, modelo4,modelo5,modelo6), doctype = FALSE,
+          custom.coef.names=c("Intercepto","Sexo (Mujer=1)","Edad","Algo interesadoIP","Bastante o muy interesadoIP",
+                              "AlgoPP","Bastante o muchaPP","Algo satisfechoSD","Bastante o muy
+                              satisfechoSD","Secundaria","Técnica","Universitaria"),
+          custom.model.names = c("Modelo 0","Modelo 1","Modelo 2", "Modelo 3","Modelo 4","Modelo 5","Modelo 6"))
+
+```
+
+
+```{r, devianza}
+# Calculate the null deviance
+null_deviance1 <- deviance(modelo0, null = TRUE)
+
+# Print the null deviance
+print(null_deviance1)
+
+deviance(modelo6survey)
+
+```
+```{r, curva ROC}
+# Use the model to predict probabilities of the positive class
+pred_probs <- predict(modelo6survey, type = "response")
+
+# Calculate the ROC curve
+roc_curve <- roc(response = datos_proc$apoyo_dem_dic, predictor = pred_probs)
+
+# Plot the ROC curve
+plot(roc_curve)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
